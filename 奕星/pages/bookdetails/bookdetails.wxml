@@ -1,0 +1,13 @@
+<view class='tx'>
+	 <image src='{{boksxq.book_img}}'></image>
+   <text class='tt tt0'>{{boksxq.book_name}}</text>
+   <text class='tt tt1'>作者：{{boksxq.author}}</text>
+   <text class='tt tt2'>类型：{{type.typename}}</text>
+      <view class='tx1'>
+        <button class='butt' bindtap='read1'>在线阅读</button>
+        <button class='butt'>加入书架</button>
+        <button class='butt'>缓存</button>
+      </view>
+   <text class='tts1'>{{boksxq.brief}}</text>
+</view>
+<view >精彩书评</view>

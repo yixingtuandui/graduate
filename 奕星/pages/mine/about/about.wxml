@@ -1,0 +1,32 @@
+<view class="main">
+  <view class='h3'>关于我们</view>
+  <view class='row'>F6银河舰队</view>
+  <view class='row'>英文名称：Fuxking six</view>
+  <view class='row'>邮箱：384147775@qq.com</view>
+  <view class='row'>座右铭：Fuxking go</view>
+  <view class='row'>
+  简介：你的野区，我养猪。</view>
+  <view class='row-img'>
+      <image class="icon" src="../../../img/mine_img/mt.png" mode="widthFix"/>
+  </view>
+  <view>
+      <modal title="来啦老弟" cancel-text="关闭" confirm-text="确定" hidden="{{mHidden}}" bindconfirm="changeModel" bindcancel="modelCancel">
+      <image src='../../../img/mine_img/daqianxiexie.png'></image>
+      </modal>
+      <button type='default' bindtap='btnTap'>联系我们</button>
+  </view>
+  </view>
+  <!-- <view> <button class='callus' bindtap='callme'>联系我们</button></view>
+  </view> -->
+  
+  
+ <!-- <view class="b1" hidden="{{flag}}">
+        <view class="b2">
+            <image src='../../../img/mine_img/daqianxiexie.png'/>
+        </view>
+          <view class="t_w">
+           <cover-view class="t_image" bindtap="closeMask">
+             <cover-image  src="../../../img/mine_img/bell.jpg"></cover-image>
+            </cover-view>
+          </view>
+    </view> -->

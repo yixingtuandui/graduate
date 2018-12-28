@@ -1,0 +1,20 @@
+/* pages/search/search.wxss */
+#inp{
+  border:5rpx solid black;
+  border-radius: 40px;
+  padding-left:20px;
+}
+.gg{height: 200rpx; width: 100%}
+.xqzswz{float: right;width: 60%}
+.syflxqzs{width: 90%;height: 100px;margin: 5%;border-bottom: 1px solid #ccc;display: flex}
+.xqzsimg{width: 23%;height: 100%}
+.xqzswz{width: 74%;height: 100%;font-size: 12px}
+.jj{
+  height: 120rpx; 
+  margin: 0rpx 0rpx 0rpx 20rpx; 
+  display: -webkit-box; 
+  text-overflow: ellipsis; 
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  }
