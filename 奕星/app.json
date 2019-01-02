@@ -1,23 +1,23 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/bkdts/bkdts",
-    "pages/bookdetails/bookdetails",
     "pages/bookshelf/bookshelf",
-		"pages/mine/mine",
+    "pages/bkdts/bkdts",
+    "pages/search/search",
+    "pages/bookdetails/bookdetails",
+    "pages/read/read",
+    "pages/mine/mine",
+    "pages/mine/mymoneyy/mymoneyy",
     "pages/mine/about/about",
     "pages/mine/buybookk/buybookk",
-    "pages/mine/feedback/feedback",
     "pages/mine/iauthorr/iauthorr",
     "pages/mine/iinformationn/iinformationn",
     "pages/mine/indexx/indexx",
-    "pages/mine/mymoneyy/mymoneyy",
     "pages/mine/myselff/myselff",
     "pages/mine/phonee/phonee",
     "pages/mine/rechargeee/rechargeee",
-    "pages/mine/signingg/signingg",
-		"pages/read/read",
-    "pages/search/search"
+    "pages/mine/feedback/feedback",
+    "pages/mine/signingg/signingg"
   ],
   "window": {
     "backgroundTextStyle": "light",

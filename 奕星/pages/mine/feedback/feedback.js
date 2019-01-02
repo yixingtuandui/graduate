@@ -1,5 +1,5 @@
 var app = getApp()
-var https = require('../../utils/https.js')
+// var https = require('../../utils/https.js')
 
 Page({
   data: {

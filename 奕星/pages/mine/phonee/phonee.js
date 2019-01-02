@@ -1,4 +1,4 @@
-var phonee=this.data.phonee
+// var phonee=this.data.phonee
 Page({
   data: {
     send: false,
