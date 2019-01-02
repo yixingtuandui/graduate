@@ -59,14 +59,21 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.showLoading({
+      title: '玩命加载中',
+      mask: true,
+      success: function(res) {
+       wx.stopPullDownRefresh()
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
   },
 
   /**
@@ -197,6 +204,7 @@ Page({
   // 那个类型的书籍
     thisType: function (e) {
     var tyn = e.currentTarget.dataset.id
+    console.log(tyn)
     wx.request({
       url: 'http://localhost:8080/booksType',
       data: {
@@ -236,6 +244,51 @@ Page({
       },
       fail: function(res) {},
       complete: function(res) {},
+    })
+  },
+  // 人气
+  heat:function(){
+    var count=1;
+    var that = this;
+    wx.request({
+      url: 'http://localhost:8080/heat',
+      data: '',
+      header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+      method: 'post',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        console.log(res)
+        that.setData({
+          cx: res.data
+        })
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  lower:function(){
+    
+  },
+  xq: function (e) {
+    console.log(e.currentTarget.dataset.id)
+    var id = e.currentTarget.dataset.id
+    wx.request({
+      url: 'http://localhost:8080/bookx',
+      data: { bid: id },
+      header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
+      method: 'post',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+        console.log(res)
+        var bok = JSON.stringify(res.data)
+        wx.navigateTo({
+          url: '../bookdetails/bookdetails?obj=' + bok,
+        })
+      },
+      fail: function (res) { },
+      complete: function (res) { },
     })
   }
 })
