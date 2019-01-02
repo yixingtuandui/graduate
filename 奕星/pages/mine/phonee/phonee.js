@@ -1,4 +1,3 @@
-var phonee=this.data.phonee
 Page({
   data: {
     send: false,

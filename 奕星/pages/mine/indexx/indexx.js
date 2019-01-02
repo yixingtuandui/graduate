@@ -1,6 +1,5 @@
 //index.js
 //获取应用实例
-var indexx = this.data.indexx
 Page({
   data: {
     motto: 'Hello World',

@@ -1,5 +1,4 @@
 var app = getApp()
-var https = require('../../utils/https.js')
 
 Page({
   data: {
@@ -10,7 +9,7 @@ Page({
   formSubmit: function (e) {
     var that = this;
     if (e.detail.value.content) {
-      var url = app.globalData.feedbackUrl + `?content=${e.detail.value.content}`;
+      var url = app.globalData.feedbackUrl + '?content=${e.detail.value.content}';
 
       if (that.data.hasReq == true) {
         return;

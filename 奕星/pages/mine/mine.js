@@ -7,7 +7,8 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+		role:null
   },
   //关于我
   goAbout: function () {
@@ -24,14 +25,23 @@ Page({
   },
 // 签到
   signing: function () {
-    wx.navigateTo({
-      url: `../mine/signingg/signingg`,
-    });
+		wx.request({
+			url:'http://localhost:9999/sign',
+			data:{id:1},
+			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+			method:'POST',
+			success:function(result) {
+				wx.navigateTo({
+					url: '../mine/signingg/signingg?boolean='+result.data,
+				});
+				
+			}
+		})
   },
   // 个人资料
   myself: function () {
     wx.navigateTo({
-      url: `../mine/myselff/myselff`,
+      url: '../mine/myselff/myselff',
     });
   },
   //余额
@@ -75,6 +85,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+		var that=this
+		wx.request({
+			data:{id:1},
+			url:'http://localhost:9999/member',
+			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+			method:'POST',
+			success:function(result){
+				console.log(result.data)
+				that.setData({
+					role:result.data
+				});
+			}
+		})
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

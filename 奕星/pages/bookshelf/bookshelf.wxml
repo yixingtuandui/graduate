@@ -16,13 +16,12 @@
 					<view class="book" wx:for="{{books}}" wx:key="*this" wx:for-item="book">
 						<!-- 书籍图片 -->
 						<view>
-							<image src="{{book[0].book_img}}" class="item_book_img" mode="aspectFill"></image>
+							<image src="{{book.bookImg}}" class="item_book_img" mode="aspectFill"></image>
 						</view>
 						<!-- 书籍名 -->
 						<view>
-							<text class="book_name">{{book[0].book_name}}</text>
+							<text class="book_name">{{book.bookName}}</text>
 						</view>
-						
 					</view>
 				<view class="book" >
 					<view class="book_add">
