@@ -1,6 +1,6 @@
 //获取应用实例
 var app = getApp()
-
+var count = 1;
 Page({
 
   /**
@@ -59,14 +59,21 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    // wx.showLoading({
+    //   title: '玩命加载中',
+    //   mask: true,
+    //   success: function(res) {
+    //    wx.stopPullDownRefresh()
+    //   },
+    //   fail: function(res) {},
+    //   complete: function(res) {},
+    // })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
   },
 
   /**
@@ -197,6 +204,7 @@ Page({
   // 那个类型的书籍
     thisType: function (e) {
     var tyn = e.currentTarget.dataset.id
+    console.log(tyn)
     wx.request({
       url: 'http://localhost:8080/booksType',
       data: {
@@ -219,6 +227,7 @@ Page({
   shopp:function(e){
     console.log(e)
     var that=this;
+    that.data.cx.concat(0)
     wx.request({
       url: 'http://localhost:8080/shopp',
       data: '',
@@ -230,12 +239,70 @@ Page({
       responseType: 'text',
       success: function(res) {
         console.log(res)
-        that.setData({
-          cx:res.data
-        })
+          that.setData({
+            cx: res.data})
       },
       fail: function(res) {},
       complete: function(res) {},
+    })
+  },
+  // 人气
+  heat:function(){
+
+    wx.showLoading({
+      title: '玩命加载中',
+    })
+    console.log(count)
+    var that = this;
+    wx.request({
+      url: 'http://localhost:8080/heat',
+      data: {
+        pageNum:count
+      },
+      header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+      method: 'POST',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        // console.log(res.data.length)
+        count++
+          that.setData({
+            cx: that.data.cx.concat(res.data)
+          })
+         
+        wx.hideLoading();
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  // lowers:function(){
+  //   // if(flge!=true){
+  //     wx.showLoading({
+  //       title: '玩命加载中',
+  //     })
+  //   // }
+  //   this.heat()
+  // },
+  xq: function (e) {
+    console.log(e.currentTarget.dataset.id)
+    var id = e.currentTarget.dataset.id
+    wx.request({
+      url: 'http://localhost:8080/bookx',
+      data: { bid: id },
+      header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
+      method: 'post',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+        console.log(res)
+        var bok = JSON.stringify(res.data)
+        wx.navigateTo({
+          url: '../bookdetails/bookdetails?obj=' + bok,
+        })
+      },
+      fail: function (res) { },
+      complete: function (res) { },
     })
   }
 })

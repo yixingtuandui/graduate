@@ -22,16 +22,10 @@ page{
   width: 100px;
   float: left;
   margin-right: 2px;
-  border: 1px solid black;
-}
-.types image{
-  border:1px solid red;
-  height: 100px;
-  width: 50px;
+  text-align: center;
 }
 .types text{
-  float: right;
-  margin-top: 45px;
+ 
 }
 .ban{
   width: 19%;
@@ -57,12 +51,12 @@ button::after {border: none;}
   border-bottom: 2px solid whitesmoke;
 }
 .img{
-  height: 130px;
-  width: 90px;
+  height: 105px;
+  width: 65px;
 }
 .text{
   float:right;
-  width:230px;
+  width:182px;
 }
 .tt{
   float: right;
@@ -80,7 +74,7 @@ button::after {border: none;}
   line-height: 40rpx;
   word-break: break-all;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp:3;
+  -webkit-line-clamp:2;
   overflow: hidden;
   text-overflow:ellipsis;
 }

@@ -1,6 +1,6 @@
 <view class='tx'>
-	 <image src='{{boksxq.book_img}}'></image>
-   <text class='tt tt0'>{{boksxq.book_name}}</text>
+	 <image src='{{boksxq.bookImg}}'></image>
+   <text class='tt tt0'>{{boksxq.bookName}}</text>
    <text class='tt tt1'>作者：{{boksxq.author}}</text>
    <text class='tt tt2'>类型：{{type.typename}}</text>
       <view class='tx1'>

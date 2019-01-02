@@ -4,9 +4,7 @@ Page({
     bookslst:[]
   },
   onLoad: function (options){
-    console.log(options.showBooks)
     var lit = JSON.parse(options.showBooks);
-    console.log(lit)
     this.setData({
       bookslst:lit
     })

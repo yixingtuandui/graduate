@@ -4,6 +4,9 @@ Page({
     boksxq:[],
     type:[]
   },
+  onPullDownRefresh:function(){
+    wx.showNavigationBarLoading()
+  },
   onLoad:function(option){
     var ty=this
     var boks=JSON.parse(option.obj);

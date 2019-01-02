@@ -42,29 +42,29 @@
       <!-- 分类 -->
       <swiper-item>
        <scroll-view  scroll-y style="height: 100%">
-          <view class='types' wx:for="{{tyname}}"  wx:for-item='item'  bindtap='thisType' data-id='{{item.id}}'>
+          <view class='types' wx:for="{{tyname}}"  wx:for-item='item'  bindtap='thisType' data-id='{{item.tid}}'>
             <text>{{item.typename}}</text> 
           </view>
            </scroll-view>
       </swiper-item>
       <!-- 排行 -->
     <swiper-item>
-      <scroll-view  scroll-y style="height: 100%">
         <view class='ban'>
         <button bindtap='shopp' data-color='1' class=''>畅销榜</button>
         <button bindtap='heat' data-color='2' class=''>人气榜</button>
         </view>
         <view class='ym'>
-          <view class='book' wx:for='{{cx}}'data-id='{{item.bid}}' bindtap='xq'>
-            <image class='img' src='{{item.book_img}}'></image>
+        <scroll-view  scroll-y="true" bindscrolltolower="heat" scroll-top="{{scrollTop}}" style="height:340px">
+          <view class='book' wx:for='{{cx}}'data-id='{{item.id}}' bindtap='xq'>
+            <image class='img' src='{{item.bookImg}}'></image>
             <view class='text'>
-              <text class='tt'>{{item.book_name}}</text>
+              <text class='tt'>{{item.bookName}}</text>
               <text class='ts'>{{item.brief}}</text>
               <text class='zz'>{{item.author}}</text>
             </view>
           </view>
+          </scroll-view>
         </view>
-      </scroll-view>
     </swiper-item>  
     </swiper>
   </view>
