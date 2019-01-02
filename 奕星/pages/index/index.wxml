@@ -54,7 +54,7 @@
         <button bindtap='heat' data-color='2' class=''>人气榜</button>
         </view>
         <view class='ym'>
-        <scroll-view  scroll-y="true" bindscrolltolower="lower" scroll-top="{{scrollTop}}" style="height:100%">
+        <scroll-view  scroll-y="true" bindscrolltolower="heat" scroll-top="{{scrollTop}}" style="height:340px">
           <view class='book' wx:for='{{cx}}'data-id='{{item.id}}' bindtap='xq'>
             <image class='img' src='{{item.bookImg}}'></image>
             <view class='text'>
