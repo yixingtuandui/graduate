@@ -1,0 +1,9 @@
+<!-- pages/bkdts/bkdts.wxml -->
+<view class='book' wx:for='{{bookslst}}' data-id='{{item.id}}' bindtap='xq'>
+  <image class='img' src='{{item.bookImg}}'></image>
+  <view class='text'>
+    <text class='tt'>{{item.bookName}}</text>
+    <text class='ts'>{{item.brief}}</text>
+    <text class='zz'>{{item.author}}</text>
+  </view>
+</view>
