@@ -4,7 +4,8 @@
   border-radius: 40px;
   padding-left:20px;
 }
-.gg{height: 200rpx; width: 100%}
+.gg{height: 200rpx; width: 100%;margin-bottom:9px;
+}
 .xqzswz{float: right;width: 60%}
 .syflxqzs{width: 90%;height: 100px;margin: 5%;border-bottom: 1px solid #ccc;display: flex}
 .xqzsimg{width: 23%;height: 100%}
