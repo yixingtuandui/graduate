@@ -1,0 +1,96 @@
+    <view class="main">
+        <view class="avatar">
+            <image src="{{userInfo.avatarUrl}}" bindtap='myself'></image>
+            <view class='title'>{{userInfo.nickName}}<icon hidden='{{(userInfo&&userInfo.nickName)?false:true}}' class="iconfont icon-diamond"></icon></view>
+            <!-- 昵称 -->
+            <!-- getUserInfo = 获取昵称 -->
+            <view>
+               <view>
+               <text>{{userInfo.nickname}}</text>
+               </view>
+            </view>
+            <!-- 余额 -->
+            <view class="mymoneyc" bindtap='mymoneyy'>
+                <view>
+                <icon class="iconfont icon-yue"></icon>
+                <text>余额：</text>
+                </view>
+            </view>
+            <!-- 充值 -->
+            <view class="recharge" bindtap='rechargee'>
+                <view>
+                <icon class="iconfont icon-chongzhi"></icon>
+                <text>充值</text>
+                </view>
+            </view>
+        </view>
+        
+        <view>
+        <view class="line"/>
+        <!-- myself=个人资料 -->
+        <view class="content-row" bindtap='myself'>
+            <view>
+               <icon class="iconfont icon-gerenziliao"></icon>
+               <text>个人资料</text>
+            </view> 
+            <icon class='iconfont icon-arrowright'></icon>
+        </view>
+        <!-- signing=签到 -->
+        <view class="content-row" bindtap='signing' wx:if='{{role!="普通用户"}}'>
+            <view>
+               <icon class="iconfont icon-qiandaoyoujiang"></icon>
+               <text>每日签到</text>
+            </view>
+            <icon size='20' class='iconfont icon-arrowright'></icon>
+        </view>
+        <!-- phone=手机 -->
+        <view class="content-row" bindtap='phone'>
+            <view>
+               <icon class="iconfont icon-ai-bind-cel"></icon>
+               <text>绑定手机</text>
+            </view>
+            <icon size='20' class='iconfont icon-arrowright'></icon>
+        </view>
+        <!-- buybook=我的购买 -->
+        <view class="content-row" bindtap='buybook'>
+            <view>
+               <icon class="iconfont icon-wodegoumai"></icon>
+               <text>我的购买</text>
+            </view>
+            <icon size='20' class='iconfont icon-arrowright'></icon>
+        </view>
+        <!-- iAuthor=我是作者 -->
+        <view class="content-row" bindtap='iAuthor'>
+            <view>
+               <icon class="iconfont icon-icon-"></icon>
+               <text>我是作者</text>
+            </view>
+            <icon size='20' class='iconfont icon-arrowright'></icon>
+        </view>
+        <!-- iinformation=我的消息 -->
+        <view class="content-row" bindtap='iinformation'>
+            <view>
+               <icon class="iconfont icon-xiaoxi"></icon>
+               <text>我的消息</text>
+            </view>
+            <icon size='20' class='iconfont icon-arrowright'></icon>
+        </view>
+
+          <view class="content-row" bindtap='goFeedback'>
+            <view>
+               <icon class="iconfont icon-drxx54"></icon>
+               <text>意见反馈</text>
+            </view>
+            <icon size='20' class='iconfont icon-arrowright'></icon>
+        </view>
+        <view class="content-row" bindtap='goAbout'> 
+          <view>
+             <icon class="iconfont icon-guanyuwomenicon"></icon>
+             <text>关于我们</text>
+          </view>
+          <icon size='20' class='iconfont icon-arrowright'></icon>
+        </view>
+
+        <view class="line"/>
+    </view>
+</view>
