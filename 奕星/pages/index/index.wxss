@@ -8,7 +8,7 @@ page{
 #lbt{width: 100%;height: 100%;}
 #scdh{ display: flex;align-items: center;border-bottom: 1rpx solid #666}
 .tab{float: left;width: 33.3333%;text-align: center;padding: 10rpx 0;}
-.tabh{border-bottom: 1px solid #f00;color: #f00;}
+.tabh{border-bottom: 1px solid rgb(219, 66, 66);color: #f00;}
 .swiper1{width: 100%;height: 340px}
 #syfl{width: 20%;float: left;background-color: #ccc}
 .syfl{width: 100%;text-align: center;margin: 10px 0px}
@@ -28,7 +28,7 @@ page{
  
 }
 .ban{
-  width: 19%;
+  width: 17%;
   float: left;
   border-right: 1px solid #666;
   background-color: white;
@@ -43,7 +43,7 @@ button::after {border: none;}
   color:#666;
 }  
 .ym{
-  width: 80%;
+  width: 82%;
   float: right;
 }
 /*  */
@@ -56,7 +56,7 @@ button::after {border: none;}
 }
 .text{
   float:right;
-  width:182px;
+  width:190px;
 }
 .tt{
   float: right;

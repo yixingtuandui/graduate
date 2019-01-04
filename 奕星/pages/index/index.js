@@ -1,14 +1,22 @@
-//获取应用实例
+ //获取应用实例
 var app = getApp()
 var count = 1;
+var counts = 1;
+var flge = true;
+var flges = true;
+// var cx,rq;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    color1: '',
+    color2:'',
     tyname: [],
     cx:[],
+    rq:[],
+    stats:'',
     imgUrls: [
       '../../img/rotation_chart/1.jpg',
       '../../img/rotation_chart/2.jpg',
@@ -59,15 +67,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    // wx.showLoading({
-    //   title: '玩命加载中',
-    //   mask: true,
-    //   success: function(res) {
-    //    wx.stopPullDownRefresh()
-    //   },
-    //   fail: function(res) {},
-    //   complete: function(res) {},
-    // })
   },
 
   /**
@@ -86,17 +85,16 @@ Page({
   bindchange: function (e) {
     // 获取分类
     const that = this;
-    console.log(e)
     if (e.detail.current==1){
       var list = this;
     wx.request({
-      url: 'http://localhost:8080/showType',
-      method: "post",
+      url: 'http://www.tf6boy.vip/showType',
+      method: "POST",
       data: {
 
       },
       header: {
-        'content-type': 'application/json' // 默认值
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
       success(res) {
         console.log(res.data)
@@ -112,6 +110,7 @@ Page({
   },
   //点击切换，滑块index赋值
   checkCurrent: function (e) {
+    this.shopp();
     const that = this;
     if (that.data.currentData === e.target.dataset.current) {
       return false;
@@ -206,15 +205,17 @@ Page({
     var tyn = e.currentTarget.dataset.id
     console.log(tyn)
     wx.request({
-      url: 'http://localhost:8080/booksType',
+      url: 'http://www.tf6boy.vip/booksType',
       data: {
-        type: tyn
+        type: tyn,
+        pageNum:0
       },
       method: "post",
       header: {
         'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
       success: function (res) {
+        console.log(res.data)
         var books = JSON.stringify(res.data)
         wx.navigateTo({
           url: '../bkdts/bkdts?showBooks=' + books,
@@ -225,12 +226,23 @@ Page({
   },
   // 畅销
   shopp:function(e){
-    console.log(e)
-    var that=this;
-    that.data.cx.concat(0)
+    var that = this;
+    console.log(that.data.cx)
+    flge=true
+    if (flge == true) {
+      // console.log(flge)
+      wx.showLoading({
+        title: '玩命加载中',
+      })
+    that.setData({
+      color2: '',
+      color1: 'red',
+      stats: 'c',
+    })
+    console.log(counts)
     wx.request({
-      url: 'http://localhost:8080/shopp',
-      data: '',
+      url: 'http://www.tf6boy.vip/shopp',
+      data: { pageNum: counts},
       header: {
         'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
@@ -238,57 +250,88 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        console.log(res)
-          that.setData({
-            cx: res.data})
-      },
-      fail: function(res) {},
-      complete: function(res) {},
-    })
-  },
-  // 人气
-  heat:function(){
-
-    wx.showLoading({
-      title: '玩命加载中',
-    })
-    console.log(count)
-    var that = this;
-    wx.request({
-      url: 'http://localhost:8080/heat',
-      data: {
-        pageNum:count
-      },
-      header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
-      method: 'POST',
-      dataType: 'json',
-      responseType: 'text',
-      success: function(res) {
-        // console.log(res.data.length)
-        count++
-          that.setData({
-            cx: that.data.cx.concat(res.data)
-          })
-         
+        console.log(res.data)
+        counts++
+        if (res.data == "") {
+          flge = false
+        } else {
+          if (that.data.cx == '') {
+            that.setData({
+              cx: res.data
+            })
+          } else {
+            that.setData({
+              cx: that.data.cx.concat(res.data)
+            })
+          }  
+        }
         wx.hideLoading();
       },
       fail: function(res) {},
       complete: function(res) {},
     })
+    }
   },
-  // lowers:function(){
-  //   // if(flge!=true){
-  //     wx.showLoading({
-  //       title: '玩命加载中',
-  //     })
-  //   // }
-  //   this.heat()
-  // },
+  // 人气
+  heat:function(){
+    var that = this;
+    console.log(that.data.rq)
+  if(flges==true){
+    wx.showLoading({
+      title: '玩命加载中',
+    })
+    that.setData({
+      color2:'red',
+      color1:'',
+      stats:'r'
+    })
+  // console.log(count)
+  wx.request({
+    url: 'http://www.tf6boy.vip/heat',
+    data: {
+      pageNum: count
+    },
+    header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
+    method: 'POST',
+    dataType: 'json',
+    responseType: 'text',
+    success: function (res) {
+      // console.log(that.data.stats)
+      console.log(res.data)
+      count++
+      if (res.data == "") {
+          flges=false
+      } else {
+        if (that.data.cx==''){
+          that.setData({
+            rq: res.data
+          })
+        }else{
+          that.setData({
+            rq: that.data.rq.concat(res.data)
+          })
+        }
+      }
+      wx.hideLoading();
+    },
+    fail: function (res) { },
+    complete: function (res) { },
+    })
+    }
+  },
+  lowers:function(){
+    var that=this
+   if(that.data.stats=='c'){
+     that.shopp()
+   }else if(that.data.stats=='r'){
+     that.heat()
+   }
+  },
   xq: function (e) {
     console.log(e.currentTarget.dataset.id)
     var id = e.currentTarget.dataset.id
     wx.request({
-      url: 'http://localhost:8080/bookx',
+      url: 'http://www.tf6boy.vip/bookx',
       data: { bid: id },
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
       method: 'post',

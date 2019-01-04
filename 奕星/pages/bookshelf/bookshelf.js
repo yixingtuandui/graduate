@@ -10,7 +10,7 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
 		var that = this;
 		wx.request({
-			url:'http://localhost:9999/bookshelf',
+			url:'http://localhost:8080/bookshelf',
 			data:{uid:1},
 			header:{
 				'content-type': 'application/x-www-form-urlencoded;charset=utf-8',

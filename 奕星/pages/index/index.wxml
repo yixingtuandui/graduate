@@ -50,19 +50,28 @@
       <!-- 排行 -->
     <swiper-item>
         <view class='ban'>
-        <button bindtap='shopp' data-color='1' class=''>畅销榜</button>
-        <button bindtap='heat' data-color='2' class=''>人气榜</button>
+        <button bindtap='shopp'  class=''  style='color:{{color1}}'>畅销榜</button>
+        <button bindtap='heat'  class='' style='color:{{color2}}'>人气榜</button>
         </view>
         <view class='ym'>
-        <scroll-view  scroll-y="true" bindscrolltolower="heat" scroll-top="{{scrollTop}}" style="height:340px">
-          <view class='book' wx:for='{{cx}}'data-id='{{item.id}}' bindtap='xq'>
+        <scroll-view  scroll-y="true" bindscrolltolower="lowers" scroll-top="{{scrollTop}}" style="height:340px">
+        <view wx:if="{{stats=='c'}}">
+        <view class='book'  wx:for='{{cx}}' data-id='{{item.id}}' bindtap='xq'>
             <image class='img' src='{{item.bookImg}}'></image>
             <view class='text'>
               <text class='tt'>{{item.bookName}}</text>
               <text class='ts'>{{item.brief}}</text>
               <text class='zz'>{{item.author}}</text>
             </view>
-          </view>
+          </view></view>
+          <view wx:if="{{stats=='r'}}"><view class='book'  wx:for='{{rq}}' data-id='{{item.id}}' bindtap='xq'>
+            <image class='img' src='{{item.bookImg}}'></image>
+            <view class='text'>
+              <text class='tt'>{{item.bookName}}</text>
+              <text class='ts'>{{item.brief}}</text>
+              <text class='zz'>{{item.author}}</text>
+            </view>
+          </view></view>
           </scroll-view>
         </view>
     </swiper-item>  

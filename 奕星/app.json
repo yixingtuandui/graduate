@@ -25,7 +25,7 @@
     "navigationBarTitleText": "奕星",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true,
-    "backgroundColor": "#f0145a"
+    "backgroundColor": "#666"
   },
   "tabBar": {
     "color": "#000",

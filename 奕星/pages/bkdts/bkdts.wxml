@@ -7,3 +7,4 @@
     <text class='zz'>{{item.author}}</text>
   </view>
 </view>
+<view wx:if='{{flge==false}}'>没有更多了</view>
