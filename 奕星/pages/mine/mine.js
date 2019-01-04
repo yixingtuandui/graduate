@@ -26,7 +26,7 @@ Page({
 // 签到
   signing: function () {
 		wx.request({
-			url:'http://localhost:8080/sign',
+			url:'http://localhost:9999/sign',
 			data:{id:1},
 			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
 			method:'POST',
@@ -88,7 +88,7 @@ Page({
 		var that=this
 		wx.request({
 			data:{id:1},
-			url:'http://localhost:8080/member',
+			url:'http://localhost:9999/member',
 			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
 			method:'POST',
 			success:function(result){

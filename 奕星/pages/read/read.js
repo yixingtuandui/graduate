@@ -1,4 +1,6 @@
 // pages/read/read.js
+var url
+var num = 0
 Page({
 
   /**
@@ -63,17 +65,22 @@ Page({
   onShareAppMessage: function () {
 
   },
-  onLoad:function(){
+  //加载完成
+  onLoad:function(e){
+    console.log(e.url)
     var thiz=this
+    num = 0
+    url = e.url 
     wx.request({
-      url: 'http://localhost:8080/read',
-      data: '',
+      url: 'http://www.tf6boy.vip/read',
+      data: {
+        url: url+ '/' + num + '.txt'
+      },
       header: {},
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
-        console.log(res.data)
         thiz.setData({
           read:res.data
         })
@@ -81,5 +88,70 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
+  },
+  //上一章
+  syz:function(){
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
+    var thiz = this
+    
+    if(num>0){
+      --num
+      wx.request({
+        url: 'http://www.tf6boy.vip/read',
+        data: {
+          url: url + '/' + num + '.txt'
+        },
+        header: {},
+        method: 'GET',
+        dataType: 'json',
+        responseType: 'text',
+        success: function (res) {
+
+          thiz.setData({
+            read: res.data
+          })
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+
+    }
+  },
+  //下一章
+  xyz:function(){
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
+    var thiz = this
+    
+    if(num>=0){
+      ++num
+      wx.request({
+        url: 'http://www.tf6boy.vip/read',
+        data: {
+          url: url + '/' + num + '.txt'
+        },
+        header: {},
+        method: 'GET',
+        dataType: 'json',
+        responseType: 'text',
+        success: function (res) {
+
+          thiz.setData({
+            read: res.data
+          })
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    }
+    
+
+  },
+  //目录
+  ml:function(){
+
   }
 })

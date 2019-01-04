@@ -1,4 +1,5 @@
 var app = getApp()
+
 Page({
   data: {
     height: 20,

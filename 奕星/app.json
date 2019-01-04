@@ -12,6 +12,7 @@
     "pages/mine/buybookk/buybookk",
     "pages/mine/iauthorr/iauthorr",
     "pages/mine/iinformationn/iinformationn",
+    "pages/mine/indexx/indexx",
     "pages/mine/myselff/myselff",
     "pages/mine/phonee/phonee",
     "pages/mine/rechargeee/rechargeee",
@@ -24,7 +25,7 @@
     "navigationBarTitleText": "奕星",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true,
-    "backgroundColor": "#666"
+    "backgroundColor": "#f0145a"
   },
   "tabBar": {
     "color": "#000",
