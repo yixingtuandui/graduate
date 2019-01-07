@@ -1,0 +1,49 @@
+<!--pages/comment/comment.wxml--> 
+<textarea class='the_prw_in' bindinput='bindblur' cursor-spacing="130" placeholder='说点什么吧...' maxlength="100"> 
+  </textarea> 
+<view class='the_prw_btn' bindtap='btn_send'> 
+   <button class='the_prw_btns'>留言</button> 
+</view> 
+<view class='talk-header'> 
+  <view class='talk-count'>共{{pl_list.length==0?0:pl_list.length}} 条评论</view> 
+    <!-- <image src=' ' class='talk-close' bindtap='hideTalks'></image> --> 
+<!-- 评论体 --> 
+<scroll-view class='talk-body' scroll-y="true" bindscrolltolower="onScrollLoad"> 
+  <view class='talk-item' wx:for="{{pl_list}}" wx:key="*this" wx:for-item='item' wx:if="{{item.parentid==0}}"> 
+    <view class='talk-item-left'> 
+      <image class='talk-item-face' src='{{item.uid.avator}}'></image> 
+    </view> 
+    <view class='talk-item-right'> 
+      <view class='right-left'> 
+        <text class='talk-item-nickname'>{{item.uid.name}}</text> 
+        <text class='talk-item-time'>\t{{item.time}}</text> 
+        <button id='{{item.belong}}' class='talk-item-com-more' data-belongs="{{item.belong}}" bindtap="onChangeShowState">{{showView && item.belong==belongs?'收起回复':'更多回复'}}</button> 
+        <button class='talk-item-com' bindtap='btn_return' data-id="{{item.id}}" data-belong="{{item.belong}}">回复</button> 
+      </view> 
+      <text class='talk-item-content'>{{item.content}}</text> 
+      <view wx:if="{{id==item.belong}}"> 
+      <view class="{{showView && item.belong==belongs?'show':'hide'}}"> 
+        <view class='talk-item' wx:for="{{pl_list}}" wx:key="*this" wx:for-index='ins' wx:for-item='ite'> 
+        <view  class='talk-ifs' wx:if="{{ite.parentid==item.id && ite.belong==item.belong}}"> 
+          <view class='talk-item-left'> 
+            <image class='talk-item-face' src='{{ite.uid.avator}}'></image> 
+          </view> 
+          <view class='talk-item-right'> 
+            <view class='right-left'> 
+                <text class='talk-item-nickname'>{{ite.uid.name}}</text> 
+                <text class='talk-item-time'>{{ite.time}}</text> 
+            </view> 
+            <text class='talk-item-content'>\t{{ite.content}}</text> 
+          </view> 
+        </view> 
+        </view> 
+         </view> 
+      </view> 
+    </view> 
+  </view> 
+</scroll-view> 
+</view> 
+<view wx:if="{{!hiddenmodalput}}">
+<modal hidden="{{hiddenmodalput}}" title="回复{{item.uid.name}}" confirm-text="提交" cancel-text="重置" bindcancel="cancel" bindconfirm="confirm">  
+  <input type='text' name='name' placeholder="{{input_values}}" bindinput="voteTitle" auto-focus/> 
+</modal></view>

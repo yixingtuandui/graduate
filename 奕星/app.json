@@ -16,7 +16,8 @@
     "pages/mine/phonee/phonee",
     "pages/mine/rechargeee/rechargeee",
     "pages/mine/feedback/feedback",
-    "pages/mine/signingg/signingg"
+    "pages/mine/signingg/signingg",
+	"pages/comment/comment"
   ],
   "window": {
     "backgroundTextStyle": "light",

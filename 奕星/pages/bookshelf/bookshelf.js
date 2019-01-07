@@ -11,7 +11,7 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
 		var that = this;
 		wx.request({
-			url:'http://localhost:8080/bookshelf',
+			url:'http://www.tf6boy.vip/bookshelf',
 			data:{uid:1},
 			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',},
 			method:'POST',
@@ -22,16 +22,26 @@ Page({
 			}
 		})
   },
+	//书架书籍点击事件
+	
+	//最近阅读书籍点击事件
+	reading:function(e){
+		console.log(e.currentTarget.dataset.id)
+		wx.navigateTo({
+			url:'../bookdetails/bookdetails?obj='+e.currentTarget.dataset.id
+		})
+	},
   //滑动切换
   swiperTab: function (e) {
     var that = this;
     if (e.detail.current == 1) {
       wx.request({
-        url: 'http://localhost:8080/recently',
+        url: 'http://www.tf6boy.vip/recently',
         data: { uid: 1 },
         header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8', },
         method: 'POST',
         success: function (result) {
+					console.log(result.data)
           that.setData({
             recentlys: result.data,
           })
@@ -47,7 +57,7 @@ Page({
     var that = this;
     if (e.target.dataset.current==1){
       wx.request({
-				url: 'http://localhost:8080/recently',
+				url: 'http://www.tf6boy.vip/recently',
         data: {uid:1},
         header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8', },
         method: 'POST',

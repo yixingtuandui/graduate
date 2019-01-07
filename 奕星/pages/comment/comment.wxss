@@ -1,0 +1,225 @@
+/* pages/comment/comment.wxss */
+ 
+.the_prw_in{
+ 
+  display: flex;
+ 
+  justify-content: space-between;
+ 
+}
+ 
+textarea {
+ 
+  width: 93%;
+ 
+  min-height: 34rpx;
+ 
+  max-height: 102rpx; /*最多显示三行*/
+ 
+  border-width: 5rpx 5rpx; /*使用padding与预期留白不一致，故使用border*/
+ 
+  border-style: solid;
+ 
+  border-color: #00ff40;
+ 
+  line-height: 17rpx;
+ 
+  font-size: 30rpx;
+ 
+  margin: 5px 3%;
+ 
+  background-color: rgba(255, 255, 255, 0.247);
+ 
+  border-radius: 4rpx;
+ 
+}
+ 
+.talk-body {
+ 
+height: 800rpx;
+ 
+}
+ 
+/* 中部元素 */
+ 
+.talk-item {
+ 
+height: auto;
+ 
+display: flex;
+ 
+flex-direction: row;
+ 
+align-items: flex-start;
+ 
+width: 100%;
+ 
+color: rgb(57, 136, 119);
+ 
+margin-top: 0;
+ 
+overflow: hidden;
+ 
+}
+ 
+.talk-ifs{
+ 
+display: flex;
+ 
+flex-direction: row;
+ 
+align-items: flex-start;
+ 
+width: 100%;
+ 
+color: rgb(57, 136, 119);
+ 
+margin-top: 0；
+ 
+}
+ 
+.talk-item-left {
+ 
+display: flex;
+ 
+flex-direction: row;
+ 
+margin: 20rpx 0;
+ 
+} 
+ 
+.talk-item-face {
+ 
+width: 80rpx;
+ 
+height: 80rpx;
+ 
+border-radius: 50%;
+ 
+}
+ 
+.talk-item-right {
+ 
+width: 100%;
+ 
+border-bottom: solid 1rpx #6a6869;
+ 
+margin-right: 5rpx;
+ 
+padding-bottom: 20rpx;
+ 
+}
+ 
+.right-left {
+ 
+display: block;
+ 
+justify-content: space-between;
+ 
+align-items: center;
+ 
+margin: 10px 0;
+ 
+} 
+ 
+.talk-item-nickname {
+ 
+font-size: 28rpx;
+ 
+color: #159115;
+ 
+}
+ 
+.talk-item-time {
+ 
+font-size: 24rpx;
+ 
+color: #c22171;
+ 
+}
+ 
+.talk-item-com{
+ 
+  font-size: 26rpx;
+ 
+  width: 150rpx;
+ 
+  float: right;
+ 
+}
+ 
+.talk-item-content {
+ 
+display: block;
+ 
+font-size: 30rpx;
+ 
+margin-right: 30rpx;
+ 
+width: 92%;
+ 
+white-space: pre-line;
+ 
+word-break: break-all;
+ 
+word-wrap: break-word;
+ 
+} 
+ 
+.the_prw_btn{
+ 
+  margin: 5px 5%;
+ 
+}
+ 
+.the_prw_btns{
+ 
+  font-size: 30rpx;
+ 
+}
+ 
+.talk-count{
+ 
+  margin-left: 10px;
+ 
+  font-size: 30rpx;
+ 
+}
+ 
+.talk-item-id{
+ 
+  display: none;
+ 
+}
+ 
+.talk-item-belong{
+ 
+  display: none;
+ 
+}
+ 
+.hide{
+ 
+ display: none;
+ 
+ font-size: 20rpx;
+ 
+}
+ 
+.show{ 
+ 
+ display: block;
+ 
+ font-size: 20rpx;
+ 
+}
+ 
+.talk-item-com-more{
+ 
+  font-size: 26rpx;
+ 
+  width: 200rpx;
+ 
+  float: right;
+ 
+}

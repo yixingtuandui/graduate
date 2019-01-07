@@ -46,7 +46,7 @@ Page({
   signNewFn: function (e) {
     var that = this;
     const arr = [],
-      newSignArr = [...arr, ...that.data.isNewSignedArr];
+    newSignArr = [...arr, ...that.data.isNewSignedArr];
     newSignArr[that.data.myToday].isSigned = true;
     that.setData({
       isNewSignedArr: newSignArr
