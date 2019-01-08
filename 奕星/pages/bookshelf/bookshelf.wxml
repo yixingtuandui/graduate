@@ -12,8 +12,8 @@
   <swiper class="book-list" current="{{currentTab}}" duration="300"  bindchange="swiperTab">
 <!-- 添加到书架的书 -->
       <swiper-item >
-					<view class="book" wx:for="{{books}}" wx:key="*this" wx:for-item="book">
-						<view>
+					<view wx:for="{{books}}" wx:key="*this" wx:for-item="book">
+						<view data-data="{{book}}" class="book" bindtap='reading'>
 								<!-- 书籍图片 -->
 								<view>
 									<image src="{{book.bookImg}}" class="item_book_img" mode="aspectFill"></image>
@@ -33,8 +33,8 @@
       </swiper-item>
 <!-- 最近阅读的书 -->
       <swiper-item>
-					<view  wx:for="{{recentlys}}" wx:key="*this" wx:for-item="recentlys" >
-						<view data-id="{{recentlys.id}}" class="book" bindtap='reading'>
+<view  wx:for="{{recentlys}}" wx:key="*this" wx:for-item="recentlys" >
+						<view data-id="{{recentlys.id}}" class="book" bindtap='bookdetails'>
 							<!-- 书籍图片 -->
 							<view>
 								<image src="{{recentlys.bookImg}}" class="item_book_img" mode="aspectFill"></image>
@@ -44,7 +44,6 @@
 								<text class="book_name">{{recentlys.bookName}}</text>
 							</view>
 						</view>
-					</view>
-      </swiper-item>
+					</view>      </swiper-item>
   </swiper>
 </view>

@@ -1,0 +1,13 @@
+<view>
+  <view class='bookname'>{{book.book_name}}</view>
+  <view class='top'>
+    <view class='zhangjei'>第{{chapter+1}}章 :</view>
+    <view class='biaoti'>
+      <input placeholder='输入标题' class='input' bindinput='bindinputbt'></input>
+    </view>
+  </view>
+  <view class='textarea' style='height:{{textareaheight}}px'>
+    <textarea placeholder='输入章节内容' class='text' style='height: {{textareaheight}}px; width: {{textareawidth}}px' bindinput='bindinputnr' maxlength='-1'></textarea>
+  </view>
+  <button class='button' bindtap='tijiao'>更 新 章 节</button>
+</view>

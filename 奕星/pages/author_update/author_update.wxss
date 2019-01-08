@@ -1,0 +1,5 @@
+.details{width: 100%; display: block}
+.book{width: 96%; margin: 15rpx 2%; background-color: rgb(230, 230, 230)}
+.list-msg{height: 60rpx; border: 1px solid rgb(151, 151, 151); display: flex; align-items: center; width: 80%; margin-left: 1%}
+.select{width: 20%;background-color: rgb(241, 241, 241); color: red; line-height: 60rpx; font-size: 30rpx; float: right; margin-right: 1%; border: 1px solid rgb(151, 151, 151)}
+.selects{background-color: rgb(194, 194, 194)}

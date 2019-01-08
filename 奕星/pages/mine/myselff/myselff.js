@@ -1,81 +1,91 @@
 Page({
   data: {
-    tempFilePaths: '',
-    nickName: '',
-    userInfoAvatar: '',
-    province: '',
-    city: '',
-    array: ['GG', 'MM'],
-    objectArray: [
-      {
-        id: 0,
-        name: 'GG'
-      },
-      {
-        id: 1,
-        name: 'MM'
-      },
-    ],
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  chooseimage: function () {
-    var _this = this;
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        _this.setData({
-          userInfoAvatar: res.tempFilePaths
-        })
-      },
-      radioChange: function (e) {
-        console.log('radio发生change事件，携带value值为：', e.detail.value)
-      },
-    })
+
+  pressView: function (e) {
+    var viewId = e.target.id;
+    var viewDataSet = e.target.dataset;
+    var viewText = viewDataSet.text;
+    console.log(e.target); //输出点击的view的id，第二种情况就不重复写了
+    console.log(viewText); //输出该文本
   },
-  //地址
-  goindexx:function(e){
-    wx.navigateTo({
-      url: '../indexx/indexx',
-    })
+
+  // bindViewTap: function () {
+  //   wx.navigateTo({
+  //     url: '../myselff/myselff'
+  //   })
+  // },
+  onLoad: function (e) {
+    console.log(e)
+  //   if (app.globalData.userInfo) {
+  //     this.setData({
+  //       userInfo: app.globalData.userInfo,
+  //       hasUserInfo: true
+  //     })
+  //   } else if (this.data.canIUse) {
+  //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+  //     // 所以此处加入 callback 以防止这种情况
+  //     app.userInfoReadyCallback = res => {
+  //       this.setData({
+  //         userInfo: res.userInfo,
+  //         hasUserInfo: true
+  //       })
+  //     }
+  //   } else {
+  //     // 在没有 open-type=getUserInfo 版本的兼容处理
+  //     wx.getUserInfo({
+  //       success: res => {
+  //         app.globalData.userInfo = res.userInfo
+  //         this.setData({
+  //           userInfo: res.userInfo,
+  //           hasUserInfo: true
+  //         })
+  //       }
+  //     })
+  //   }
+  // },
+  // getUserInfo: function (e) {
+  //   console.log(e)
+  //   app.globalData.userInfo = e.detail.userInfo
+  //   this.setData({
+  //     userInfo: e.detail.userInfo,
+  //     hasUserInfo: true
+  //   })
   },
-  
   //手机号码
-  goiphone:function(e){
+  goiphone: function (e) {
     wx.navigateTo({
-      url: '../phonee/phonee',
+      url: '../ihuawei/ihuawei',
     })
   },
-
-  bindPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value
-    })
+  mi:function(e){
+    console.log(e)
+  },
+  touxiang:function(e){
+    var viewId = e.target.id;
+    var viewDataSet = e.target.dataset;
+    var viewText = viewDataSet.text;
+    console.log(viewId); 
+    console.log(viewText);
+  },
+  bindGetUserInfo: function (e) {
+    console.log(e.detail.userInfo)
   },
 
-  onLoad: function () {
-    var that = this;
-    wx.getUserInfo({
-      success: function (res) {
-        // success
-        that.setData({
-          nickName: res.userInfo.nickName,
-          userInfoAvatar: res.userInfo.avatarUrl,
-          province: res.userInfo.province,
-          city: res.userInfo.city
-        })
+  mname: function (e) {
+    console.log(e.data)
+    var thiz = this
+    wx.request({
+      url: 'http://www.tf6boy.vip/',
+      data: {
+        
       },
-      fail: function () {
-        // fail
-        console.log("获取失败！")
+      header: {
+        'Content-Type': 'application/json'
       },
-      complete: function () {
-        // complete
-        console.log("获取用户信息完成！")
-        console.log(this.province)
-      }
     })
-  }
+  },
 })

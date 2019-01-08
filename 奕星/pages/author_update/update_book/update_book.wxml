@@ -1,0 +1,36 @@
+<view>
+  <view class='books'>
+    <view class='imgs'>
+      <image src='{{book.book_img}}' class='img'></image>
+      <view class='bookname'>书名：{{book.book_name}}</view>
+    </view>
+    <view class='brief'>简介：<text>{{book.brief}}</text></view>
+    <view class='texts'>
+      <view class='text'>类别：<text>{{book.kinds}}</text></view>
+      <view class='text'>点击率：<text>{{book.number}}</text></view>
+      <view class='text show'>售价：
+        <text wx:if='{{showss}}'>{{book.price}}（元）</text>
+        <input wx:if='{{!showss}}' class='input' placeholder='价格(元)' bindinput='bindinputprice' type='digit'></input>
+      </view>
+      <view class='text show'>状态：
+        <text wx:if='{{showss}}'>{{status}}</text>
+        <view wx:if='{{!showss}}' class='box' bindtap='showbox'>
+          <text class='status'>{{status}}</text>
+        </view>
+        <view class="boxs" wx:if='{{valb}}'>
+          <view class="val" bindtap="vals" data-name="完本">完本</view>
+          <view class="val" bindtap="vals" data-name="连载">连载</view>
+        </view>
+      </view>
+      <view class='text'>审核：<text>{{book.auditing}}</text></view>
+      <view class='text'>销量：<text>{{book.amount}}</text></view>
+      <view class='text'>类型：<text>{{type.typename}}</text></view>
+      <view class='text'>更新至：<text>第{{chapter}}章</text></view>
+    </view>
+    <view class='but'>
+      <button class='button' bindtap='read'>阅读</button>
+      <button class='buttons' bindtap='modify'>调整</button>
+      <button class='buttons' bindtap='update' wx:if='{{book.status != shows}}'>更新</button>
+    </view>
+  </view>
+</view>

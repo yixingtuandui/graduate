@@ -20,7 +20,7 @@ Page({
           var actid = 1;
           // 查询评论 
           wx.request({
-            url: 'http://localhost:8080/comment',
+            url: 'http://www.tf6boy.vip/comment',
             method: 'POST',
             header: {
               'content-Type': 'application/x-www-form-urlencoded',
@@ -59,7 +59,7 @@ Page({
             // console.log('用户缓存id：user_id :', user_id); 
             // console.log('文本输入框: input_value :', bindblur); 
             wx.request({
-              url: 'http://localhost:8080/setcomment',
+              url: 'http://www.tf6boy.vip/setcomment',
               method: 'POST',
               header: {
                 'content-Type': 'application/x-www-form-urlencoded',
@@ -123,7 +123,7 @@ Page({
                     hiddenmodalput: true,
                   }),
                     wx.request({//发送请求，将回复内容写入数据库 
-                      url: 'http://localhost:8080/wuxingbookcity_war_exploded/setcomment',
+                      url: 'http://www.tf6boy.vip/setcomment',
                       method: 'POST',
                       header: {
                         'content-Type': 'application/x-www-form-urlencoded',

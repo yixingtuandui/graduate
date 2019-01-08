@@ -1,4 +1,4 @@
-// pages/iauthorr/iauthorr.js
+// pages/mine/ihuawei/ihuawei.js
 Page({
 
   /**
@@ -8,17 +8,7 @@ Page({
 
   },
 
-  bea:function(){
-    wx.navigateTo({
-      url: '',
-    })
-  },
-
-  ima:function(){
-    wx.navigateTo({
-      url: '',
-    })
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,6 +16,11 @@ Page({
 
   },
 
+  hw: function () {
+    wx.navigateTo({
+      url: '../ihuawei/phonee/phonee',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

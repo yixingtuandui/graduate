@@ -3,8 +3,11 @@
   border:5rpx solid black;
   border-radius: 40px;
   padding-left:20px;
+  width:280px;
+  margin:0px auto;
 }
-.gg{height: 200rpx; width: 100%}
+.gg{height: 200rpx; width: 100%;margin-bottom:9px;margin-top:12px;
+}
 .xqzswz{float: right;width: 60%}
 .syflxqzs{width: 90%;height: 100px;margin: 5%;border-bottom: 1px solid #ccc;display: flex}
 .xqzsimg{width: 23%;height: 100%}

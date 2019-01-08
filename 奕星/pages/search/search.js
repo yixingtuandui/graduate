@@ -1,4 +1,7 @@
 // pages/search/search.js
+var count = 1
+var s=""
+var flag = true
 Page({
 
   /**
@@ -54,7 +57,45 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(flag==true){
+      console.log(flag)
+      wx.showLoading({
+        title: '玩命加载中',
+        mask: true,
+        success: function (res) {
+          wx.stopPullDownRefresh()
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+      var thiz = this
+      wx.request({
+        url: 'http://www.tf6boy.vip/booksearch',
+        data: {
+          book: s,
+          pageNums: ++count
+        },
+        header: {},
+        method: 'GET',
+        dataType: 'json',
+        responseType: 'text',
+        success: function (res) {
+          thiz.setData({
+            dat:res.data
+          })
+          if (res.data == "") {
+            flag = false
+          } else {
+            thiz.setData({
+              book: thiz.data.book.concat(res.data),
+            })
+          }
+          wx.hideLoading()
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    } 
   },
 
   /**
@@ -64,31 +105,37 @@ Page({
 
   },
  searchBtn: function (e) {
-   var thiz = this
-  wx.request({
-    url: 'http://localhost:8080/booksearch',
-    data: {
-      book:e.detail.value
-    },
-    header: {},
-    method: 'GET',
-    dataType: 'json',
-    responseType: 'text',
-    success: function(res) {
-      console.log(res.data)
-      thiz.setData({
-        book: res.data
-      })
-    },
-    fail: function(res) {},
-    complete: function(res) {},
-  })
+ 
+     s=e.detail.value
+     
+   this.qq(s)
+  },
+  qq:function(s){
+    var thiz = this
+    wx.request({
+      url: 'http://www.tf6boy.vip/booksearch',
+      data: {
+        book: s,
+        pageNums: count
+      },
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) {
+        thiz.setData({
+          book: res.data
+        })
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
   },
    xq: function (e) {
     console.log(e)
     var id = e.currentTarget.dataset.id
     wx.request({
-      url: 'http://localhost:8080/bookx',
+      url: 'http://www.tf6boy.vip/bookx',
       data: { bid: id },
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
       method: 'post',
@@ -104,5 +151,5 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
-  }
+  },
 })

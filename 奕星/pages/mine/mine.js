@@ -7,8 +7,7 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-		role:null
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //关于我
   goAbout: function () {
@@ -25,23 +24,14 @@ Page({
   },
 // 签到
   signing: function () {
-		wx.request({
-			url:'http://localhost:8080/sign',
-			data:{id:1},
-			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
-			method:'POST',
-			success:function(result) {
-				wx.navigateTo({
-					url: '../mine/signingg/signingg?boolean='+result.data,
-				});
-				
-			}
-		})
+    wx.navigateTo({
+      url: `../mine/signingg/signingg`,
+    });
   },
   // 个人资料
   myself: function () {
     wx.navigateTo({
-      url: '../mine/myselff/myselff',
+      url: `../mine/myselff/myselff`,
     });
   },
   //余额
@@ -59,7 +49,7 @@ Page({
   //绑定手机
   phone:function(){
     wx.navigateTo({
-      url: `../mine/phonee/phonee`,
+      url: `../mine/ihuawei/ihuawei`,
     });
   },
   //我的购买
@@ -84,20 +74,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  bindViewTap: function () {
+    wx.navigateTo({
+      url: '../mine/myselff/myselff'
+    })
+  },
   onLoad: function () {
-		var that=this
-		wx.request({
-			data:{id:1},
-			url:'http://localhost:8080/member',
-			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
-			method:'POST',
-			success:function(result){
-				console.log(result.data)
-				that.setData({
-					role:result.data
-				});
-			}
-		})
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -131,54 +113,4 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
-    })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
-})
+    })}})

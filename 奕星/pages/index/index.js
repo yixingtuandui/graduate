@@ -1,10 +1,17 @@
- //获取应用实例
+//获取应用实例
 var app = getApp()
 var count = 1;
 var counts = 1;
 var flge = true;
 var flges = true;
-// var cx,rq;
+//设置页码
+var pages = 1
+//设置上拉刷新类型函数
+var loadType = ''
+//设置触底函数变量防止多次触发触底函数
+var canUseReachBottom = true
+//用于接收返回数据长度
+var lengths = 0
 Page({
 
   /**
@@ -17,6 +24,14 @@ Page({
     cx:[],
     rq:[],
     stats:'',
+    //设置点击切换时位置函数
+    scrollTop: 0,
+    //设置书城主导航页面切换函数
+    currentData: 0,
+    //用于接收后台传递的数据
+    items: [],
+    //用于判断是否还有新数据函数
+    tips: false,
     imgUrls: [
       '../../img/rotation_chart/1.jpg',
       '../../img/rotation_chart/2.jpg',
@@ -32,7 +47,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+		this.recommend()
+		this.visual_height()
   },
 
   /**
@@ -81,38 +97,36 @@ Page({
   onShareAppMessage: function () {
 
   },
-  //获取当前滑块的index
-  bindchange: function (e) {
-    // 获取分类
-    const that = this;
-    if (e.detail.current==1){
-      var list = this;
-    wx.request({
-      url: 'http://www.tf6boy.vip/showType',
-      method: "POST",
-      data: {
-
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-      },
-      success(res) {
-        console.log(res.data)
-        list.setData({
-          tyname: res.data
-        })
-      }
-    })
-    }
-    that.setData({
-      currentData: e.detail.current
-    })
-  },
+//   //获取当前滑块的index
+//   bindchange: function (e) {
+//     // 获取分类
+//     const that = this;
+//     if (e.detail.current==1){
+// 		var list = this;
+// 		wx.request({
+// 			url: 'http://www.tf6boy.vip/showType',
+// 			method: "POST",
+// 			data: {},
+// 			header: {'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+// 			success(res) {
+// 				console.log(res.data)
+// 				list.setData({
+// 				  tyname: res.data
+// 				})
+// 			}
+// 		})
+//     }
+//     that.setData({
+// 	//设置swiper中current的值
+//       currentData: e.detail.current
+//     })
+//   },
   //点击切换，滑块index赋值
   checkCurrent: function (e) {
     this.shopp();
-    const that = this;
-    if (that.data.currentData === e.target.dataset.current) {
+		const that = this;
+    //判断点击标签中的参数与swiper中current值是否一致不一致切换页面
+    if (thaz.data.currentData === e.target.dataset.current) {
       return false;
     } else {
       that.setData({
@@ -122,83 +136,185 @@ Page({
   },
   //推荐
   recommend: function (e) {
-    var thiss = this
+	 //重置页码
+    pages = 1
+    let thiz = this
     wx.request({
-      url: 'http://localhost:8080/home_page',
-      method: 'GET',
-      data: {
-        type: '推荐'
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        thiss.setData({
-          items: res.data
-        })
-      }
+		url: 'http://www.tf6boy.vip/home_page',
+		method: 'GET',
+		data: {
+			type: '推荐',
+			pages: pages
+		},
+		header: {'content-type': 'application/json'},
+		success: function (res) {
+			//用于获取数据长度
+			lengths = res.data.length
+			thiz.setData({
+			  //添加数据到items数组
+			  items: res.data,
+			  //跳转标签时返回顶部
+			  scrollTop: 0,
+			  //设置分类属性绑定
+			  syfl: 0,
+			  //设置属性绑定用于显示是否还有新数据加载
+			  tips: false
+			})
+			//设置触底函数调取数据条件
+			loadType = '推荐'
+		}
     })
   },
   //排行
   ranking: function (e) {
-    var thiss = this
+	pages = 1
+    let thiz = this
     wx.request({
-      url: 'http://localhost:8080/home_page',
+      url: 'http://www.tf6boy.vip/home_page',
       method: 'GET',
       data: {
-        type: '排行'
+        type: '排行',
+        pages: pages
       },
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
-        thiss.setData({
-          items: res.data
+        lengths = res.data.length
+        thiz.setData({
+          items: res.data,
+          scrollTop: 0,
+          syfl: 1,
+          tips: false
         })
+        loadType = '排行'
       }
     })
   },
   //男生
   boy: function (e) {
-    var thiss = this
+	pages = 1
+    let thiz = this
     wx.request({
-      url: 'http://localhost:8080/home_page',
+      url: 'http://www.tf6boy.vip/home_page',
       method: 'GET',
       data: {
-        type: '男'
+        type: '男',
+        pages: pages
       },
-      header: {
-        'content-type': 'application/json'
-      },
+      header: {'content-type': 'application/json'},
       success: function (res) {
-        thiss.setData({
-          items: res.data
+        lengths = res.data.length
+        thiz.setData({
+          items: res.data,
+          scrollTop: 0,
+          syfl: 2,
+          tips: false
         })
+        loadType = '男'
       }
     })
   },
   //女生
   girl: function (e) {
-    var thiss = this
+    pages = 1
+    let thiz = this
     wx.request({
-      url: 'http://localhost:8080/home_page',
+      url: 'http://www.tf6boy.vip/home_page',
       method: 'GET',
       data: {
-        type: '女'
+        type: '女',
+        pages: pages
       },
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
-        thiss.setData({
-          items: res.data
+        lengths = res.data.length
+        thiz.setData({
+          items: res.data,
+          scrollTop: 0,
+          syfl: 3,
+          tips: false
         })
+        loadType = '女'
       }
     })
   },
   //首页书籍跳转
-  tiaozhuan: function (e) {
-    console.log(132)
+  book_: function (e) {
+    let obj = JSON.stringify(e.currentTarget.dataset.text)
+     wx.navigateTo({
+       url: '../bookdetails/bookdetails?obj='+obj+'',
+     })
+  },
+  //scroll-view触底事件
+  lower: function(e){
+    //判断触底函数是否可用
+    if (!canUseReachBottom) return
+    //关闭触底函数
+    canUseReachBottom = false
+    let thiz = this
+    //判断加载中
+    if(thiz.data.tips != true){
+      wx.showLoading({
+        title: '正在加载数据中'
+      })
+    }
+    //获取数据
+    wx.request({
+      url: 'http://www.tf6boy.vip/home_page',
+      method: 'GET',
+      data: {
+        type: loadType,
+        pages: ++pages
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.length > lengths){
+          thiz.setData({
+            items: res.data,
+          })
+          //刷新
+          lengths = res.data.length
+        }else{
+          thiz.setData({
+            tips: true
+          })
+        }
+        //开启触底函数
+        canUseReachBottom = true;
+      },
+      complete: function (c) {
+        //关闭加载图标
+        wx.hideLoading();
+      }
+    })
+  },
+
+  //获取可显示书籍详情高度
+  visual_height: function (e) {
+    let thiz = this
+    let query = wx.createSelectorQuery()
+    //获取指定设置ID为swiper1的标签
+    query.select('#swiper1').boundingClientRect()
+    //获取该标签的一些参数方法
+    query.exec(function (res) {
+      let swheight = res[0].top
+      //获取窗口的一些属性函数
+      wx.getSystemInfo({
+        success: function (res) {
+          //获取窗口可视高度
+          let visual_height = res.windowHeight
+          //设置展示图书scroll-view的随动高度
+          thiz.setData({
+            heights: (visual_height - swheight)
+          })
+        },
+      })
+    })
   },
   // 那个类型的书籍
     thisType: function (e) {
@@ -326,6 +442,38 @@ Page({
    }else if(that.data.stats=='r'){
      that.heat()
    }
+  },
+  // 周
+  week:function(){
+    wx.request({
+      url: 'http://www.tf6boy.vip/weekCX',
+      data: '',
+      header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+      method: 'POST',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        console.log(res.data)
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  // 月
+  month:function(){
+    wx.request({
+      url: 'http://www.tf6boy.vip/monthCX',
+      data: '',
+      header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+      method: 'POST',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        console.log(res.data)
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
   xq: function (e) {
     console.log(e.currentTarget.dataset.id)

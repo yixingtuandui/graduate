@@ -1,2 +1,3 @@
 <!--pages/iauthorr/iauthorr.wxml-->
-<text>pages/iauthorr/iauthorr.wxml</text>
+<button class='' bindtap='bea'>我是作者</button>
+<button class='' bindtap='ima'>成为作者</button>

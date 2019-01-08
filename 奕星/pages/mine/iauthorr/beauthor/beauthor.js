@@ -1,4 +1,4 @@
-// pages/iauthorr/iauthorr.js
+// pages/mine/iauthorr/beauthor/beauthor.js
 Page({
 
   /**
@@ -8,17 +8,6 @@ Page({
 
   },
 
-  bea:function(){
-    wx.navigateTo({
-      url: '',
-    })
-  },
-
-  ima:function(){
-    wx.navigateTo({
-      url: '',
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */

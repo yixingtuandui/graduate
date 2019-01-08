@@ -1,0 +1,17 @@
+<view>
+  <button bindtap='details'>作品详情</button>
+  <view class='details' wx:if="{{details}}">
+    <view style='display: flex'>
+      <input class='list-msg' placeholder='输入书名或者状态' bindblur='assignment'></input>
+      <button class='select' bindtap='query' hover-class='selects'>搜索</button>
+    </view>
+    <view wx:for="{{items}}" wx:for-item="i" class='book' bindtap='authors' data-text='{{i}}'>
+      <view wx:for="{{i}}" wx:for-item="j">
+        <view wx:if="{{index == 0}}">书名：{{j.book_name}}</view>
+        <view wx:if="{{index == 0}}">状态：{{j.auditing}}</view>
+        <view wx:if="{{index == 1}}">类型：{{j.typename}}</view>
+      </view>
+    </view>
+  </view>
+  <button bindtap='addbook' data-text='{{user.author}}'>添加新书</button>
+</view>

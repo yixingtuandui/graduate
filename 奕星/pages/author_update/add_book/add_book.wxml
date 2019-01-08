@@ -1,0 +1,28 @@
+<view>
+  <view class='bookname'>添 加 新 书</view>
+  <view class='sm1'>
+    <view class='sm2'>书 名 :</view>
+    <view class='sm3'>
+      <input placeholder='填写书名' class='input' bindinput='bindinputbt'></input>
+    </view>
+  </view>
+  <view class='sm1'>
+    <view class='sm2'>类 型 :</view>
+    <view class='sm3'>
+      <view class='text' bindtap='lxzs'>{{lx}}</view>
+    </view>
+  </view>
+  <view class='lx' wx:if='{{lxzs}}'>
+  
+  </view>
+  <view class='sm1'>
+    <view class='sm2'>类 别 :</view>
+    <view class='sm3'>
+      <view class='text' bindtap='lbzs'>{{lb}}</view>
+    </view>
+  </view>
+  <view class='lb' wx:if='{{lbzs}}'>
+    <view data-text='男' bindtap='lbzsfz' class='lbz'>男</view>
+    <view data-text='女' bindtap='lbzsfz' class='lbz'>女</view>
+  </view>
+</view>

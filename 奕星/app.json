@@ -8,16 +8,23 @@
     "pages/read/read",
     "pages/mine/mine",
     "pages/mine/mymoneyy/mymoneyy",
+		"pages/mine/signingg/signingg",
     "pages/mine/about/about",
     "pages/mine/buybookk/buybookk",
     "pages/mine/iauthorr/iauthorr",
+		"pages/mine/iauthorr/beauthor/beauthor",
+		"pages/mine/iauthorr/imauthor/imauthor",
+		"pages/mine/ihuawei/ihuawei",
+		"pages/mine/ihuawei/phonee/phonee",
     "pages/mine/iinformationn/iinformationn",
     "pages/mine/myselff/myselff",
-    "pages/mine/phonee/phonee",
     "pages/mine/rechargeee/rechargeee",
     "pages/mine/feedback/feedback",
-    "pages/mine/signingg/signingg",
-	"pages/comment/comment"
+		"pages/comment/comment",
+		"pages/author_update/author_update",
+		"pages/author_update/add_book/add_book",
+		"pages/author_update/chapter_update/chapter_update",
+		"pages/author_update/update_book/update_book"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,7 +32,7 @@
     "navigationBarTitleText": "奕星",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true,
-    "backgroundColor": "#666"
+    "backgroundColor": "#f0145a"
   },
   "tabBar": {
     "color": "#000",

@@ -1,0 +1,7 @@
+<!--pages/mine/ihuawei/ihuawei.wxml-->
+<view>
+<text>手机号码</text>
+  <view class="real">
+  </view>
+<button bindtap='hw'>改绑手机</button>
+</view>

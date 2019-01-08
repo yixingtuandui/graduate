@@ -3,7 +3,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    newSignBtnState: null,  //按钮签到状态
+    newSignBtnState:"false",  //按钮签到状态
     continuityDays7: false,  //连续7
     continuityDays3: false,  //连续3 
     myToday: '',           //周几

@@ -1,4 +1,6 @@
 // pages/read/read.js
+var url
+var num = 0
 Page({
 
   /**
@@ -11,9 +13,95 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-  },
+   //加载完成
+   onLoad:function(e){
+     console.log(e.url)
+     var thiz=this
+     num = 0
+     url = e.url 
+     wx.request({
+       url: 'http://www.tf6boy.vip/read',
+       data: {
+         url: url+ '/' + num + '.txt'
+       },
+       header: {},
+       method: 'GET',
+       dataType: 'json',
+       responseType: 'text',
+       success: function (res) {
+         thiz.setData({
+           read:res.data
+         })
+        },
+       fail: function (res) { },
+       complete: function (res) { },
+     })
+   },
+   //上一章
+   syz:function(){
+     wx.pageScrollTo({
+       scrollTop: 0
+     })
+     var thiz = this
+     
+     if(num>0){
+       --num
+       wx.request({
+         url: 'http://www.tf6boy.vip/read',
+         data: {
+           url: url + '/' + num + '.txt'
+         },
+         header: {},
+         method: 'GET',
+         dataType: 'json',
+         responseType: 'text',
+         success: function (res) {
+ 
+           thiz.setData({
+             read: res.data
+           })
+         },
+         fail: function (res) { },
+         complete: function (res) { },
+       })
+ 
+     }
+   },
+   //下一章
+   xyz:function(){
+     wx.pageScrollTo({
+       scrollTop: 0
+     })
+     var thiz = this
+     
+     if(num>=0){
+       ++num
+       wx.request({
+         url: 'http://www.tf6boy.vip/read',
+         data: {
+           url: url + '/' + num + '.txt'
+         },
+         header: {},
+         method: 'GET',
+         dataType: 'json',
+         responseType: 'text',
+         success: function (res) {
+ 
+           thiz.setData({
+             read: res.data
+           })
+         },
+         fail: function (res) { },
+         complete: function (res) { },
+       })
+     }
+     
+ 
+   },
+   //目录
+   ml:function(){
+ 
+   }
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -63,23 +151,5 @@ Page({
   onShareAppMessage: function () {
 
   },
-  onLoad:function(){
-    var thiz=this
-    wx.request({
-      url: 'http://localhost:8080/read',
-      data: '',
-      header: {},
-      method: 'GET',
-      dataType: 'json',
-      responseType: 'text',
-      success: function (res) {
-        console.log(res.data)
-        thiz.setData({
-          read:res.data
-        })
-       },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
-  }
+
 })
