@@ -1,15 +1,17 @@
 // bookdetails.wxml
+var boksxq;
 Page({
   data:{
     boksxq:[],
-    type:[]
+    type:[],
+		addbook:[]
   },
   onPullDownRefresh:function(){
     var that=this
     wx.showNavigationBarLoading()
     console.log(that.data.boksxq.id)
     wx.request({
-      url: 'http://www.tf6boy.vip/bookx',
+      url: 'http://localhost:8080/bookx',
       data: { bid: that.data.boksxq.id },
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
       method: 'post',
@@ -30,24 +32,33 @@ Page({
   onLoad:function(option){
     var ty=this
     var boks=JSON.parse(option.obj);
-    this.setData({
-      boksxq:boks
+    // console.log(boks.id)
+		wx.request({
+			url:'http://localhost:8080/addrecently',
+			data: { uname: "江", bookid:boks.id },
+			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
+			method: 'post',
+			success: function (res) {
+				
+			}
+		})
+		this.setData({
+      boksxq:boks,
+			addbook:true,
     })
-    console.log(ty.data.boksxq.type)
     ty.type();
   },
   type:function(){
     var ty = this
     wx.request({
-      url: 'http://www.tf6boy.vip/type',
+      url: 'http://localhost:8080/type',
       data: { id: ty.data.boksxq.type },
-      header: {},
       method: 'post',
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
-        console.log(res.data)
+        // console.log(res.data)
         ty.setData({
           type: res.data
         })
@@ -56,13 +67,36 @@ Page({
       complete: function (res) { },
     })
   },
-  read1:function(){
+	
+	//在线阅读
+  read1:function(option){
     wx.redirectTo({
-      url: '../read/read',
+      url: '../read/read?url='+option.currentTarget.dataset.url,
       success: function(res) {
+				
       },
       fail: function (res) { console.log(123)},
       complete: function (res) { console.log(222)},
     }) 
-  }
+  },
+	//加入书架
+	addbookshelf:function(e){
+		console.log(e.currentTarget.dataset.data.id)
+		var that=this
+		wx.request({
+			url:'http://localhost:8080/addshelf',
+			data:{
+			name: "江",
+			bookid:e.currentTarget.dataset.data.id},
+			method:'post',
+			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+			'Accept':'application/json'},
+			success:function(result){
+				console.log(result.data.addbookshelf)
+				that.setData({
+					addbook:result.data.addbookshelf
+				})
+			},
+		})
+	},
 })

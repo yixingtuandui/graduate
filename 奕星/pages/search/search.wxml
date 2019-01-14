@@ -1,7 +1,12 @@
 <view>
 <input id='inp' placeholder="搜索书名、作者" type="text" confirm-type="search"
-bindconfirm="searchBtn" focus='ture'/>
+bindconfirm="searchBtn" focus='ture'value='{{search}}' bindinput='bindinput'/>
 </view>
+<scroll-view scroll-y="ture" class='scrollview'>
+<view wx:for="{{bindSource}}">
+<view id="{{item}}" bindtap='itemtap' class='list'>{{item}}</view>
+</view>
+</scroll-view>
 <scroll-view scroll-y bindscrolltolower="onReachBottom" style='height:450px'>
 <view wx:for="{{book}}" class='gg' bindtap='xq' data-id='{{item.id}}'>
   <image src='{{item.bookImg}}' class='xqzsimg'/>
@@ -11,5 +16,5 @@ bindconfirm="searchBtn" focus='ture'/>
        <text>作者：{{item.author}}</text>
      </view>
 </view> 
-<view wx:if="{{dat==''}}">没有更多了</view>
-</scroll-view>
+<view wx:if="{{dat==''&&search!=''}}">没有更多了</view>
+</scroll-view> 

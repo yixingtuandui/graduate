@@ -24,9 +24,18 @@ Page({
   },
 // 签到
   signing: function () {
-    wx.navigateTo({
-      url: `../mine/signingg/signingg`,
-    });
+		wx.request({
+			url:'http://localhost:8080/sign',
+			data:{uname:"江"},
+			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+			method:'POST',
+			success:function(result) {
+				console.log(result.data)
+				wx.navigateTo({
+					url: '../mine/signingg/signingg?res='+JSON.stringify(result.data),
+				});
+			},
+		})
   },
   // 个人资料
   myself: function () {
@@ -80,7 +89,21 @@ Page({
     })
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
+		var that=this
+		wx.request({
+			data:{id:1},
+			url:'http://localhost:8080/member',
+			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+			method:'POST',
+			success:function(result){
+				console.log(result.data)
+				that.setData({
+					role:result.data
+				});
+			}
+		})
+		if (app.globalData.userInfo) {
+			console.log(app.globalData.userInfo)
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true

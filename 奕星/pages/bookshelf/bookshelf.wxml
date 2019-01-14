@@ -26,15 +26,15 @@
 					</view>
 					<!-- 书架添加书籍 -->
 				<view class="book" >
-					<view class="book_add">
+					<view class="book_add" bindtap='bookadd'>
 						<image src="../../img/bookshelf/timg.jpg" class="item_book"></image>
 					</view>
 				</view>
       </swiper-item>
 <!-- 最近阅读的书 -->
       <swiper-item>
-<view  wx:for="{{recentlys}}" wx:key="*this" wx:for-item="recentlys" >
-						<view data-id="{{recentlys.id}}" class="book" bindtap='bookdetails'>
+				<view  wx:for="{{recentlys}}" wx:key="*this" wx:for-item="recentlys" >
+						<view data-data="{{recentlys}}" class="book" bindtap='bookdetails'>
 							<!-- 书籍图片 -->
 							<view>
 								<image src="{{recentlys.bookImg}}" class="item_book_img" mode="aspectFill"></image>
@@ -44,6 +44,7 @@
 								<text class="book_name">{{recentlys.bookName}}</text>
 							</view>
 						</view>
-					</view>      </swiper-item>
+					</view>      
+			</swiper-item>
   </swiper>
 </view>

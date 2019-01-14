@@ -11,7 +11,7 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
 		var that = this;
 		wx.request({
-			url:'http://www.tf6boy.vip/bookshelf',
+			url:'http://localhost:8080/bookshelf',
 			data:{uid:1},
 			header:{'content-type':'application/x-www-form-urlencoded;charset=utf-8',},
 			method:'POST',
@@ -24,16 +24,24 @@ Page({
   },
 	//书架书籍点击事件
 	reading:function(e){
-		console.log(e.currentTarget.dataset.data.addr)
 		wx.navigateTo({
 			url:'../read/read?url='+e.currentTarget.dataset.data.addr,
 		})
 	},
+	//书架书籍添加
+	bookadd:function(e){
+		console.log(5454)
+		wx.switchTab({
+			url:'../index/index',
+		})
+	},
 	//最近阅读书籍点击事件
 	bookdetails:function(e){
-		console.log(e.currentTarget)
+		console.log(e.currentTarget.dataset)
+		var bok = JSON.stringify(e.currentTarget.dataset.data)
+
 		wx.navigateTo({
-			url:'../bookdetails/bookdetails?obj='+e.currentTarget.dataset.id
+			url:'../bookdetails/bookdetails?obj='+bok,
 		})
 	},
   //滑动切换
@@ -41,7 +49,7 @@ Page({
     var that = this;
 	if (e.detail.current == 1) {
 		wx.request({ 			
-			url: 'http://www.tf6boy.vip/recently',
+			url: 'http://localhost:8080/recently',
         	data: { uid: 1 },
         	header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8', },
         	method: 'POST',
@@ -59,19 +67,6 @@ Page({
   //点击切换
   clickTab: function (e) {
     var that = this;
-	if (e.target.dataset.current==1){
-      wx.request({
-		url: 'http://www.tf6boy.vip/recently',
-        data: {uid:1},
-        header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8', },
-        method: 'POST',
-				success  :function(result){
-					that.setData({
-						recentlys:result.data,
-					})
-				}
-      })
-    }
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {

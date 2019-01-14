@@ -97,30 +97,30 @@ Page({
   onShareAppMessage: function () {
 
   },
-//   //获取当前滑块的index
-//   bindchange: function (e) {
-//     // 获取分类
-//     const that = this;
-//     if (e.detail.current==1){
-// 		var list = this;
-// 		wx.request({
-// 			url: 'http://www.tf6boy.vip/showType',
-// 			method: "POST",
-// 			data: {},
-// 			header: {'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
-// 			success(res) {
-// 				console.log(res.data)
-// 				list.setData({
-// 				  tyname: res.data
-// 				})
-// 			}
-// 		})
-//     }
-//     that.setData({
-// 	//设置swiper中current的值
-//       currentData: e.detail.current
-//     })
-//   },
+  //获取当前滑块的index
+  bindchange: function (e) {
+    // 获取分类
+    const that = this;
+    if (e.detail.current==1){
+		var list = this;
+		wx.request({
+			url: 'http://localhost:8080/showType',
+			method: "POST",
+			data: {},
+			header: {'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+			success(res) {
+				console.log(res.data)
+				list.setData({
+				  tyname: res.data
+				})
+			}
+		})
+    }
+    that.setData({
+	//设置swiper中current的值
+      currentData: e.detail.current
+    })
+  },
   //点击切换，滑块index赋值
   checkCurrent: function (e) {
     this.shopp();
@@ -140,7 +140,7 @@ Page({
     pages = 1
     let thiz = this
     wx.request({
-		url: 'http://www.tf6boy.vip/home_page',
+		url: 'http://localhost:8080/home_page',
 		method: 'GET',
 		data: {
 			type: '推荐',
@@ -170,7 +170,7 @@ Page({
 	pages = 1
     let thiz = this
     wx.request({
-      url: 'http://www.tf6boy.vip/home_page',
+      url: 'http://localhost:8080/home_page',
       method: 'GET',
       data: {
         type: '排行',
@@ -196,7 +196,7 @@ Page({
 	pages = 1
     let thiz = this
     wx.request({
-      url: 'http://www.tf6boy.vip/home_page',
+      url: 'http://localhost:8080/home_page',
       method: 'GET',
       data: {
         type: '男',
@@ -220,7 +220,7 @@ Page({
     pages = 1
     let thiz = this
     wx.request({
-      url: 'http://www.tf6boy.vip/home_page',
+      url: 'http://localhost:8080/home_page',
       method: 'GET',
       data: {
         type: '女',
@@ -244,8 +244,9 @@ Page({
   //首页书籍跳转
   book_: function (e) {
     let obj = JSON.stringify(e.currentTarget.dataset.text)
+		// console.log(obj)
      wx.navigateTo({
-       url: '../bookdetails/bookdetails?obj='+obj+'',
+       url: '../bookdetails/bookdetails?obj='+obj,
      })
   },
   //scroll-view触底事件
@@ -263,7 +264,7 @@ Page({
     }
     //获取数据
     wx.request({
-      url: 'http://www.tf6boy.vip/home_page',
+      url: 'http://localhost:8080/home_page',
       method: 'GET',
       data: {
         type: loadType,
@@ -321,7 +322,7 @@ Page({
     var tyn = e.currentTarget.dataset.id
     console.log(tyn)
     wx.request({
-      url: 'http://www.tf6boy.vip/booksType',
+      url: 'http://localhost:8080/booksType',
       data: {
         type: tyn,
         pageNum:0
@@ -357,7 +358,7 @@ Page({
     })
     console.log(counts)
     wx.request({
-      url: 'http://www.tf6boy.vip/shopp',
+      url: 'http://localhost:8080/shopp',
       data: { pageNum: counts},
       header: {
         'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -403,7 +404,7 @@ Page({
     })
   // console.log(count)
   wx.request({
-    url: 'http://www.tf6boy.vip/heat',
+    url: 'http://localhost:8080/heat',
     data: {
       pageNum: count
     },
@@ -446,7 +447,7 @@ Page({
   // 周
   week:function(){
     wx.request({
-      url: 'http://www.tf6boy.vip/weekCX',
+      url: 'http://localhost:8080/weekCX',
       data: '',
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
       method: 'POST',
@@ -462,7 +463,7 @@ Page({
   // 月
   month:function(){
     wx.request({
-      url: 'http://www.tf6boy.vip/monthCX',
+      url: 'http://localhost:8080/monthCX',
       data: '',
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
       method: 'POST',
@@ -479,14 +480,14 @@ Page({
     console.log(e.currentTarget.dataset.id)
     var id = e.currentTarget.dataset.id
     wx.request({
-      url: 'http://www.tf6boy.vip/bookx',
+      url: 'http://localhost:8080/bookx',
       data: { bid: id },
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
       method: 'post',
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         var bok = JSON.stringify(res.data)
         wx.navigateTo({
           url: '../bookdetails/bookdetails?obj=' + bok,

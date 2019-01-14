@@ -21,3 +21,11 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   }
+  .list{
+    margin:8px 0px 0px 0px;
+    border-top:1px solid darkgrey;
+    padding-left:27px;
+  }
+  .scrollview{
+    margin-top:10px;
+  }

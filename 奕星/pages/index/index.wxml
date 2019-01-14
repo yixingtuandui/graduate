@@ -29,9 +29,9 @@
 	          <view class='syflxq'>
 	            <scroll-view  scroll-y="true" bindscrolltolower="lower" scroll-top="{{scrollTop}}" style="height: {{heights}}px">
 	              <view wx:for="{{items}}" class='syflxqzs' bindtap='book_' data-text='{{item}}'>
-	                <image src='{{item.book_img}}' class='xqzsimg'/>
+	                <image src='{{item.bookImg}}' class='xqzsimg'/>
 	                <view class='xqzswz'>
-	                  <view class='xqzswzsm'>书名：{{item.book_name}}</view>
+	                  <view class='xqzswzsm'>书名：{{item.bookName}}</view>
 	                  <view class='xqzswzjj'>简介：{{item.brief}}</view>
 	                  <view class='xqzswzzz'>作者：{{item.author}}</view>
 	                </view>

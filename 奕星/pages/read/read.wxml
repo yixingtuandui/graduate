@@ -1,6 +1,8 @@
 <text>
 {{read}}
 </text>
-<button bindtap='syz'>上一章</button>
-<button bindtap='xyz'>下一章</button>
-<button bindtap='ml'>目录</button>
+<view class='view'>
+<button bindtap='syz' class='button'>上一章</button>
+<button bindtap='xyz' class='button'>下一章</button>
+<button bindtap='ml' class='button'>目录</button>
+</view>

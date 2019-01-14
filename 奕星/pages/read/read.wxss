@@ -1,1 +1,11 @@
 /* pages/read/read.wxss */
+.button{
+  position: relative;
+ display: flex;
+ float: left;
+ margin-left: 24px;
+}
+.view{
+  width: 100%;
+  height:50px;
+}

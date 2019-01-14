@@ -3,7 +3,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    newSignBtnState:"false",  //按钮签到状态
+   newSignBtnState: false,  //按钮签到状态
     continuityDays7: false,  //连续7
     continuityDays3: false,  //连续3 
     myToday: '',           //周几
@@ -45,13 +45,23 @@ Page({
   //-------新签到---------
   signNewFn: function (e) {
     var that = this;
-    const arr = [],
-    newSignArr = [...arr, ...that.data.isNewSignedArr];
-    newSignArr[that.data.myToday].isSigned = true;
-    that.setData({
-      isNewSignedArr: newSignArr
-    })
-    //console.log(that.data.isNewSignedArr);
+		console.log(that.data.myToday);
+		wx.request({
+			url:'http://localhost:8080/signTo',
+			data:{uname:"江"},
+			method:'POST',
+			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+			success:function(result){
+				const arr = [],
+				newSignArr = [...arr, ...that.data.isNewSignedArr];
+				newSignArr[that.data.myToday].isSigned = true;
+				that.setData({
+					isNewSignedArr: newSignArr
+				})
+				
+			}
+		})
+		
 
     //签到积分函数
     that.signAddFen();
@@ -74,7 +84,7 @@ Page({
     var curFen = that.data.newSignIntegral + 1;
     that.setData({
       //signInPop: true,
-      newSignBtnState: "true",
+      newSignBtnState: true,
       newSignNum: num,
       newSignIntegral: curFen,
     })
@@ -117,25 +127,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var b=options.boolean
+		var res = JSON.parse(options.res)
+		console.log(res.boolean)
 		var that=this
+		const arr = [],
+		newSignArr = [...arr, ...that.data.isNewSignedArr];
+		newSignArr[res.week].isSigned = res.boolean;
 		that.setData({
-			newSignBtnState:b
+			newSignNum:res.iday,
+			isNewSignedArr: newSignArr,
+			newSignBtnState:res.boolean
 		})
-		console.log(b)
+// 		console.log(b)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
     var that = this,
       myDate = new Date(),
       myToday = myDate.getDay();  //周几   0 1 2 3 4 5 6
@@ -148,34 +163,26 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
   },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+		
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
   },
-
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
   }
 })
