@@ -8,9 +8,9 @@
 				<view class='butt' >
 						<button  bindtap="addbookshelf" data-data="{{boksxq}}">加入书架</button>
 				</view>
-				<view class='butt' wx:if='{{addbook.addbookshelf==true}}'>
+				<!-- <view class='butt' wx:if='{{addbook}}'>
 						<button data-data="{{boksxq}}">已加入书架</button>
-				</view>
+				</view> -->
         <button class='butt'>缓存</button>
       </view>
    <text class='tts1'>{{boksxq.brief}}</text>

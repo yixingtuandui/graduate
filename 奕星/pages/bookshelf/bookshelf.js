@@ -28,6 +28,38 @@ Page({
 			url:'../read/read?url='+e.currentTarget.dataset.data.addr,
 		})
 	},
+	//书架书籍长按事件
+	handleLongPress:function(e){
+		var that=this;
+		wx.showModal({
+			title:'删除书籍',
+			content:'确定要删除书籍？',
+			cancelText:'否',
+			confirmText:'是',
+			success:function(res) {
+				if(res.confirm){
+					//是
+					wx.request({
+						url:'http://localhost:8080/deletebook',
+						data:{
+						name: "江",
+						bookid:e.currentTarget.dataset.data.id},
+						method:'post',
+						header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+						'Accept':'application/json'},
+						success:function(result){
+							that.setData({
+								books:result.data,
+							});
+						}
+					})
+				}else{
+					//否
+					
+				}
+			}
+		})
+	},
 	//书架书籍添加
 	bookadd:function(e){
 		console.log(5454)
@@ -59,7 +91,19 @@ Page({
 	          	})
         	}
       })
-    }
+    }else{
+			wx.request({
+				url:'http://localhost:8080/bookshelf',
+				data:{uid:1},
+				header:{'content-type':'application/x-www-form-urlencoded;charset=utf-8',},
+				method:'POST',
+				success:function(result) {
+					that.setData({
+						books:result.data,
+					});
+				}
+			})
+		}
     that.setData({
       currentTab: e.detail.current
     });

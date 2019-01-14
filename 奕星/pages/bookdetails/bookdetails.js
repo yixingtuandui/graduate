@@ -4,7 +4,7 @@ Page({
   data:{
     boksxq:[],
     type:[],
-		addbook:[]
+		// addbook:true
   },
   onPullDownRefresh:function(){
     var that=this
@@ -44,7 +44,6 @@ Page({
 		})
 		this.setData({
       boksxq:boks,
-			addbook:true,
     })
     ty.type();
   },
@@ -81,22 +80,56 @@ Page({
   },
 	//加入书架
 	addbookshelf:function(e){
+		wx.showModal({
+      title: '确认',
+      content: "是否添加书架",
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+					var that=this
+							wx.request({
+								url:'http://localhost:8080/addshelf',
+								data:{
+								name: "江",
+								bookid:e.currentTarget.dataset.data.id},
+								method:'post',
+								header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+								'Accept':'application/json'},
+								success:function(result){
+									if(result.data){
+										wx.showToast({
+											title: '添加成功',
+											icon: 'success',
+											duration: 1000,
+											mask: true
+										})
+									}else{
+										wx.showToast({
+											title: '书架已有该书籍',
+											icon: 'success',
+											duration: 5000,
+											mask: true
+										})
+									}
+									console.log(result.data)
+// 									that.setData({
+// 										addbook:result.data.addbookshelf
+// 									})
+								},
+							})
+        } else {
+					wx.showToast({
+						title: '添加失败',
+						image:'/img/bookshelf/error.png',
+						duration: 1000,
+						mask: true
+					})
+          console.log('用户点击取消')
+        }
+
+      }
+    })
 		console.log(e.currentTarget.dataset.data.id)
-		var that=this
-		wx.request({
-			url:'http://localhost:8080/addshelf',
-			data:{
-			name: "江",
-			bookid:e.currentTarget.dataset.data.id},
-			method:'post',
-			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-			'Accept':'application/json'},
-			success:function(result){
-				console.log(result.data.addbookshelf)
-				that.setData({
-					addbook:result.data.addbookshelf
-				})
-			},
-		})
+// 		
 	},
 })

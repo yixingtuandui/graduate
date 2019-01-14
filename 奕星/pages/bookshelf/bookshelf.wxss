@@ -83,15 +83,15 @@ display:inherit;
 }
 .book-list{
 	width: auto;
-	height: 500px;
+	height: 1000px;
 	/* background-color: #FF83FA; */
 }
 .book{
-	width:auto;
-	height: auto;
+	width:96px;
+	height: 145px;
   float:left;
 	
-	/* align-items: center; */
+	align-items: center;
   /* height:90rpx; */
   line-height:90rpx;
   /* font-size: 28rpx; */
@@ -106,4 +106,8 @@ display:inherit;
 }
 .book_name{
 	font-size: 30rpx;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+
 }
