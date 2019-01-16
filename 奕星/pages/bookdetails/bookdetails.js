@@ -1,9 +1,14 @@
 // bookdetails.wxml
 var boksxq;
+const app = getApp();
+const util = require('../../utils/util.js');
+var bid, uid,boks;
 Page({
   data:{
     boksxq:[],
     type:[],
+		buy:'购买此书'
+
 		// addbook:true
   },
   onPullDownRefresh:function(){
@@ -35,7 +40,7 @@ Page({
     // console.log(boks.id)
 		wx.request({
 			url:'http://localhost:8080/addrecently',
-			data: { uname: "江", bookid:boks.id },
+			data: { uname: app.globalData.user.name, bookid:boks.id },
 			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
 			method: 'post',
 			success: function (res) {
@@ -90,7 +95,7 @@ Page({
 							wx.request({
 								url:'http://localhost:8080/addshelf',
 								data:{
-								name: "江",
+								name: app.globalData.user.name,
 								bookid:e.currentTarget.dataset.data.id},
 								method:'post',
 								header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
@@ -132,4 +137,104 @@ Page({
 		console.log(e.currentTarget.dataset.data.id)
 // 		
 	},
+	// 查询评论 
+  comment:function(){
+    var that=this;
+    wx.request({
+      url: 'http://localhost:8080/lesscomment',
+      method: 'POST',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
+      },
+      data: {
+        bid: boks.id
+      },
+      success: function (result) {
+        console.log(result);
+        for (var index in result.data) {
+          result.data[index].time = util.formatTime(new Date(result.data[index].time));
+        };
+        that.setData({
+          pl_list: result.data,
+        })
+      },
+      fail: res => {
+        wx.showToast({
+          title: '网络不好哟',
+          image: '/img/wrong.jpg',
+          duration: 3000
+        })
+      }
+    })
+  },
+  //用户留言 
+  btn_send: function () {
+    console.log(12655219856)
+    var that = this
+    //添加评论 
+    // console.log('文本输入框: input_value :', bindblur); 
+    wx.request({
+      url: 'http://localhost:8080/setcomment',
+      method: 'POST',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
+      },
+      data: {
+        bid: boks.id,
+        uid: uid.id,
+        context: bindblurs,
+        belong: 0,
+        time: util.formatTime(new Date()),
+        parentid: 0,
+      },
+      success: function (result) {
+        that.setData({
+          pl_list: result.data.reverse(),
+          input_value: "",
+        }),
+          wx.showToast({
+            title: '评论成功',
+            duration: 3000
+          })
+      },
+      fail: res => {
+        wx.showToast({
+          title: '网络不好哟',
+          image: '/image/wrong.jpg',
+          duration: 3000
+        })
+      }
+    })
+  },
+  //更多评论
+  btn_send_more:function(){
+    wx.navigateTo({
+      url: '../comment/comment',
+    })
+  },
+  //购买本书籍
+  buybook:function(){
+    var that = this
+    wx.request({
+      url: 'http://localhost:8080/buybook',
+      method: 'POST',
+      header: {
+        'content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
+      },
+      data: {
+        bid: boks.id,
+        uids: app.globalData.user.id,
+        time: util.formatTime(new Date()),
+      },
+      success: function (result) {
+          wx.showToast({
+            title: result.data,
+            duration: 3000
+          })
+      }
+	})
+	}
 })

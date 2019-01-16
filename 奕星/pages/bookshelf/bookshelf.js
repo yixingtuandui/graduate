@@ -12,7 +12,7 @@ Page({
 		var that = this;
 		wx.request({
 			url:'http://localhost:8080/bookshelf',
-			data:{uid:1},
+			data:{uid:app.globalData.user.id},
 			header:{'content-type':'application/x-www-form-urlencoded;charset=utf-8',},
 			method:'POST',
 			success:function(result) {
@@ -42,7 +42,7 @@ Page({
 					wx.request({
 						url:'http://localhost:8080/deletebook',
 						data:{
-						name: "江",
+						name: app.globalData.user.name,
 						bookid:e.currentTarget.dataset.data.id},
 						method:'post',
 						header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
@@ -69,12 +69,21 @@ Page({
 	},
 	//最近阅读书籍点击事件
 	bookdetails:function(e){
-		console.log(e.currentTarget.dataset)
+		console.log(e.currentTarget.dataset.data.auditing)
 		var bok = JSON.stringify(e.currentTarget.dataset.data)
-
-		wx.navigateTo({
-			url:'../bookdetails/bookdetails?obj='+bok,
-		})
+		var auditing=e.currentTarget.dataset.data.auditing
+		if(auditing=="已下架"){
+			wx.showToast({
+            title: '该书籍已下架',
+            icon: 'loading',
+            duration: 1500,
+            mask:true
+        })
+		}else{
+			wx.navigateTo({
+				url:'../bookdetails/bookdetails?obj='+bok,
+			})
+		}
 	},
   //滑动切换
   swiperTab: function (e) {
@@ -82,7 +91,7 @@ Page({
 	if (e.detail.current == 1) {
 		wx.request({ 			
 			url: 'http://localhost:8080/recently',
-        	data: { uid: 1 },
+        	data: { uid: app.globalData.user.id },
         	header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8', },
         	method: 'POST',
         	success: function (result) {
@@ -94,7 +103,7 @@ Page({
     }else{
 			wx.request({
 				url:'http://localhost:8080/bookshelf',
-				data:{uid:1},
+				data:{uid:app.globalData.user.id},
 				header:{'content-type':'application/x-www-form-urlencoded;charset=utf-8',},
 				method:'POST',
 				success:function(result) {

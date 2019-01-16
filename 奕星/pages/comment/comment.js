@@ -2,25 +2,23 @@
 var bindblurs, name, id, belong, belongs, bookid, hiddenmodalput, userinfo;
 const app = getApp();
 const util = require('../../utils/util.js');
-console.log(util.formatTime(new Date()))
 Page({
     data: {
-      userinfo: app.globalData.userInfo,
-      book: app.globalData.bookmessage,
       hiddenmodalput: true,
       showView: false,
       input_values: "请输入内容",
       name: '',
     },
         onLoad: function (a) {
-          console.log(userinfo)
-          bookid=JSON.parse(a.bid)
+          userinfo=app.globalData.user;
+          bookid=app.globalData.book.id;
+          console.log(app.globalData.userInfo)
           showView: (a.showView == "true" ? true : false);
           var that = this;
           var actid = 1;
           // 查询评论 
           wx.request({
-            url: 'http://www.tf6boy.vip/comment',
+            url: 'http://localhost:8080/comment',
             method: 'POST',
             header: {
               'content-Type': 'application/x-www-form-urlencoded',
@@ -59,7 +57,7 @@ Page({
             // console.log('用户缓存id：user_id :', user_id); 
             // console.log('文本输入框: input_value :', bindblur); 
             wx.request({
-              url: 'http://www.tf6boy.vip/setcomment',
+              url: 'http://localhost:8080/setcomment',
               method: 'POST',
               header: {
                 'content-Type': 'application/x-www-form-urlencoded',
@@ -123,7 +121,7 @@ Page({
                     hiddenmodalput: true,
                   }),
                     wx.request({//发送请求，将回复内容写入数据库 
-                      url: 'http://www.tf6boy.vip/setcomment',
+                    url: 'http://localhost:8080/setcomment',
                       method: 'POST',
                       header: {
                         'content-Type': 'application/x-www-form-urlencoded',
@@ -131,7 +129,7 @@ Page({
                       },
                       data: {
                         bid: bookid,
-                        uid: userinfo.id,
+                        uid: user.id,
                         context: name,
                         belong: belong,
                         time: util.formatTime(new Date()),

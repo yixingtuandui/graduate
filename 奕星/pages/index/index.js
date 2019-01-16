@@ -1,5 +1,7 @@
 //获取应用实例
-var app = getApp()
+const app = getApp();
+const util = require('../../utils/util.js');
+var userinfo;
 var count = 1;
 var counts = 1;
 var flge = true;
@@ -18,6 +20,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+		canIUse: wx.canIUse('button.open-type.getUserInfo'),
     color1: '',
     color2:'',
     tyname: [],
@@ -109,7 +112,7 @@ Page({
 			data: {},
 			header: {'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
 			success(res) {
-				console.log(res.data)
+				// console.log(res.data)
 				list.setData({
 				  tyname: res.data
 				})
@@ -294,7 +297,6 @@ Page({
       }
     })
   },
-
   //获取可显示书籍详情高度
   visual_height: function (e) {
     let thiz = this
@@ -303,7 +305,8 @@ Page({
     query.select('#swiper1').boundingClientRect()
     //获取该标签的一些参数方法
     query.exec(function (res) {
-      let swheight = res[0].top
+			// console.log(res)
+      let swheight = res[0]
       //获取窗口的一些属性函数
       wx.getSystemInfo({
         success: function (res) {
@@ -320,7 +323,7 @@ Page({
   // 那个类型的书籍
     thisType: function (e) {
     var tyn = e.currentTarget.dataset.id
-    console.log(tyn)
+    // console.log(tyn)
     wx.request({
       url: 'http://localhost:8080/booksType',
       data: {
@@ -332,7 +335,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
       },
       success: function (res) {
-        console.log(res.data)
+        // console.log(res.data)
         var books = JSON.stringify(res.data)
         wx.navigateTo({
           url: '../bkdts/bkdts?showBooks=' + books,
@@ -344,7 +347,7 @@ Page({
   // 畅销
   shopp:function(e){
     var that = this;
-    console.log(that.data.cx)
+    // console.log(that.data.cx)
     flge=true
     if (flge == true) {
       // console.log(flge)
@@ -356,7 +359,7 @@ Page({
       color1: 'red',
       stats: 'c',
     })
-    console.log(counts)
+    // console.log(counts)
     wx.request({
       url: 'http://localhost:8080/shopp',
       data: { pageNum: counts},
@@ -367,7 +370,7 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        console.log(res.data)
+        // console.log(res.data)
         counts++
         if (res.data == "") {
           flge = false
@@ -392,7 +395,7 @@ Page({
   // 人气
   heat:function(){
     var that = this;
-    console.log(that.data.rq)
+    // console.log(that.data.rq)
   if(flges==true){
     wx.showLoading({
       title: '玩命加载中',
@@ -414,7 +417,7 @@ Page({
     responseType: 'text',
     success: function (res) {
       // console.log(that.data.stats)
-      console.log(res.data)
+      // console.log(res.data)
       count++
       if (res.data == "") {
           flges=false
@@ -454,7 +457,7 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        console.log(res.data)
+        // console.log(res.data)
       },
       fail: function(res) {},
       complete: function(res) {},
@@ -470,14 +473,14 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function(res) {
-        console.log(res.data)
+        // console.log(res.data)
       },
       fail: function(res) {},
       complete: function(res) {},
     })
   },
   xq: function (e) {
-    console.log(e.currentTarget.dataset.id)
+    // console.log(e.currentTarget.dataset.id)
     var id = e.currentTarget.dataset.id
     wx.request({
       url: 'http://localhost:8080/bookx',
@@ -496,5 +499,68 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
+  },
+	bindGetUserInfo:function(e){
+    // 登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (e.detail.userInfo) {
+           app.globalData.userInfo = e.detail.userInfo
+          // console.log(app.globalData.userInfo)
+          //用户按了允许授权按钮
+          var that = this;
+          //插入登录的用户的相关信息到数据库
+          wx.request({
+            url: 'http://localhost:8080/userLogin',
+            method: "POST",
+            data: {
+              username: app.globalData.userInfo.nickName,
+              avater: app.globalData.userInfo.avatarUrl,
+              sex: app.globalData.userInfo.gender,
+              date_reg: util.formatTime(new Date()),
+            },
+            header: {
+              'content-Type': 'application/x-www-form-urlencoded',
+              'Accept': 'application/json'
+            },
+            success: function (res) {
+              // console.log(res.data[0])
+              app.globalData.user = res.data[0];
+              that.setData({
+                userinfo: res.data[0]
+              })
+              //授权成功后，跳转进入小程序首页
+              // wx.switchTab({
+              //   url: '/pages/index/index'
+              // })
+              // console.log(userinfo)
+            }
+          })
+        } else {
+          //用户按了拒绝按钮
+          wx.showModal({
+            title: '警告',
+            content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+            showCancel: false,
+            confirmText: '返回授权',
+            success: function (res) {
+              if (res.confirm) {
+                // console.log('用户点击了“返回授权”')
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+  getUserInfo: function (e) {
+    // console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   }
+
 })

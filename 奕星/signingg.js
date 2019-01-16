@@ -1,3 +1,4 @@
+var app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -45,10 +46,9 @@ Page({
   //-------新签到---------
   signNewFn: function (e) {
     var that = this;
-		console.log(that.data.myToday);
 		wx.request({
 			url:'http://localhost:8080/signTo',
-			data:{uname:"江"},
+			data:{uname:app.globalData.user.name},
 			method:'POST',
 			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
 			success:function(result){
@@ -61,10 +61,9 @@ Page({
 				
 			}
 		})
-		
-
     //签到积分函数
     that.signAddFen();
+		// console.log(that.signAddFen());
   },
 
   //新签到积分 连续 天数-积分： 周三+3：周一，周二，周三（1+1+3=5）； 周日+7：周一到周日（1+1+3+1+1+1+7=15）
@@ -128,13 +127,15 @@ Page({
    */
   onLoad: function (options) {
 		var res = JSON.parse(options.res)
-		console.log(res.boolean)
+		// console.log(res)
+		// console.log(res.boolean)
 		var that=this
 		const arr = [],
 		newSignArr = [...arr, ...that.data.isNewSignedArr];
 		newSignArr[res.week].isSigned = res.boolean;
 		that.setData({
 			newSignNum:res.iday,
+			newSignIntegral:res.rep,
 			isNewSignedArr: newSignArr,
 			newSignBtnState:res.boolean
 		})

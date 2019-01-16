@@ -27,7 +27,7 @@
                 <view>
 								
                 <icon class="iconfont icon-yue"></icon>
-                <text style="margin-left: 14px;">余额：</text>
+                <text style="margin-left: 14px;">余额：{{userInfo.money}}</text>
                 </view>
             </view>
             <!-- 充值 -->

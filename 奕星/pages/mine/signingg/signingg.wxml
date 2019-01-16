@@ -10,7 +10,7 @@
       </view>
       <!-- 未签到 -->
       <view wx:if='{{newSignBtnState==false}}' class='sig-qiu sig-qiu-no' style="background-image:url('https://xcx.quan5fen.com/Public/xcx-hitui/image/imgs-jyh/sign-no-btn-bg.png')"
-       bindtap='signNewFn' data-num="{{newSignNum}}" >
+       bindtap='signNewFn' data-num="{{newSignNum}}">
         <label class='ti'>签到</label>
       </view>
       <!-- 已签到 -->
