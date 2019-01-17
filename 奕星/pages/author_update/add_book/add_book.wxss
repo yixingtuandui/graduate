@@ -1,9 +1,19 @@
-.bookname{width: 90%; height: 80rpx; background-color: rgb(201, 201, 201); text-align: center; line-height: 80rpx; margin: 0rpx 5%}
-.sm1{width: 90%; height: 70rpx; margin: 10rpx 5%}
-.sm2{width: 30%; background-color: rgb(150, 150, 150); float: left; text-align: center; line-height: 70rpx}
-.sm3{width: 70%; float: right}
-.input{width: 100%; height: 65rpx; border-bottom: 5rpx solid rgb(151, 150, 150)}
-.text{line-height: 70rpx; color: rgb(204, 204, 204)}
-.lx{width: 90%; height: 200rpx; background-color: red; margin: 0rpx 5%}
-.lb{width: 90%; background-color: rgb(235, 235, 235); margin: 0rpx 5%}
-.lbz{height: 80rpx; line-height: 80rpx; text-align: center; margin: 10rpx 0rpx; color: rgb(255, 100, 100); border-bottom: 2rpx solid salmon}
+.bookname{width: 90%;height: 90rpx;line-height: 90rpx;font-family: '楷体';text-align: center;margin: 0rpx 5%;background-color: rgb(200, 200, 200);}
+.sm1{width: 90%;height: 70rpx;margin: 10rpx 5%}
+.sm2{width: 30%;height: 100%;line-height: 70rpx;float: left;font-family: '楷体';text-align: center;background-color: rgb(230, 230, 230)}
+.sm3{width: 70%;height: 100%;float: right}
+.input{width: 100%;height: 65rpx;color: salmon;font-size: 30rpx;border-bottom: 5rpx solid rgb(230, 230, 230)}
+.text{line-height: 65rpx; color: salmon;font-size: 30rpx;border-bottom: 5rpx solid rgb(230, 230, 230)}
+.lx{width: 90%;margin: 0rpx 5%;display:flow-root;background-color: rgb(240, 240, 240)}
+.lxq{width: 33.33333%;height: 60rpx;line-height: 60rpx;color: salmon;text-align: center;font-size: 30rpx;float: left;border-bottom: 1rpx solid salmon}
+.lb{width: 90%;margin: 0rpx 5%;background-color: rgb(240, 240, 240)}
+.lbz{height: 60rpx;line-height: 60rpx;text-align: center;margin: 10rpx 0rpx;font-size: 30rpx;color: salmon;border-bottom: 1rpx solid salmon}
+.jianjie{width: 90%;height: 300rpx;margin: 10rpx 5%;border-bottom: solid 2rpx salmon}
+.jj{width: 100%;height: 70rpx;line-height: 70rpx; text-align: center;font-family: '楷体';background-color: rgb(230, 230, 230)}
+.jjtext{width: 100%;height: 230rpx;color: #666;font-size: 30rpx}
+.neirong{width: 90%;height: 700rpx;margin: 10rpx 5%;border-bottom: 1rpx solid salmon}
+.nrtext{width: 100%;height: 700rpx;color: #666;font-size: 30rpx}
+.butt{font-family: '楷体'}
+.count{font-size: 30rpx}
+.co{color: salmon}
+.countnr{width: 90%;margin: 0rpx 5%}

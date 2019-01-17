@@ -3,7 +3,7 @@
   <view class='sm1'>
     <view class='sm2'>书 名 :</view>
     <view class='sm3'>
-      <input placeholder='填写书名' class='input' bindinput='bindinputbt'></input>
+      <input placeholder='填写书名' class='input' bindinput='bookname'></input>
     </view>
   </view>
   <view class='sm1'>
@@ -13,7 +13,9 @@
     </view>
   </view>
   <view class='lx' wx:if='{{lxzs}}'>
-  
+    <view wx:for='{{lxq}}' data-text='{{item.typename}}' data-id='{{item.id}}' class='lxq' bindtap='lxzsfz'>
+      <view>{{item.typename}}</view>
+    </view>
   </view>
   <view class='sm1'>
     <view class='sm2'>类 别 :</view>
@@ -25,4 +27,25 @@
     <view data-text='男' bindtap='lbzsfz' class='lbz'>男</view>
     <view data-text='女' bindtap='lbzsfz' class='lbz'>女</view>
   </view>
+  <view class='jianjie'>
+    <view class='jj'>简介
+      <text wx:if='{{!countjj}}' class='count'>({{numberjj|0}}{{max}}字)</text>
+      <text wx:if='{{countjj}}' class='count co'>(达标{{numberjj|0}}{{max}}字)</text>
+    </view>
+    <textarea maxlength='-1' placeholder='书籍简介（建议100字左右，后续不可更改，最低50字）' minlength="{{minjj}}" class='jjtext' bindinput='jianjie'></textarea>
+  </view>
+  <view class='sm1'>
+    <view class='sm2'>第1章 :</view>
+    <view class='sm3'>
+      <input placeholder='章节名' class='input' bindinput='title'></input>
+    </view>
+  </view>
+  <view class='neirong'>
+    <textarea maxlength='-1' placeholder='章节内容（建议5000字左右，后续不可更改，最低4000字）' minlength="{{minnr}}" class='nrtext' bindinput='neirong'></textarea>
+  </view>
+  <view class='countnr'>
+    <text class='count' wx:if='{{!countnr}}'>({{numbernr|0}}{{max}}字)</text>
+    <text class='count co' wx:if='{{countnr}}'>(达标{{numbernr|0}}{{max}}字)</text>
+  </view>
+  <button class='butt' bindtap='addbook'>提 交 申 请</button>
 </view>

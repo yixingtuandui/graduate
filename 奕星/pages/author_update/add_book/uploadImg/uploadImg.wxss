@@ -1,0 +1,4 @@
+.img{width: 90%;height: 450rpx;background-color: rgb(230, 230, 230);margin: 20rpx 5%;padding: 20rpx 0rpx}
+.text{width: 100%;height: 100%;text-align: center;line-height: 450rpx;color: rgb(150, 150, 150)}
+.imgs{width: 320rpx;height: 100%;display: flex;margin: 0 auto}
+.butt{font-family: '楷体'}

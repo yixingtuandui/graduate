@@ -1,4 +1,3 @@
-/* pages/read/read.wxss */
 .button{
   position: relative;
  display: flex;

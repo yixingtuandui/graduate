@@ -1,0 +1,21 @@
+page{
+  height: 100%;
+  width: 100%;
+  background-color: beige;
+}
+.types{
+  height: 100px;
+  width: 100px;
+  float: left;
+  margin-right: 2px;
+  border: 1px solid black;
+}
+.types image{
+  border:1px solid red;
+  height: 100px;
+  width: 50px;
+}
+.types text{
+  float: right;
+  margin-top: 45px;
+}

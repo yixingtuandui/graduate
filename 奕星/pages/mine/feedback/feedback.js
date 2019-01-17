@@ -1,5 +1,4 @@
 var app = getApp()
-
 Page({
   data: {
     height: 20,
@@ -36,7 +35,7 @@ Page({
             content: '提交失败',
             showCancel: false,
           })
-        });
+        })
     }
   }
 })

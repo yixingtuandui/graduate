@@ -1,4 +1,3 @@
-// pages/comment/comment.js 
 var bindblurs, name, id, belong, belongs, bookid, hiddenmodalput, userinfo;
 const app = getApp();
 const util = require('../../utils/util.js');
@@ -102,7 +101,6 @@ Page({
                 this.setData({
                   hiddenmodalput: false
                 }),
-                  console.log(hiddenmodalput)
                   id = e2.currentTarget.dataset.id,
                   belong = e2.currentTarget.dataset.belong
               },

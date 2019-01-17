@@ -1,0 +1,7 @@
+<view>
+  <view class='img'>
+    <view class='text' wx:if='{{img === ""}}' bindtap='uploadImg'>上传一张封面图</view>
+    <image class='imgs' wx:if='{{img !== ""}}' src='{{img}}' bindtap='uploadImg'></image>
+  </view>
+  <button class='butt' bindtap='upload'>上 传 图 片</button>
+</view>

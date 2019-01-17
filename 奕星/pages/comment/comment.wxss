@@ -1,5 +1,3 @@
-/* pages/comment/comment.wxss */
- 
 .the_prw_in{
  
   display: flex;

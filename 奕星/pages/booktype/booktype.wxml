@@ -1,0 +1,3 @@
+<view class='types' wx:for="{{tyname}}"  wx:for-item='item' bindtap='thisType' data-id='{{item.id}}'>
+    {{item.typename}}
+</view>

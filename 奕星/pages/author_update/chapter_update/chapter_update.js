@@ -1,26 +1,27 @@
+var app = getApp();
+
 Page({
-  //页面的初始数据
   data: {
     //书籍信息
-    book: null,
+    book: [],
     //文本域高度
     textareaheight: 0,
-    //文本域宽
-    textareawidth: 0,
     //章节
     chapter: 0,
+    //判断提交
+    flag: true,
     //标题
     title: '',
     //内容
     content: ''
   },
 
-  //生命周期函数--监听页面加载
+  //监听页面加载
   onLoad: function (options) {
     let book = JSON.parse(options.book)
     this.setData({
-      book: book[0],
-      chapter: book[1]
+      book: book,
+      chapter: app.globalData.chapter
     })
     this.visual_height()
   },
@@ -34,8 +35,10 @@ Page({
 
   //内容
   bindinputnr: function(e){
+    let number = parseInt(e.detail.value.length)
     this.setData({
-      content: e.detail.value
+      content: e.detail.value,
+      number: number
     })
   },
 
@@ -45,33 +48,54 @@ Page({
     let title = thiz.data.title
     let content = thiz.data.content
     if(title != '' && content != ''){
-      wx.request({
-        url: 'http://www.tf6boy.vip/bookUpdate',
-        method: 'POST',
-        data: {
-          address: thiz.data.book.addr,
-          chapter: ++thiz.data.chapter,
-          title: title,
-          content: content,
-          bid: thiz.data.book.bid
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-          'Accept': 'application/json'
-        },
-        success: function (res) {
-          if (res.data) {
-            wx.showToast({
-              title: '更新成功'
+      if(thiz.data.flag){
+        wx.request({
+          url: 'http://localhost:8080/bookUpdate',
+          method: 'POST',
+          data: {
+            address: thiz.data.book.addr,
+            chapter: ++thiz.data.chapter,
+            title: title,
+            content: content,
+            id: thiz.data.book.id
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+            'Accept': 'application/json'
+          },
+          success: function (res) {
+            thiz.setData({
+              flag: false
             })
-            // setTimeout(function () {
-            //   wx.redirectTo({
-            //     url: '/pages/author_update/update_book/update_book',
-            //   })
-            // }, 2000)
+            if (res.data) {
+              wx.showToast({
+                title: '更新成功',
+                duration: 2000
+              })
+              //更新全局章节数
+              app.globalData.chapter = thiz.data.chapter
+              //跳转页面
+              setTimeout(function () {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 2000)
+            }else{
+              wx.showToast({
+                title: '更新失败',
+                icon: 'none',
+                duration: 2000
+              })
+            }
           }
-        }
-      })
+        })
+      }else{
+        wx.showToast({
+          title: '已提交该章节',
+          icon: 'none',
+          duration: 2000
+        })
+      }
     }else{
       wx.showToast({
         title: '标题或内容不能为空',
@@ -96,14 +120,11 @@ Page({
         success: function (res) {
           //获取窗口可视高度
           let visual_height = res.windowHeight
-          //窗口可视宽度
-          let visual_width = (res.windowWidth * 0.9)
           //设置文本域随动高度
           thiz.setData({
-            textareaheight: (visual_height - swheight-50),
-            textareawidth: visual_width
+            textareaheight: (visual_height - swheight-55)
           })
-        },
+        }
       })
     })
   }

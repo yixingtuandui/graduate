@@ -29,11 +29,6 @@
   </view>
 </view>
 
-<!-- <view class="signature">
-  <text>个性签名</text>
-  <input name="gxqm" placeholder="请输入"></input>
-</view> -->
-
 <view class="registration">
   <text>注册时间</text>
   <view class="real">
@@ -52,5 +47,4 @@
   <view class="real">
   </view>
 </view>
-
 </view>

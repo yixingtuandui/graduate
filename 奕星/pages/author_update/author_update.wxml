@@ -1,17 +1,22 @@
 <view>
-  <button bindtap='details'>作品详情</button>
+  <button class='butt {{details ? "butts" : ""}}' bindtap='details'>作 品 详 情</button>
   <view class='details' wx:if="{{details}}">
-    <view style='display: flex'>
-      <input class='list-msg' placeholder='输入书名或者状态' bindblur='assignment'></input>
-      <button class='select' bindtap='query' hover-class='selects'>搜索</button>
+    <view class='input'>
+      <input class='list-msg' placeholder='输入书名或者状态' bindinput='assignment'></input>
+      <button class='select' bindtap='query' hover-class='selects'>搜 索</button>
     </view>
-    <view wx:for="{{items}}" wx:for-item="i" class='book' bindtap='authors' data-text='{{i}}'>
-      <view wx:for="{{i}}" wx:for-item="j">
-        <view wx:if="{{index == 0}}">书名：{{j.book_name}}</view>
-        <view wx:if="{{index == 0}}">状态：{{j.auditing}}</view>
-        <view wx:if="{{index == 1}}">类型：{{j.typename}}</view>
+    <view wx:for="{{items}}" class='book' bindtap='authors' data-text='{{item}}'>
+      <view class='img'>
+        <image src='{{item.bookImg}}'></image>
       </view>
+      <view class='text'>
+        <view class='texts'>书名：{{item.bookName}}</view>
+        <view class='texts'>状态：{{item.auditing}}</view>
+        <view class='texts'>购买量：<text>{{item.amount}}</text></view>
+        <view class='texts'>点击量：<text>{{item.number}}</text></view>
+      </view>
+      <view class='remove' style='left:{{left}}px' wx:if='{{item.auditing !== "审核通过"}}' catchtap='remove' data-index='{{index}}' data-text='{{item}}'>删除</view>
     </view>
   </view>
-  <button bindtap='addbook' data-text='{{user.author}}'>添加新书</button>
+  <button class='butt' bindtap='addbook' data-text='{{user.author}}'>添 加 新 书</button>
 </view>

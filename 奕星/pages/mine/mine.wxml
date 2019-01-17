@@ -1,10 +1,8 @@
     <view class="main">
         <view class="avatar">
-           <!-- <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image> -->
 					 <view style="display: flex;float:left;">
 						 <open-data class="userinfo-avatar" mode="cover" type="userAvatarUrl"></open-data>
 					 </view>
-						 
             <!-- 昵称 -->
             <!-- getUserInfo = 获取昵称 -->
             <view class='myname'>
@@ -14,20 +12,14 @@
 									<view class="child" style="margin-left: 14px;">
 										昵称：<open-data type="userNickName"></open-data>
 									</view>
-									
 								</view>
 							</view>
-							
-               <!-- <view>
-               <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-               </view> -->
             </view>
             <!-- 余额 -->
             <view class="mymoneyc" bindtap='mymoneyy'>
                 <view>
-								
                 <icon class="iconfont icon-yue"></icon>
-                <text style="margin-left: 14px;">余额：{{userInfo.money}}</text>
+                <text style="margin-left: 14px;">余额：</text>
                 </view>
             </view>
             <!-- 充值 -->
@@ -38,7 +30,6 @@
                 </view>
             </view>
         </view>
-        
         <view>
         <view class="line"/>
         <!-- myself=个人资料 -->
@@ -77,9 +68,13 @@
         <view class="content-row" bindtap='iAuthor'>
             <view>
                <icon class="iconfont icon-icon-"></icon>
-               <text>我是作者</text>
+               <text>关于作者</text>
             </view>
             <icon size='20' class='iconfont icon-arrowright'></icon>
+        </view>
+        <view wx:if='{{iAuthor}}' class='Author'>
+          <button class='iAuthor' bindtap='bea'>我是作者</button>
+          <button class='iAuthor' bindtap='ima'>成为作者</button>
         </view>
         <!-- iinformation=我的消息 -->
         <view class="content-row" bindtap='iinformation'>
@@ -89,7 +84,6 @@
             </view>
             <icon size='20' class='iconfont icon-arrowright'></icon>
         </view>
-
           <view class="content-row" bindtap='goFeedback'>
             <view>
                <icon class="iconfont icon-drxx54"></icon>
@@ -104,7 +98,6 @@
           </view>
           <icon size='20' class='iconfont icon-arrowright'></icon>
         </view>
-
         <view class="line"/>
     </view>
 </view>

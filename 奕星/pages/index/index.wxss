@@ -1,64 +1,43 @@
+/* page{font-family: cursive} */
+/* 轮播图 */
 #img{ margin: 0rpx 1%;width: 98%;height: 200rpx}
 #lbt{width: 100%;height: 100%}
 .lbt{width: 100%;height: 100%}
-#scdh{ display: flex;align-items: center;border-bottom: 1rpx solid #666}
-.tab{float: left;width: 33.3333%;text-align: center;padding: 10rpx 0}
-.tabh{color: #f00}
+
+/* 导航 */
+#scdh{ display: flex;border-bottom: 5rpx solid #666;background-color: rgb(230, 230, 230)}
+.tab{width: 33.3333%;text-align: center;padding: 10rpx 0}
+.tabh{color: red}
+
+/* 首页 */
 #swiper1{width: 100%}
-#syfl{width: 20%;float: left;background-color: rgb(204, 204, 204)}
-.syfl{width: 100%;text-align: center;margin: 50rpx 0rpx; border-bottom: rgb(184, 184, 184) solid 1rpx}
-.syfls{color: rgb(104, 104, 104); border-bottom-color: rgb(194, 102, 102)}
+#syfl{width: 20%;float: left;background-color: rgb(230, 230, 230)}
+.syfl{width: 100%;height: 100rpx;line-height: 100rpx;text-align: center;border-bottom: 1rpx solid rgb(150, 150, 150)}
+.syfls{color: red;border-bottom-color: red}
 .syflxq{float: right;width: 80%}
-.syflxqzs{width: 90%;height: 225rpx;padding: 20rpx 5% 0rpx 5%;border-bottom: 1rpx solid rgb(168, 168, 168);display: flex}
-.xqzsimg{width: 35%;height: 100%}
-.xqzswz{width: 75%;height: 100%;font-size: 30rpx; color: rgb(99, 98, 98)}
-.xqzswzsm{height: 55rpx; margin: 0rpx 0rpx 0rpx 20rpx; font-size: 35rpx; color: rgb(211, 50, 50); font-weight: bold; display: -webkit-box; text-overflow: ellipsis; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 1}
-.xqzswzjj{height: 120rpx; margin: 0rpx 0rpx 0rpx 20rpx; display: -webkit-box; text-overflow: ellipsis; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3}
-.xqzswzzz{height: 50rpx; margin: 0rpx 0rpx 0rpx 20rpx; font-size: 30rpx; color: rgb(41, 41, 41); font-weight: bolder; display: flex; align-items: center}
-.tips{text-align: center; color: rgb(104, 104, 104); display: block}
+.syflxqzs{width: 94%;height: 225rpx;padding: 15rpx 3%;border-bottom: 1rpx solid rgb(230, 230, 230);display: flex}
+.xqzsimg{width: 35%;height: 100%;background-color: #ccc}
+.xqzswz{width: 75%;height: 100%;font-size: 30rpx;color: rgb(100, 100, 100)}
+.xqzswzsm{height: 60rpx;line-height: 50rpx;margin: 0rpx 0rpx 0rpx 10rpx;color: red;display: -webkit-box;text-overflow: ellipsis;overflow: hidden;-webkit-box-orient: vertical;-webkit-line-clamp: 1}
+.xqzswzjj{margin: 0rpx 0rpx 0rpx 10rpx;display: -webkit-box;text-overflow: ellipsis;overflow: hidden;-webkit-box-orient: vertical;-webkit-line-clamp: 3}
+.xqzswzzz{height: 55rpx;line-height: 70rpx;margin: 0rpx 0rpx 0rpx 10rpx;font-size: 30rpx;color: #000}
+.tips{text-align: center;color: rgb(150, 150, 150)}
 
-/* 分类 */
-.types{height: 100px;width: 100px;float: left;margin-right: 2px;text-align: center;}
-.types text{ }
-.ban{width: 17%;float: left;border-right: 1px solid #666;background-color: white;height: 100%;position: fixed;}
-button::after {border: none;}
-.ban button{box-sizing:border-box;border-radius:5px;font-size:14px;color:#666;}  
-.ym{width: 82%;float: right;}
-.zyz{background: #F8F8F8;border-bottom: 2px solid black;height: 46px;}
-.zyz button{float: left;margin-right: 10px;}
-/*  */
-.book{border-bottom: 2px solid whitesmoke;}
-.img{height: 105px;width: 65px;}
-.text{float:right;width:190px;}
-.tt{float: right;position:absolute;margin-top: 5px;font-weight: bold;}
-.ts{float:right;position:relative;font-size:13px;margin-top:36px;display: -webkit-box;color:#000000;line-height: 40rpx;word-break: break-all;-webkit-box-orient: vertical;-webkit-line-clamp:2;overflow: hidden;text-overflow:ellipsis;}
-.zz{font-size: 11px;font-weight:bolder;}
-.header {
-    margin: 90rpx 0 90rpx 50rpx;
-    text-align: center;
-    width: 650rpx;
-    height: 300rpx;
-    line-height: 450rpx;
-}
+/* 分类排行 */
+.types{height: 100px;width: 100px;float: left;margin: 10px;text-align: center}
+.tpyimg{width:65%;height:90%}
+.types text{float:right;width:10px}
+.ban{width: 15%;float: left;border-right: 1px solid #666;background-color: white;height: 100%;position: fixed}
+button::after {border: none}
+.ban button{box-sizing:border-box;border-radius:5px;font-size:14px;color:#666}  
+.ym{width: 84%;float: right}
+.zyz{background: #F8F8F8;border-bottom: 2px solid black;height: 46px}
+.zyz button{float: left;margin-right: 10px}
 
-.header image {
-    width: 200rpx;
-    height: 200rpx;
-}
-
-.content {
-    margin-left: 50rpx;
-    margin-bottom: 90rpx;
-}
-
-.content text {
-    display: block;
-    color: #9d9d9d;
-    margin-top: 40rpx;
-}
-
-.bottom {
-    border-radius: 80rpx;
-    margin: 70rpx 50rpx;
-    font-size: 35rpx;
-}
+/* 排行 */
+.book{border-bottom: 2px solid whitesmoke}
+.img{height: 105px;width: 65px}
+.text{float:right;width:75%}
+.tt{float: right;position:absolute;margin-top: 5px;font-weight: bold}
+.ts{float:right;position:relative;font-size:13px;margin-top:36px;display: -webkit-box;color:#000000;line-height: 40rpx;word-break: break-all;-webkit-box-orient: vertical;-webkit-line-clamp:2;overflow: hidden;text-overflow:ellipsis}
+.zz{font-size: 11px;font-weight:bolder}

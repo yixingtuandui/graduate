@@ -1,4 +1,3 @@
-var app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -46,9 +45,10 @@ Page({
   //-------新签到---------
   signNewFn: function (e) {
     var that = this;
+		console.log(that.data.myToday);
 		wx.request({
 			url:'http://localhost:8080/signTo',
-			data:{uname:app.globalData.user.name},
+			data:{uname:"江"},
 			method:'POST',
 			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
 			success:function(result){
@@ -63,7 +63,6 @@ Page({
 		})
     //签到积分函数
     that.signAddFen();
-		// console.log(that.signAddFen());
   },
 
   //新签到积分 连续 天数-积分： 周三+3：周一，周二，周三（1+1+3=5）； 周日+7：周一到周日（1+1+3+1+1+1+7=15）
@@ -77,12 +76,10 @@ Page({
         fiveIsSigned = that.data.isNewSignedArr[5].isSigned,
         sixIsSigned = that.data.isNewSignedArr[6].isSigned,
         sevenIsSigned = that.data.isNewSignedArr[0].isSigned;
-
     //当前积分
     num++;
     var curFen = that.data.newSignIntegral + 1;
     that.setData({
-      //signInPop: true,
       newSignBtnState: true,
       newSignNum: num,
       newSignIntegral: curFen,
@@ -97,7 +94,6 @@ Page({
           that.setData({
             newSignIntegral: fens
           })
-          //console.log(that.data.newSignIntegral);
         }
       }
       // 所有签了： 日 一 二 三 四 五 六
@@ -127,63 +123,26 @@ Page({
    */
   onLoad: function (options) {
 		var res = JSON.parse(options.res)
-		// console.log(res)
-		// console.log(res.boolean)
 		var that=this
 		const arr = [],
 		newSignArr = [...arr, ...that.data.isNewSignedArr];
 		newSignArr[res.week].isSigned = res.boolean;
 		that.setData({
 			newSignNum:res.iday,
-			newSignIntegral:res.rep,
 			isNewSignedArr: newSignArr,
 			newSignBtnState:res.boolean
 		})
-// 		console.log(b)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
     var that = this,
       myDate = new Date(),
       myToday = myDate.getDay();  //周几   0 1 2 3 4 5 6
     that.setData({
       myToday: myToday
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  },
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  },
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-		
-  },
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
   }
 })

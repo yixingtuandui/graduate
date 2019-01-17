@@ -1,4 +1,3 @@
-<!--pages/mine/ihuawei/ihuawei.wxml-->
 <view>
 <text>手机号码</text>
   <view class="real">

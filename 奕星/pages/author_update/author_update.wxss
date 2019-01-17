@@ -1,5 +1,14 @@
-.details{width: 100%; display: block}
-.book{width: 96%; margin: 15rpx 2%; background-color: rgb(230, 230, 230)}
-.list-msg{height: 60rpx; border: 1px solid rgb(151, 151, 151); display: flex; align-items: center; width: 80%; margin-left: 1%}
-.select{width: 20%;background-color: rgb(241, 241, 241); color: red; line-height: 60rpx; font-size: 30rpx; float: right; margin-right: 1%; border: 1px solid rgb(151, 151, 151)}
-.selects{background-color: rgb(194, 194, 194)}
+.butt{width: 100%;height: 100rpx;line-height: 100rpx;margin: 20rpx 0rpx;color: #666;font-family: '楷体';font-size: 40rpx;border-bottom: 1rpx solid #000}
+.butts{color: red;border-bottom-color: red}
+.details{width: 100%}
+.book{width: 96%;height: 200rpx;margin: 15rpx 2%;display: flex;background-color: rgb(230, 230, 230)}
+.input{width: 96%;margin: 5rpx 2%;display: flex}
+.list-msg{width: 75%;height: 60rpx;line-height: 60rpx;color: salmon;font-size: 30rpx;border: 1px solid rgb(230, 230, 230)}
+.select{width: 25%;height: 100%;line-height: 60rpx;color: red;font-size: 30rpx;border: 1px solid rgb(190, 190, 190);background-color: rgb(241, 241, 241)}
+.selects{background-color: rgb(190, 190, 190)}
+.img{width: 20%;height: 100%}
+image{width: 100%;height: 100%;background-color: #ccc}
+.text{width: 80%;height: 100%;color: rgb(100, 100, 100)}
+.texts{height: 50rpx;line-height: 50rpx;margin-left: 20rpx;font-family: '楷体'}
+text{color:salmon}
+.remove{width: 35px;height: 50rpx;line-height: 50rpx;color:rgb(150, 150, 150);font-size: 30rpx;text-align: center;background-color: rgb(200, 200, 200);position: absolute;z-index: 1}

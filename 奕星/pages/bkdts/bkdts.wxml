@@ -1,4 +1,3 @@
-<!-- pages/bkdts/bkdts.wxml -->
 <view class='book' wx:for='{{bookslst}}' data-id='{{item.id}}' bindtap='xq'>
   <image class='img' src='{{item.bookImg}}'></image>
   <view class='text'>

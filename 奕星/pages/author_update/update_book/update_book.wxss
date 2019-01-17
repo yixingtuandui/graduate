@@ -1,18 +1,21 @@
-page{background-color: rgb(241, 241, 241)}
-.books{width: 96%; margin: 0rpx 2%}
-.imgs{width: 100%; height: 400rpx; display: flex-wrap}
-.img{width: 35%; height: 100%}
-.bookname{width: 65%; height: 100%; float: right; display: flex; align-items: center; font-weight: bold; color: rgb(233, 0, 0); font-family: '宋体'}
-.brief{padding: 30rpx 0px; font-weight: bold; font-family: '宋体'}
-.texts{width: 100%; height: 280rpx; display: flex-wrap; font-weight: bold; font-family: '宋体'}
-.text{width: 50%; height: 60rpx; float: left; margin: 5rpx 0rpx; display: flex; align-items: center}
-text{font-weight: normal; color: rgb(94, 94, 94)}
-.but{width:  100%; height: 80rpx}
-.button{width: 33.33333%; height: 100%; display: flex; float: left; font-size: 30rpx; flex-direction: column}
-.buttons{width: 33.33333%; height: 100%; display: flex; float: right; font-size: 30rpx; flex-direction: column}
+page{background-color: rgb(230, 230, 230)}
+.books{width: 90%;margin: 0rpx 5%}
+.imgs{width: 100%;height: 350rpx;margin: 20rpx 0rpx;display: flex}
+.img{width: 35%;height: 100%;background-color: #ccc}
+.bookname{width: 65%;height: 100%;color: salmon;font-family: '楷体'}
+.brief{margin: 20rpx 0px}
+.texts{width: 100%;height: 300rpx;margin: 20rpx 0rpx;display: flex-wrap}
+.text{width: 50%;height: 60rpx;line-height: 60rpx;margin: 5rpx 0rpx;float: left}
+text{color: rgb(100, 100, 100);font-size: 30rpx;font-weight: normal}
+.but{width:  100%;height: 80rpx}
+.button{width: 33.33333%;height: 100%;line-height: 80rpx;font-size: 35rpx;font-family: '楷体';flex-direction: column;float: left;display: flex}
+.buttons{width: 33.33333%;height: 100%;line-height: 80rpx;font-size: 35rpx;font-family: '楷体';flex-direction: column;float: right;display: flex}
 .show{display: flex}
-.input{width: 65%; border: 1rpx solid rgb(211, 211, 211); color: red; font-weight: normal}
-.box{width: 65%; height: 100%; border: 1rpx solid rgb(211, 211, 211); background-color: #ccc}
-.status{width: 100%; height: 100%; display: flex; align-items: center; color: red}
-.boxs{width: 32%; background-color: rgb(233, 233, 233); position: absolute; z-index: 1; margin: 95rpx 0rpx 0rpx 115rpx; color: rgb(240, 157, 157)}
-.val{height: 60rpx; line-height: 60rpx; border-bottom: 1px solid rgb(160, 160, 160); display: flex; align-items: center; font-weight: normal; color: rgb(94, 94, 94)}
+.input{width: 60%;height: 60rpx}
+input{width: 100%;height: 100%;color: salmon;font-size: 30rpx;font-weight: normal;border-bottom: 1rpx solid rgb(100, 100, 100)}
+.box{width: 65%;height: 58rpx;border: 1rpx solid rgb(200, 200, 200);background-color: #ccc}
+.status{width: 100%;height: 100%;color: salmon;align-items: center;display: flex}
+.boxs{width: 30%;margin: 65rpx 0 0 114rpx;background-color: rgb(200, 200, 200);position: absolute;z-index: 1}
+.val{color: rgb(100, 100, 100);font-size: 30rpx;border-bottom: 1px solid rgb(150, 150, 150)}
+.sjxg{color: #000;font-size: 35rpx}
+.qrxg{color: red;font-size: 35rpx}

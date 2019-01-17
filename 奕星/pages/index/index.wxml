@@ -1,107 +1,93 @@
-<view wx:if="{{!userinfo}}">
-<view wx:if="{{canIUse}}">
-    <view class='header'>
-        <!-- <image src='/images/wx_login.png'></image> -->
-    </view>
-    <view class='content'>
-        <view>申请获取以下权限</view>
-        <text>获得你的公开信息(昵称，头像等)</text>
-    </view>
- 
-    <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-        授权登录
-    </button>
-</view></view>
-<view wx:if="{{userinfo}}">
 <view>
-	<!-- 轮播图 -->
-	  <view id="img">
-	    <swiper id='lbt' indicator-dots="{{indicatorDots}}"
-	    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-	    <block wx:for="{{imgUrls}}">
-	      <swiper-item>
-	        <image class='lbt' src="{{item}}"/>
-	      </swiper-item>
-	    </block>
-	    </swiper>
-	  </view>
-	  <!-- 导航 -->
-	  <view id='scdh'>
-	    <view class='tab {{currentData == 0 ? "tabh" : ""}}' data-current = "0" bindtap='checkCurrent'>首页</view>
-	    <view class='tab {{currentData == 1 ? "tabh" : ""}}' data-current = "1" bindtap='checkCurrent'>分类</view>
-	    <view class='tab {{currentData == 2 ? "tabh" : ""}}' data-current = "2" bindtap='checkCurrent'>排行</view>
-	  </view>
-	  <view>
-	    <swiper current="{{currentData}}" id='swiper1' style="height: {{heights}}px" duration="500" bindchange="bindchange">
-	      <!-- 首页 -->
-	      <swiper-item>
-	          <view id='syfl' style='height:{{heights}}px'>
-	            <view class='syfl {{syfl == 0 ? "syfls" : ""}}' bindtap='recommend'>推 荐</view>
-	            <view class='syfl {{syfl == 1 ? "syfls" : ""}}' bindtap='ranking'>排 行</view>
-	            <view class='syfl {{syfl == 2 ? "syfls" : ""}}' bindtap='boy'>男 生</view>
-	            <view class='syfl {{syfl == 3 ? "syfls" : ""}}' bindtap='girl'>女 生</view>
-	          </view>
-	          <view class='syflxq'>
-	            <scroll-view  scroll-y="true" bindscrolltolower="lower" scroll-top="{{scrollTop}}" style="height: {{heights}}px">
-	              <view wx:for="{{items}}" class='syflxqzs' bindtap='book_' data-text='{{item}}'>
-	                <image src='{{item.bookImg}}' class='xqzsimg'/>
-	                <view class='xqzswz'>
-	                  <view class='xqzswzsm'>书名：{{item.bookName}}</view>
-	                  <view class='xqzswzjj'>简介：{{item.brief}}</view>
-	                  <view class='xqzswzzz'>作者：{{item.author}}</view>
-	                </view>
-	              </view>
-	              <view class='tips' wx:if="{{tips}}">没有更多书籍了</view>
-	            </scroll-view>
-	          </view>
-	      </swiper-item>
-	      <!-- 分类 -->
-	      <swiper-item>
-					<view>
-						<scroll-view  scroll-y style="height: 100%">
-							<view class='types' wx:for="{{tyname}}"  wx:for-item='item'  bindtap='thisType' data-id='{{item.tid}}'>
-								<text>{{item.typename}}</text> 
-							</view>
-						</scroll-view>
-					</view>
-	      </swiper-item>
-	      <!-- 排行 -->
-				<swiper-item>
-					<view class='ban'>
-						<button bindtap='shopp'  class=''  style='color:{{color1}}'>畅销榜</button>
-						<button bindtap='heat'  class='' style='color:{{color2}}'>人气榜</button>
-					</view>
-					<view class='ym'>
-						<view class='zyz'>
-							<button bindtap='week'>周榜</button>
-							<button bindtap='month'>月榜</button>
-							<button bindtap='total'>总榜</button>
-						</view>
-						<scroll-view  scroll-y="true" bindscrolltolower="lowers" scroll-top="{{scrollTop}}" style="height:340px">
-								<view wx:if="{{stats=='c'}}">
-									<view class='book'  wx:for='{{cx}}' data-id='{{item.id}}' bindtap='xq'>
-										<image class='img' src='{{item.bookImg}}'></image>
-										<view class='text'>
-											<text class='tt'>{{item.bookName}}</text>
-											<text class='ts'>{{item.brief}}</text>
-											<text class='zz'>{{item.author}}</text>
-										</view>
-									</view>
-								</view>
-								<view wx:if="{{stats=='r'}}">
-									<view class='book'  wx:for='{{rq}}' data-id='{{item.id}}' bindtap='xq'>
-										<image class='img' src='{{item.bookImg}}'></image>
-										<view class='text'>
-											<text class='tt'>{{item.bookName}}</text>
-											<text class='ts'>{{item.brief}}</text>
-											<text class='zz'>{{item.author}}</text>
-										</view>
-									</view>
-								</view>
-						</scroll-view>
-					</view>
-				</swiper-item>  
-	    </swiper>
-	  </view>
-	</view>
+
+<!-- 轮播图 -->
+  <view id="img">
+    <swiper id='lbt' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image class='lbt' src="{{item}}"/>
+      </swiper-item>
+    </block>
+    </swiper>
+  </view>
+
+  <!-- 导航 -->
+  <view id='scdh'>
+    <view class='tab {{currentData == 0 ? "tabh" : ""}}' data-current = "0" bindtap='checkCurrent'>首页</view>
+    <view class='tab {{currentData == 1 ? "tabh" : ""}}' data-current = "1" bindtap='checkCurrent'>分类</view>
+    <view class='tab {{currentData == 2 ? "tabh" : ""}}' data-current = "2" bindtap='checkCurrent'>排行</view>
+  </view>
+  <view>
+    <swiper current="{{currentData}}" id='swiper1' style="height: {{heights}}px" duration="500" bindchange="bindchange">
+
+      <!-- 首页 -->
+      <swiper-item>
+          <view id='syfl' style='height: {{heights}}px'>
+            <view class='syfl {{syfl == 0 ? "syfls" : ""}}' bindtap='recommend'>推 荐</view>
+            <view class='syfl {{syfl == 1 ? "syfls" : ""}}' bindtap='ranking'>排 行</view>
+            <view class='syfl {{syfl == 2 ? "syfls" : ""}}' bindtap='boy'>男 生</view>
+            <view class='syfl {{syfl == 3 ? "syfls" : ""}}' bindtap='girl'>女 生</view>
+          </view>
+          <view class='syflxq'>
+            <scroll-view  scroll-y="true" bindscrolltolower="lower" scroll-top="{{scrollTop}}" style="height: {{heights}}px">
+              <view wx:for="{{items}}" class='syflxqzs' bindtap='book_' data-text='{{item}}'>
+                <image src='{{item.bookImg}}' class='xqzsimg'/>
+                <view class='xqzswz'>
+                  <view class='xqzswzsm'>书名：{{item.bookName}}</view>
+                  <view class='xqzswzjj'>简介：{{item.brief}}</view>
+                  <view class='xqzswzzz'>作者：{{item.author}}</view>
+                </view>
+              </view>
+              <view class='tips' wx:if="{{tips}}">没有更多书籍了</view>
+            </scroll-view>
+          </view>
+      </swiper-item>
+
+      <!-- 分类 -->
+      <swiper-item>
+        <scroll-view  scroll-y style="height:{{heights}}px">
+          <view class='types' wx:for="{{tyname}}"  wx:for-item='item'  bindtap='thisType' data-id='{{item.tid}}'>
+          <image src='{{item.typeimg}}' class='tpyimg'/>
+            <text>{{item.typename}}</text> 
+          </view>
+        </scroll-view>
+      </swiper-item>
+      
+        <!-- 排行 -->
+      <swiper-item>
+        <view class='ban' style="height:{{heights}}px">
+          <button bindtap='shopp'  class=''  style='color:{{color1}}'>畅销榜</button>
+          <button bindtap='heat'  class='' style='color:{{color2}}'>人气榜</button>
+        </view>
+        <view class='ym' >
+          <view class='zyz'>
+            <button bindtap='week'  style='color:{{color3}}'>周榜</button>
+            <button bindtap='month'  style='color:{{color3}}'>月榜</button>
+            <button bindtap='total'  style='color:{{color3}}'>总榜</button>
+          </view>
+          <scroll-view  scroll-y="true" bindscrolltolower="lowers" scroll-top="{{scrollTop}}" style="height:{{heights-48}}px">
+            <view wx:if="{{stats=='c'}}">
+              <view class='book'  wx:for='{{cx}}' data-id='{{item.id}}' bindtap='xq'>
+                <image class='img' src='{{item.bookImg}}'></image>
+                <view class='text'>
+                  <text class='tt'>{{item.bookName}}</text>
+                  <text class='ts'>{{item.brief}}</text>
+                  <text class='zz'>{{item.author}}</text>
+                </view>
+              </view>
+            </view>
+              <view wx:if="{{stats=='r'}}"><view class='book'  wx:for='{{rq}}' data-id='{{item.id}}' bindtap='xq'>
+                <image class='img' src='{{item.bookImg}}'></image>
+                <view class='text'>
+                  <text class='tt'>{{item.bookName}}</text>
+                  <text class='ts'>{{item.brief}}</text>
+                  <text class='zz'>{{item.author}}</text>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </swiper-item>  
+    </swiper>
+  </view>
 </view>

@@ -1,4 +1,3 @@
-//logs.js
 var app = getApp()
 var books;
 Page({
@@ -54,22 +53,19 @@ Page({
 						}
 					})
 				}else{
-					//否
-					
+					//否	
 				}
 			}
 		})
 	},
 	//书架书籍添加
 	bookadd:function(e){
-		console.log(5454)
 		wx.switchTab({
 			url:'../index/index',
 		})
 	},
 	//最近阅读书籍点击事件
 	bookdetails:function(e){
-		console.log(e.currentTarget.dataset.data.auditing)
 		var bok = JSON.stringify(e.currentTarget.dataset.data)
 		var auditing=e.currentTarget.dataset.data.auditing
 		if(auditing=="已下架"){
