@@ -11,7 +11,7 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
 		var that = this;
 		wx.request({
-			url:'http://www.tf6boy.vip/bookshelf',
+			url:app.globalData.url+'bookshelf',
 			data:{uid:app.globalData.user.id},
 			header:{'content-type':'application/x-www-form-urlencoded;charset=utf-8',},
 			method:'POST',
@@ -64,7 +64,7 @@ Page({
 				if(res.confirm){
 					//是
 					wx.request({
-						url:'http://www.tf6boy.vip/deletebook',
+						url:app.globalData.url+'deletebook',
 						data:{
 						name: app.globalData.user.name,
 						bookid:e.currentTarget.dataset.data.id},
@@ -111,7 +111,7 @@ Page({
     var that = this;
 	if (e.detail.current == 1) {
 		wx.request({ 			
-			url: 'http://www.tf6boy.vip/recently',
+			url: app.globalData.url+'recently',
         	data: { uid: app.globalData.user.id },
         	header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8', },
         	method: 'POST',
@@ -123,7 +123,7 @@ Page({
       })
     }else{
 			wx.request({
-				url:'http://www.tf6boy.vip/bookshelf',
+				url:app.globalData.url+'bookshelf',
 				data:{uid:app.globalData.user.id},
 				header:{'content-type':'application/x-www-form-urlencoded;charset=utf-8',},
 				method:'POST',

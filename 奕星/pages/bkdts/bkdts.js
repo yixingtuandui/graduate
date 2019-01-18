@@ -1,5 +1,6 @@
 var count=1
 var flge=true
+var app = getApp()
 Page({
   data:{
     bookslst:[],
@@ -18,7 +19,7 @@ Page({
     wx.showNavigationBarLoading()
     var that=this
     wx.request({
-      url: 'http://www.tf6boy.vip/booksType',
+      url: app.globalData.url+'booksType',
       data: {
         type: that.data.bookslst[0].type,
         pageNum: 0
@@ -48,7 +49,7 @@ Page({
     count++
     var that = this
     wx.request({
-      url: 'http://www.tf6boy.vip/booksType',
+      url: app.globalData.url+'booksType',
       data: {
         type: that.data.bookslst[0].type,
         pageNum: count
@@ -78,7 +79,7 @@ Page({
   xq:function(e){
     var id=e.currentTarget.dataset.id
     wx.request({
-      url: 'http://www.tf6boy.vip/bookx',
+      url: app.globalData.url+'bookx',
       data: {bid:id},
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
       method: 'post',

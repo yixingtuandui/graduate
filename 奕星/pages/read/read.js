@@ -1,5 +1,6 @@
 var url
 var num = 0
+var app = getApp()
 Page({
   //加载完成
   onLoad:function(e){
@@ -7,7 +8,7 @@ Page({
     num = 0
     url = e.url 
     wx.request({
-      url: 'http://www.tf6boy.vip/read',
+      url: app.globalData.url+'read',
       data: {
         url: url+ '/' + num + '.txt'
       },
@@ -32,7 +33,7 @@ Page({
     if(num>0){
       --num
       wx.request({
-        url: 'http://www.tf6boy.vip/read',
+        url: app.globalData.url+'read',
         data: {
           url: url + '/' + num + '.txt'
         },
@@ -59,7 +60,7 @@ Page({
     if(num>=0){
       ++num
       wx.request({
-        url: 'http://www.tf6boy.vip/read',
+        url: app.globalData.url+'read',
         data: {
           url: url + '/' + num + '.txt'
         },

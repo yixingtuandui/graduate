@@ -3,6 +3,7 @@ var count = 1//控制搜索结果页码
 var s= ""//搜索的值
 var book= []//搜索结果返回数据
 var flag= true//判断加载图标
+var app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -77,7 +78,7 @@ Page({
       })
       var thiz = this
       wx.request({
-        url: 'http://www.tf6boy.vip/booksearch',
+        url: app.globalData.url+'booksearch',
         data: {
           book: s,
           pageNums: ++count
@@ -127,7 +128,7 @@ Page({
     var thiz = this
     book=[]
     wx.request({
-      url: 'http://www.tf6boy.vip/booksearch',
+      url: app.globalData.url+'booksearch',
       data: {
         book: s,
         pageNums: count
@@ -150,7 +151,7 @@ Page({
     console.log(e)
     var id = e.currentTarget.dataset.id
     wx.request({
-      url: 'http://www.tf6boy.vip/bookx',
+      url: app.globalData.url+'bookx',
       data: { bid: id },
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
       method: 'post',
@@ -178,7 +179,7 @@ Page({
     })
     if(search!=""){
       wx.request({
-        url: 'http://www.tf6boy.vip/booksearch',
+        url: app.globalData.url+'booksearch',
         data: {
           book: search,
           pageNums: 1

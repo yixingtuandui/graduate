@@ -50,7 +50,7 @@ Page({
     if(title != '' && content != ''){
       if(thiz.data.flag){
         wx.request({
-          url: 'http://www.tf6boy.vip/bookUpdate',
+          url: app.globalData.url+'bookUpdate',
           method: 'POST',
           data: {
             address: thiz.data.book.addr,

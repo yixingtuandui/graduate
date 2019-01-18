@@ -46,7 +46,7 @@ Page({
     wx.showLoading({
     })
     wx.request({
-      url: 'http://www.tf6boy.vip/bookdetails',
+      url: app.globalData.url+'bookdetails',
       method: 'GET',
       data: {
         //author: thiz.data.user.pen_name,
@@ -86,7 +86,7 @@ Page({
     let book = e.currentTarget.dataset.text
     //查询对应类型
     wx.request({
-      url: 'http://www.tf6boy.vip/booktype',
+      url: app.globalData.url+'booktype',
       method: 'GET',
       data: {
         id: book.type
@@ -128,7 +128,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: 'http://www.tf6boy.vip/bookremove',
+            url: app.globalData.url+'bookremove',
             method: 'GET',
             data: {
               id: book.id,

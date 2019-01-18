@@ -1,3 +1,4 @@
+var app = getApp()
 Page({
   //页面的初始数据
   data: {
@@ -36,7 +37,7 @@ Page({
     if(thiz.data.img !== ''){
       if (thiz.data.tj){
         wx.uploadFile({
-          url: 'http://www.tf6boy.vip/uploadimg?id=' + thiz.data.book[0] + '&imgaddr=' + thiz.data.book[1] + '',
+          url: app.globalData.url+'uploadimg?id=' + thiz.data.book[0] + '&imgaddr=' + thiz.data.book[1] + '',
           filePath: thiz.data.img[0],
           name: 'img',
           success: function (res) {

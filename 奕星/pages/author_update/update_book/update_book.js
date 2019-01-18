@@ -38,7 +38,7 @@ Page({
     })
     //获取最新章节
     wx.request({
-      url: 'http://www.tf6boy.vip/chapter',
+      url: app.globalData.url+'chapter',
       method: 'GET',
       data: {
         bid: obj[0].id
@@ -99,7 +99,7 @@ Page({
         valb: false
       })
       wx.request({
-         url: 'http://www.tf6boy.vip/author_update',
+         url: app.globalData.url+'author_update',
         method: 'GET',
         data: {
           id: thiz.data.book.id,
@@ -171,7 +171,7 @@ Page({
           img: res.tempFilePaths
         })
         wx.uploadFile({
-          url: 'http://www.tf6boy.vip/updateimg?id=' + thiz.data.book.id + '&addr=' + thiz.data.book.addr + '&bookname=' + thiz.data.book.bookName +'',
+          url: app.globalData.url+'updateimg?id=' + thiz.data.book.id + '&addr=' + thiz.data.book.addr + '&bookname=' + thiz.data.book.bookName +'',
           filePath: res.tempFilePaths[0],
           name: 'img',
           success: function (res) {

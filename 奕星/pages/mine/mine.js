@@ -22,7 +22,7 @@ Page({
   //签到
   signing: function () {
 		wx.request({
-			url:'http://www.tf6boy.vip/sign',
+			url:app.globalData.url+'sign',
 			data:{uname:"江"},
 			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
 			method:'POST',
@@ -134,7 +134,7 @@ Page({
 		var that=this
 // 		wx.request({
 // 			data:{id:1},
-// 			url:'http://www.tf6boy.vip/member',
+// 			url:app.globalData.url+'member',
 // 			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
 // 			method:'POST',
 // 			success:function(result){
@@ -180,7 +180,7 @@ Page({
 	//申请作者
   apply: function(){
     wx.request({
-      url: 'http://www.tf6boy.vip/applyauthor',
+      url: app.globalData.url+'applyauthor',
       method: 'GET',
       data: {
         id: app.globalData.user.id

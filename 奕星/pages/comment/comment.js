@@ -17,7 +17,7 @@ Page({
           var actid = 1;
           // 查询评论 
           wx.request({
-            url: 'http://www.tf6boy.vip/comment',
+            url: app.globalData.url+'comment',
             method: 'POST',
             header: {
               'content-Type': 'application/x-www-form-urlencoded',
@@ -56,7 +56,7 @@ Page({
             // console.log('用户缓存id：user_id :', user_id); 
             // console.log('文本输入框: input_value :', bindblur); 
             wx.request({
-              url: 'http://www.tf6boy.vip/setcomment',
+              url: app.globalData.url+'setcomment',
               method: 'POST',
               header: {
                 'content-Type': 'application/x-www-form-urlencoded',
@@ -119,7 +119,7 @@ Page({
                     hiddenmodalput: true,
                   }),
                     wx.request({//发送请求，将回复内容写入数据库 
-                    url: 'http://www.tf6boy.vip/setcomment',
+                    url: app.globalData.url+'setcomment',
                       method: 'POST',
                       header: {
                         'content-Type': 'application/x-www-form-urlencoded',

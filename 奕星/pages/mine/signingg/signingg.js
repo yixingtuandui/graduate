@@ -47,7 +47,7 @@ Page({
   signNewFn: function (e) {
     var that = this;
 		wx.request({
-			url:'http://www.tf6boy.vip/signTo',
+			url:app.globalData.url+'signTo',
 			data:{uname:app.globalData.user.name},
 			method:'POST',
 			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},

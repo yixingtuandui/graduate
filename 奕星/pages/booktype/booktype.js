@@ -6,7 +6,7 @@ Page({
   onLoad:function(){
     var list = this;
     wx.request({
-      url: 'http://www.tf6boy.vip/wuxingbookcity_war_exploded/showType',
+      url: app.globalData.url+'wuxingbookcity_war_exploded/showType',
       method: "post",
       data: {
 
@@ -24,7 +24,7 @@ Page({
   thisType:function(e){
     var tyn=e.currentTarget.dataset.id
     wx.request({
-      url:'http://www.tf6boy.vip/wuxingbookcity_war_exploded/booksType',
+      url:app.globalData.url+'wuxingbookcity_war_exploded/booksType',
       data:{
         type:tyn
       },

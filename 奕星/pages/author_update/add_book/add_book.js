@@ -1,3 +1,4 @@
+var app = getApp()
 Page({
   //页面的初始数据
   data: {
@@ -35,7 +36,7 @@ Page({
     let thiz = this
     let author = JSON.parse(options.author)
     wx.request({
-      url: 'http://www.tf6boy.vip/booktypes',
+      url: app.globalData.url+'booktypes',
       method: 'GET',
       header: {
         'content-type': 'application/json'
@@ -152,7 +153,7 @@ Page({
     let countnr = this.data.countnr
     if (bookname != '' && jj !='' && title != '' && content != '' && countjj && countnr){
       wx.request({
-        url: 'http://www.tf6boy.vip/addbook',
+        url: app.globalData.url+'addbook',
         method: 'POST',
         data: {
           author: author,

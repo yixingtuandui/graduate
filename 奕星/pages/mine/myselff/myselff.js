@@ -1,3 +1,4 @@
+var app = getApp()
 Page({
   data: {
     userInfo: {},
@@ -31,7 +32,7 @@ Page({
   mname: function (e) {
     var thiz = this
     wx.request({
-      url: 'http://www.tf6boy.vip/',
+      url: app.globalData.url+'',
       data: {
       },
       header: {

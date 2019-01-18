@@ -1,5 +1,5 @@
 var boksxq;
-const app = getApp();
+var app = getApp()
 const util = require('../../utils/util.js');
 var bid,uid,boks,bindblurs;
 Page({
@@ -13,7 +13,7 @@ Page({
     var that=this
     wx.showNavigationBarLoading()
     wx.request({
-      url: 'http://www.tf6boy.vip/bookx',
+      url: app.globalData.url+'bookx',
       data: { bid: that.data.boksxq.id },
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
       method: 'post',
@@ -33,7 +33,7 @@ Page({
     var boks=JSON.parse(option.obj);
 		app.globalData.book=boks
 		wx.request({
-			url:'http://www.tf6boy.vip/addrecently',
+			url:app.globalData.url+'addrecently',
 			data: { uname: app.globalData.user.name, bookid:boks.id },
 			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
 			method: 'post',
@@ -49,7 +49,7 @@ Page({
   type:function(){
     var ty = this
     wx.request({
-      url: 'http://www.tf6boy.vip/type',
+      url: app.globalData.url+'type',
       data: { id: ty.data.boksxq.type },
       method: 'post',
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
@@ -81,7 +81,7 @@ Page({
           console.log('用户点击确定')
 					var that=this
 							wx.request({
-								url:'http://www.tf6boy.vip/addshelf',
+								url:app.globalData.url+'addshelf',
 								data:{
 								name: app.globalData.user.name,
 								bookid:e.currentTarget.dataset.data.id},
@@ -134,7 +134,7 @@ Page({
   comment:function(){
     var that=this;
     wx.request({
-      url: 'http://www.tf6boy.vip/lesscomment',
+      url: app.globalData.url+'lesscomment',
       method: 'POST',
       header: {
         'content-Type': 'application/x-www-form-urlencoded',
@@ -167,7 +167,7 @@ Page({
     //添加评论 
     // console.log('文本输入框: input_value :', bindblur); 
     wx.request({
-      url: 'http://www.tf6boy.vip/setcomment',
+      url: app.globalData.url+'setcomment',
       method: 'POST',
       header: {
         'content-Type': 'application/x-www-form-urlencoded',
@@ -210,7 +210,7 @@ Page({
   buybook:function(){
     var that = this
     wx.request({
-      url: 'http://www.tf6boy.vip/buybook',
+      url: app.globalData.url+'buybook',
       method: 'POST',
       header: {
         'content-Type': 'application/x-www-form-urlencoded',

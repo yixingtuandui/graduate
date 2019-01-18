@@ -60,7 +60,7 @@ Page({
     var list = this
     if (e.detail.current == 1) {
       wx.request({
-        url: 'http://www.tf6boy.vip/showType',
+        url: app.globalData.url+'showType',
         method: "POST",
         data: {
 
@@ -136,7 +136,7 @@ Page({
     wx.showLoading({
     })
     wx.request({
-      url: 'http://www.tf6boy.vip/home_page',
+      url: app.globalData.url+'home_page',
       method: 'GET',
       data: {
         type: '推荐',
@@ -182,7 +182,7 @@ Page({
     wx.showLoading({
     })
     wx.request({
-      url: 'http://www.tf6boy.vip/home_page',
+      url: app.globalData.url+'home_page',
       method: 'GET',
       data: {
         type: '排行',
@@ -220,7 +220,7 @@ Page({
     wx.showLoading({
     })
     wx.request({
-      url: 'http://www.tf6boy.vip/home_page',
+      url: app.globalData.url+'home_page',
       method: 'GET',
       data: {
         type: '男',
@@ -258,7 +258,7 @@ Page({
     wx.showLoading({
     })
     wx.request({
-      url: 'http://www.tf6boy.vip/home_page',
+      url: app.globalData.url+'home_page',
       method: 'GET',
       data: {
         type: '女',
@@ -314,7 +314,7 @@ Page({
     //获取数据
     if (lengths % 5 == 0){
       wx.request({
-        url: 'http://www.tf6boy.vip/home_page',
+        url: app.globalData.url+'home_page',
         method: 'GET',
         data: {
           type: loadType,
@@ -360,7 +360,7 @@ Page({
   thisType: function (e) {
     var tyn = e.currentTarget.dataset.id
     wx.request({
-      url: 'http://www.tf6boy.vip/booksType',
+      url: app.globalData.url+'booksType',
       data: {
         type: tyn,
         pageNum: 0
@@ -389,7 +389,7 @@ Page({
       stats: 'c',
     })
     wx.request({
-      url: 'http://www.tf6boy.vip/' + weekb,
+      url: app.globalData.url+'' + weekb,
       data: { 
         pageNum: counts 
       },
@@ -420,7 +420,7 @@ Page({
       stats: 'r'
     })
     wx.request({
-      url: 'http://www.tf6boy.vip/' + weekb,
+      url: app.globalData.url+'' + weekb,
       data: {
         pageNum: count
       },
@@ -445,7 +445,7 @@ Page({
       case 'weekCX':
         if (flge2) {
           wx.request({
-            url: 'http://www.tf6boy.vip/weekCX',
+            url: app.globalData.url+'weekCX',
             data: {
               pageNum: ++count2
             },
@@ -469,7 +469,7 @@ Page({
         console.log("weekRQ")
         if (flge2) {
           wx.request({
-            url: 'http://www.tf6boy.vip/weekRQ',
+            url: app.globalData.url+'weekRQ',
             data: {
               pageNum: ++count2
             },
@@ -492,7 +492,7 @@ Page({
       case 'monthCX':
         if (flge2) {
           wx.request({
-            url: 'http://www.tf6boy.vip/monthCX',
+            url: app.globalData.url+'monthCX',
             data: {
               pageNum: ++count2
             },
@@ -517,7 +517,7 @@ Page({
       case 'monthRQ':
         if (flge2) {
           wx.request({
-            url: 'http://www.tf6boy.vip/monthRQ',
+            url: app.globalData.url+'monthRQ',
             data: {
               pageNum: ++count2
             },
@@ -545,7 +545,7 @@ Page({
             title: '玩命加载中',
           })
           wx.request({
-            url: 'http://www.tf6boy.vip/shopp',
+            url: app.globalData.url+'shopp',
             data: {
               pageNum: ++counts
             },
@@ -574,7 +574,7 @@ Page({
             title: '玩命加载中',
           })
           wx.request({
-            url: 'http://www.tf6boy.vip/heat',
+            url: app.globalData.url+'heat',
             data: {
               pageNum: ++count
             },
@@ -635,7 +635,7 @@ Page({
       })
     }
     wx.request({
-      url: 'http://www.tf6boy.vip/' + weekb,
+      url: app.globalData.url+'' + weekb,
       data: {
         pageNum: count2
       },
@@ -678,7 +678,7 @@ Page({
       })
     }
     wx.request({
-      url: 'http://www.tf6boy.vip/' + weekb,
+      url: app.globalData.url+'' + weekb,
       data: {
         pageNum: count2
       },
@@ -706,7 +706,7 @@ Page({
   xq: function (e) {
     var id = e.currentTarget.dataset.id
     wx.request({
-      url: 'http://www.tf6boy.vip/bookx',
+      url: app.globalData.url+'bookx',
       data: {
         bid: id
       },
@@ -737,7 +737,7 @@ Page({
           var that = this;
           //插入登录的用户的相关信息到数据库
           wx.request({
-            url: 'http://www.tf6boy.vip/userLogin',
+            url: app.globalData.url+'userLogin',
             method: "POST",
             data: {
               username: app.globalData.userInfo.nickName,
