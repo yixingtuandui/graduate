@@ -1,8 +1,11 @@
 <view class='tx'>
 	 <image src='{{boksxq.bookImg}}'></image>
-   <text class='tt tt0'>{{boksxq.bookName}}</text>
+   <text class='tt tt0'>书名: {{boksxq.bookName}}</text>
    <text class='tt tt1'>作者：{{boksxq.author}}</text>
    <text class='tt tt2'>类型：{{type.typename}}</text>
+	 <text wx:if="{{boksxq.price!=0}}" class='tt tt3'>价格：{{boksxq.price}}书券</text>
+	 <text wx:if="{{boksxq.price==0}}" class='tt tt3'>价格：免费</text>
+	 <text class='tt tt4'>状态：{{boksxq.status}}</text>
       <view class='tx1'>
         <button class='butt' bindtap='read1' data-url="{{boksxq.addr}}">在线阅读</button>
 				<view class='butt' >
@@ -15,7 +18,7 @@
       </view>
    <text class='tts1'>{{boksxq.brief}}</text>
 </view>
-<textarea class='the_prw_in' bindinput='bindblur' cursor-spacing="130" placeholder='说点什么吧...' maxlength="100"> 
+<textarea class='the_prw_in' bindinput='bindblurs' cursor-spacing="130" placeholder='说点什么吧...' maxlength="100"> 
   </textarea> 
 <view class='the_prw_btn'> 
    <button class='the_prw_btns1' bindtap='btn_send'>我要留言</button> 

@@ -1,19 +1,19 @@
 var boksxq;
 const app = getApp();
 const util = require('../../utils/util.js');
-var bid, uid,boks;
+var bid,uid,boks,bindblurs;
 Page({
   data:{
     boksxq:[],
     type:[],
-		buy:'购买此书'
+		buy:'购买此书',
 		// addbook:true
   },
   onPullDownRefresh:function(){
     var that=this
     wx.showNavigationBarLoading()
     wx.request({
-      url: 'http://localhost:8080/bookx',
+      url: 'http://www.tf6boy.vip/bookx',
       data: { bid: that.data.boksxq.id },
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
       method: 'post',
@@ -31,8 +31,9 @@ Page({
   onLoad:function(option){
     var ty=this
     var boks=JSON.parse(option.obj);
+		app.globalData.book=boks
 		wx.request({
-			url:'http://localhost:8080/addrecently',
+			url:'http://www.tf6boy.vip/addrecently',
 			data: { uname: app.globalData.user.name, bookid:boks.id },
 			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
 			method: 'post',
@@ -48,7 +49,7 @@ Page({
   type:function(){
     var ty = this
     wx.request({
-      url: 'http://localhost:8080/type',
+      url: 'http://www.tf6boy.vip/type',
       data: { id: ty.data.boksxq.type },
       method: 'post',
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
@@ -80,7 +81,7 @@ Page({
           console.log('用户点击确定')
 					var that=this
 							wx.request({
-								url:'http://localhost:8080/addshelf',
+								url:'http://www.tf6boy.vip/addshelf',
 								data:{
 								name: app.globalData.user.name,
 								bookid:e.currentTarget.dataset.data.id},
@@ -88,20 +89,29 @@ Page({
 								header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
 								'Accept':'application/json'},
 								success:function(result){
-									if(result.data){
+									 if(result.data=="请先购买该书籍"){
 										wx.showToast({
-											title: '添加成功',
-											icon: 'success',
-											duration: 1000,
+											title: "请先购买该书籍",
+											icon: 'loading',
+											duration: 2000,
 											mask: true
 										})
 									}else{
-										wx.showToast({
-											title: '书架已有该书籍',
-											icon: 'success',
-											duration: 5000,
-											mask: true
-										})
+										if(result.data){
+											wx.showToast({
+												title: '添加成功',
+												icon: 'success',
+												duration: 1000,
+												mask: true
+											})
+										}else{
+											wx.showToast({
+												title: '书架已有该书籍',
+												icon: 'success',
+												duration: 1500,
+												mask: true
+											})
+										}
 									}
 								},
 							})
@@ -112,26 +122,29 @@ Page({
 						duration: 1000,
 						mask: true
 					})
+          console.log('用户点击取消')
         }
 
       }
     })
+		// console.log(e.currentTarget.dataset.data.id)
 // 		
 	},
 	// 查询评论 
   comment:function(){
     var that=this;
     wx.request({
-      url: 'http://localhost:8080/lesscomment',
+      url: 'http://www.tf6boy.vip/lesscomment',
       method: 'POST',
       header: {
         'content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json'
       },
       data: {
-        bid: boks.id
+        bid: that.data.boksxq.id
       },
       success: function (result) {
+        console.log(result);
         for (var index in result.data) {
           result.data[index].time = util.formatTime(new Date(result.data[index].time));
         };
@@ -152,16 +165,17 @@ Page({
   btn_send: function () {
     var that = this
     //添加评论 
+    // console.log('文本输入框: input_value :', bindblur); 
     wx.request({
-      url: 'http://localhost:8080/setcomment',
+      url: 'http://www.tf6boy.vip/setcomment',
       method: 'POST',
       header: {
         'content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json'
       },
       data: {
-        bid: boks.id,
-        uid: uid.id,
+        bid: that.data.boksxq.id,
+        uid: app.globalData.user.id,
         context: bindblurs,
         belong: 0,
         time: util.formatTime(new Date()),
@@ -169,7 +183,7 @@ Page({
       },
       success: function (result) {
         that.setData({
-          pl_list: result.data.reverse(),
+          pl_list: result.data,
           input_value: "",
         }),
           wx.showToast({
@@ -196,14 +210,14 @@ Page({
   buybook:function(){
     var that = this
     wx.request({
-      url: 'http://localhost:8080/buybook',
+      url: 'http://www.tf6boy.vip/buybook',
       method: 'POST',
       header: {
         'content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json'
       },
       data: {
-        bid: boks.id,
+        bid: that.data.boksxq.id,
         uids: app.globalData.user.id,
         time: util.formatTime(new Date()),
       },
@@ -214,5 +228,8 @@ Page({
           })
       }
 	})
-	}
+	},
+	bindblur: function (e) {
+    bindblurs = e.detail.value;
+  },
 })

@@ -1,4 +1,6 @@
-var app = getApp()
+const app = getApp();
+const util = require('../../utils/util.js');
+var userinfo;
 //首页设置页码
 var pages = 1
 //首页设置上拉刷新类型函数
@@ -11,13 +13,14 @@ var lengths = 0
 var count = 1
 var counts = 1
 var count2
-var flge = true
-var flges = true
+var flge=true
+var flges =true
 var flge2
 var weekb
 
 Page({
   data: {
+		canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //书城导航页面切换函数
     currentData: 0,
     //首页接收后台传递的数据
@@ -133,7 +136,7 @@ Page({
     wx.showLoading({
     })
     wx.request({
-      url: 'http://localhost:8080/home_page',
+      url: 'http://www.tf6boy.vip/home_page',
       method: 'GET',
       data: {
         type: '推荐',
@@ -179,7 +182,7 @@ Page({
     wx.showLoading({
     })
     wx.request({
-      url: 'http://localhost:8080/home_page',
+      url: 'http://www.tf6boy.vip/home_page',
       method: 'GET',
       data: {
         type: '排行',
@@ -217,7 +220,7 @@ Page({
     wx.showLoading({
     })
     wx.request({
-      url: 'http://localhost:8080/home_page',
+      url: 'http://www.tf6boy.vip/home_page',
       method: 'GET',
       data: {
         type: '男',
@@ -255,7 +258,7 @@ Page({
     wx.showLoading({
     })
     wx.request({
-      url: 'http://localhost:8080/home_page',
+      url: 'http://www.tf6boy.vip/home_page',
       method: 'GET',
       data: {
         type: '女',
@@ -311,7 +314,7 @@ Page({
     //获取数据
     if (lengths % 5 == 0){
       wx.request({
-        url: 'http://localhost:8080/home_page',
+        url: 'http://www.tf6boy.vip/home_page',
         method: 'GET',
         data: {
           type: loadType,
@@ -386,7 +389,7 @@ Page({
       stats: 'c',
     })
     wx.request({
-      url: 'http://localhost:8080/' + weekb,
+      url: 'http://www.tf6boy.vip/' + weekb,
       data: { 
         pageNum: counts 
       },
@@ -400,6 +403,7 @@ Page({
         that.setData({
           cx: res.data
         })
+				flge =true
         wx.hideLoading();
       }
     })
@@ -416,7 +420,7 @@ Page({
       stats: 'r'
     })
     wx.request({
-      url: 'http://localhost:8080/' + weekb,
+      url: 'http://www.tf6boy.vip/' + weekb,
       data: {
         pageNum: count
       },
@@ -428,6 +432,7 @@ Page({
         that.setData({
           rq: res.data
         })
+				flges = true
         wx.hideLoading();
       }
     })
@@ -440,7 +445,7 @@ Page({
       case 'weekCX':
         if (flge2) {
           wx.request({
-            url: 'http://localhost:8080/weekCX',
+            url: 'http://www.tf6boy.vip/weekCX',
             data: {
               pageNum: ++count2
             },
@@ -464,7 +469,7 @@ Page({
         console.log("weekRQ")
         if (flge2) {
           wx.request({
-            url: 'http://localhost:8080/weekRQ',
+            url: 'http://www.tf6boy.vip/weekRQ',
             data: {
               pageNum: ++count2
             },
@@ -487,7 +492,7 @@ Page({
       case 'monthCX':
         if (flge2) {
           wx.request({
-            url: 'http://localhost:8080/monthCX',
+            url: 'http://www.tf6boy.vip/monthCX',
             data: {
               pageNum: ++count2
             },
@@ -512,7 +517,7 @@ Page({
       case 'monthRQ':
         if (flge2) {
           wx.request({
-            url: 'http://localhost:8080/monthRQ',
+            url: 'http://www.tf6boy.vip/monthRQ',
             data: {
               pageNum: ++count2
             },
@@ -540,7 +545,7 @@ Page({
             title: '玩命加载中',
           })
           wx.request({
-            url: 'http://localhost:8080/shopp',
+            url: 'http://www.tf6boy.vip/shopp',
             data: {
               pageNum: ++counts
             },
@@ -569,7 +574,7 @@ Page({
             title: '玩命加载中',
           })
           wx.request({
-            url: 'http://localhost:8080/heat',
+            url: 'http://www.tf6boy.vip/heat',
             data: {
               pageNum: ++count
             },
@@ -630,7 +635,7 @@ Page({
       })
     }
     wx.request({
-      url: 'http://localhost:8080/' + weekb,
+      url: 'http://www.tf6boy.vip/' + weekb,
       data: {
         pageNum: count2
       },
@@ -673,7 +678,7 @@ Page({
       })
     }
     wx.request({
-      url: 'http://localhost:8080/' + weekb,
+      url: 'http://www.tf6boy.vip/' + weekb,
       data: {
         pageNum: count2
       },
@@ -701,7 +706,7 @@ Page({
   xq: function (e) {
     var id = e.currentTarget.dataset.id
     wx.request({
-      url: 'http://localhost:8080/bookx',
+      url: 'http://www.tf6boy.vip/bookx',
       data: {
         bid: id
       },
@@ -717,6 +722,64 @@ Page({
           url: '../bookdetails/bookdetails?obj=' + bok,
         })
       }
+    })
+  },
+	//登录授权
+		bindGetUserInfo:function(e){
+    // 登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (e.detail.userInfo) {
+           app.globalData.userInfo = e.detail.userInfo
+          // console.log(app.globalData.userInfo)
+          //用户按了允许授权按钮
+          var that = this;
+          //插入登录的用户的相关信息到数据库
+          wx.request({
+            url: 'http://www.tf6boy.vip/userLogin',
+            method: "POST",
+            data: {
+              username: app.globalData.userInfo.nickName,
+              avater: app.globalData.userInfo.avatarUrl,
+              sex: app.globalData.userInfo.gender,
+              date_reg: util.formatTime(new Date()),
+            },
+            header: {
+              'content-Type': 'application/x-www-form-urlencoded',
+              'Accept': 'application/json'
+            },
+            success: function (res) {
+              // console.log(res.data[0])
+              app.globalData.user = res.data[0];
+              that.setData({
+                userinfo: res.data[0]
+              })
+            }
+          })
+        } else {
+          //用户按了拒绝按钮
+          wx.showModal({
+            title: '警告',
+            content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+            showCancel: false,
+            confirmText: '返回授权',
+            success: function (res) {
+              if (res.confirm) {
+                // console.log('用户点击了“返回授权”')
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+  getUserInfo: function (e) {
+    // console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
     })
   }
 })

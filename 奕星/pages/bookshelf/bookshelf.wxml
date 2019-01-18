@@ -9,9 +9,10 @@
 		<view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">最近阅读</view>
 	</view>
 
-  <swiper class="book-list" current="{{currentTab}}" duration="1000"  bindchange="swiperTab">
+  <swiper id="swiper" style="height: {{heights}}px;" current="{{currentTab}}" duration="1000"  bindchange="swiperTab">
 <!-- 添加到书架的书 -->
-      <swiper-item >
+		<swiper-item >
+			<scroll-view style="height: {{heights}}px;" scroll-y="true">
 						<view wx:for="{{books}}" wx:key="*this" wx:for-item="book" data-data="{{book}}" class="book" bindlongpress="handleLongPress" bindtap='reading'>
 								<!-- 书籍图片 -->
 								<view>
@@ -28,9 +29,11 @@
 						<image src="../../img/bookshelf/timg.jpg" class="item_book"></image>
 					</view>
 				</view>
-      </swiper-item>
+			</scroll-view>
+	</swiper-item>
 <!-- 最近阅读的书 -->
-      <swiper-item>
+	      <swiper-item>
+					<scroll-view style="height: {{heights}}px;" scroll-y="true">
 						<view class="book" wx:for="{{recentlys}}" wx:key="*this" wx:for-item="recentlys" data-data="{{recentlys}}" bindtap='bookdetails'>
 							<!-- 书籍图片 -->
 							<view>
@@ -41,6 +44,7 @@
 								<text class="book_name">{{recentlys.bookName}}</text>
 							</view>
 						</view>
-			</swiper-item>
+					</scroll-view>
+				</swiper-item>
   </swiper>
 </view>

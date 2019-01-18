@@ -6,7 +6,7 @@
         <view class='tlf'>积分：<label class='f'>{{newSignIntegral}}</label></view>
       </view>
       <view class='sig-tr'>
-        <navigator url='' class='a-pai'>排行榜</navigator>
+        <navigator url='../signingg/leaderboard/leaderboard' class='a-pai'>排行榜</navigator>
       </view>
       <!-- 未签到 -->
       <view wx:if='{{newSignBtnState==false}}' class='sig-qiu sig-qiu-no' style="background-image:url('https://xcx.quan5fen.com/Public/xcx-hitui/image/imgs-jyh/sign-no-btn-bg.png')"

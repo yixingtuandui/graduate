@@ -25,6 +25,12 @@ page{
 .tt2{
   margin: 60px 0 0 15px;
 }
+.tt3{
+  margin: 90px 0 0 15px;
+}
+.tt4{
+  margin: 120px 0 0 15px;
+}
 .tx1{
   /* border: 1px solid blueviolet; */
   position: absolute

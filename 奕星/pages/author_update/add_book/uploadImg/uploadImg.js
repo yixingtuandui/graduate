@@ -36,7 +36,7 @@ Page({
     if(thiz.data.img !== ''){
       if (thiz.data.tj){
         wx.uploadFile({
-          url: 'http://localhost:8080/uploadimg?id=' + thiz.data.book[0] + '&imgaddr=' + thiz.data.book[1] + '',
+          url: 'http://www.tf6boy.vip/uploadimg?id=' + thiz.data.book[0] + '&imgaddr=' + thiz.data.book[1] + '',
           filePath: thiz.data.img[0],
           name: 'img',
           success: function (res) {

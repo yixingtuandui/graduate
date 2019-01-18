@@ -22,7 +22,7 @@ Page({
   //签到
   signing: function () {
 		wx.request({
-			url:'http://localhost:8080/sign',
+			url:'http://www.tf6boy.vip/sign',
 			data:{uname:"江"},
 			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
 			method:'POST',
@@ -76,14 +76,44 @@ Page({
     }
   },
   bea: function () {
-    wx.navigateTo({
-      url: '/pages/author_update/author_update',
-    })
+    let thiz = this
+    if (app.globalData.user.name != ''){
+      wx.navigateTo({
+        url: '/pages/author_update/author_update'
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '你还不是作者,成为作者点击确认',
+        success: function (res) {
+          if(res.confirm){
+            thiz.apply()
+          }
+        }
+      })
+    }
   },
+
+  //成为作者
   ima: function () {
-    wx.navigateTo({
-      url: '',
-    })
+    let thiz = this
+    if (app.globalData.user.name == ''){
+      wx.showModal({
+        title: '提示',
+        content: '申请作者',
+        success: function (res) {
+          if (res.confirm) {
+            thiz.apply()
+          }
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '你已经是作者了',
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
   //我的消息
   iinformation:function(){
@@ -102,17 +132,17 @@ Page({
   },
   onLoad: function () {
 		var that=this
-		wx.request({
-			data:{id:1},
-			url:'http://localhost:8080/member',
-			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
-			method:'POST',
-			success:function(result){
-				that.setData({
-					role:result.data
-				});
-			}
-		})
+// 		wx.request({
+// 			data:{id:1},
+// 			url:'http://www.tf6boy.vip/member',
+// 			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
+// 			method:'POST',
+// 			success:function(result){
+// 				that.setData({
+// 					role:result.data
+// 				});
+// 			}
+// 		})
 		if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -146,5 +176,27 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-    }
+    },
+	//申请作者
+  apply: function(){
+    wx.request({
+      url: 'http://www.tf6boy.vip/applyauthor',
+      method: 'GET',
+      data: {
+        id: app.globalData.user.id
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        if(res.data){
+          wx.showToast({
+            title: '你的申请已经提交了,请留意你的消息',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
   })

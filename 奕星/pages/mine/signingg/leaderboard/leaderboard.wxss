@@ -1,0 +1,52 @@
+/* pages/leaderboard/leaderboard.wxss */
+/* page {
+　　font-size: 14px;
+　　color: #333
+} */
+.tables{
+	border-right: 0;
+	border-bottom: 0;
+	width: 98%;
+	border:1px solid #dadada;
+}
+/* .table {
+　　border-right: 0;
+　　border-bottom: 0;
+　　width: 98%;
+	border:1px solid #dadada;
+} */
+.tr {
+	justify-content: space-between;
+	width: 100%;
+	display: flex
+}
+.th .td {
+  padding:10px;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+}
+.th {
+background-color: #dadada;
+font-weight: 400;
+}
+/* .head{
+	margin-left:11%;
+}
+.content view{ */
+/* 	float: left;
+	margin-left:11%; 
+}*/
+/* .avator{
+height: 32px;
+margin-left:15px;
+border-radius: 50%;
+overflow: hidden;
+width: 32px;
+}
+.a{}
+.s{}
+.d{}
+.c{} */
+

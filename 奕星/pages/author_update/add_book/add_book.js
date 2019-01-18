@@ -35,7 +35,7 @@ Page({
     let thiz = this
     let author = JSON.parse(options.author)
     wx.request({
-      url: 'http://localhost:8080/booktypes',
+      url: 'http://www.tf6boy.vip/booktypes',
       method: 'GET',
       header: {
         'content-type': 'application/json'
@@ -152,7 +152,7 @@ Page({
     let countnr = this.data.countnr
     if (bookname != '' && jj !='' && title != '' && content != '' && countjj && countnr){
       wx.request({
-        url: 'http://localhost:8080/addbook',
+        url: 'http://www.tf6boy.vip/addbook',
         method: 'POST',
         data: {
           author: author,

@@ -82,8 +82,8 @@ display:inherit;
    justify-content: center; 
 }
 .book-list{
-	width: auto;
-	height: 1000px;
+	width: auto;/* 
+	height: 0; */
 	/* background-color: #FF83FA; */
 }
 .book{

@@ -1,13 +1,37 @@
+<!-- 搜索框 -->
 <view>
 <input id='inp' placeholder="搜索书名、作者" type="text" confirm-type="search"
 bindconfirm="searchBtn" focus='ture'value='{{search}}' bindinput='bindinput'/>
 </view>
+
+<!-- 热门搜索 -->
+<view wx:if="{{flag1}}">
+<text style='padding-left:6px'>热门搜索</text>
+<view wx:for="">
+<view data-id='{{item}}'>{{item}}</view>
+</view>
+</view>
+
+<!-- 搜索历史 -->
+<view wx:if="{{flag1}}" style='margin-top:150px'>
+<text style='padding-left:6px'>搜索历史</text>
+<view wx:if="{{history!=''}}" bindtap='delect' style="float:right;">清除搜索历史</view>
+<view wx:for = "{{history}}">
+<view style='padding-left:15px;margin-top:10px' bindtap='lsss' data-id='{{item}}'>{{item}}</view>
+</view>
+</view>
+
+
+<!-- 自动补全 -->
 <scroll-view scroll-y="ture" class='scrollview'>
 <view wx:for="{{bindSource}}">
 <view id="{{item}}" bindtap='itemtap' class='list'>{{item}}</view>
 </view>
 </scroll-view>
-<scroll-view scroll-y bindscrolltolower="onReachBottom" style='height:450px'>
+
+
+<!-- 搜索结果 -->
+<scroll-view scroll-y bindscrolltolower="onReachBottom" style='height:580px'>
 <view wx:for="{{book}}" class='gg' bindtap='xq' data-id='{{item.id}}'>
   <image src='{{item.bookImg}}' class='xqzsimg'/>
      <view class='xqzswz'>
@@ -16,5 +40,5 @@ bindconfirm="searchBtn" focus='ture'value='{{search}}' bindinput='bindinput'/>
        <text>作者：{{item.author}}</text>
      </view>
 </view> 
-<view wx:if="{{dat==''&&search!=''}}">没有更多了</view>
+<view wx:if="{{dat!=''&&search!=''}}">没有更多了</view>
 </scroll-view> 

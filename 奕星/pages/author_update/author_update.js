@@ -21,8 +21,8 @@ Page({
   //页面显示
   onShow: function () {
     this.setData({
-      //user: app.globalData.user
-      user: '数钱手抽筋'
+      user: app.globalData.user.name
+      // user: '数钱手抽筋'
     })
   },
 
@@ -46,11 +46,11 @@ Page({
     wx.showLoading({
     })
     wx.request({
-      url: 'http://localhost:8080/bookdetails',
+      url: 'http://www.tf6boy.vip/bookdetails',
       method: 'GET',
       data: {
         //author: thiz.data.user.pen_name,
-        author: thiz.data.user,
+        author: app.globalData.user.name,
         type: e
       },
       header: {
@@ -86,7 +86,7 @@ Page({
     let book = e.currentTarget.dataset.text
     //查询对应类型
     wx.request({
-      url: 'http://localhost:8080/booktype',
+      url: 'http://www.tf6boy.vip/booktype',
       method: 'GET',
       data: {
         id: book.type
@@ -95,6 +95,7 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
+				console.log([book, res.data])
         let obj = JSON.stringify([book, res.data])
         wx.navigateTo({
           url: 'update_book/update_book?obj=' + obj + ''
@@ -127,7 +128,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: 'http://localhost:8080/bookremove',
+            url: 'http://www.tf6boy.vip/bookremove',
             method: 'GET',
             data: {
               id: book.id,
@@ -172,8 +173,9 @@ Page({
 
   //添加新书
   addbook: function(e){
-    //let author = JSON.stringify(this.data.user)
-    let author = JSON.stringify(this.data.user)
+		
+    let author = JSON.stringify(app.globalData.user.name)
+    // let author = JSON.stringify(this.data.user)
     wx.navigateTo({
       url: 'add_book/add_book?author=' + author +''
     })

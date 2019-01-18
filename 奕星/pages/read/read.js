@@ -7,7 +7,7 @@ Page({
     num = 0
     url = e.url 
     wx.request({
-      url: 'http://localhost:8080/read',
+      url: 'http://www.tf6boy.vip/read',
       data: {
         url: url+ '/' + num + '.txt'
       },
@@ -32,7 +32,7 @@ Page({
     if(num>0){
       --num
       wx.request({
-        url: 'http://localhost:8080/read',
+        url: 'http://www.tf6boy.vip/read',
         data: {
           url: url + '/' + num + '.txt'
         },
@@ -59,7 +59,7 @@ Page({
     if(num>=0){
       ++num
       wx.request({
-        url: 'http://localhost:8080/read',
+        url: 'http://www.tf6boy.vip/read',
         data: {
           url: url + '/' + num + '.txt'
         },

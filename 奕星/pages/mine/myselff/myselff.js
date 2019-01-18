@@ -10,7 +10,11 @@ Page({
     var viewDataSet = e.target.dataset
     var viewText = viewDataSet.text
   },
-
+	// 页面加载
+ onLoad: function (options) {
+	 
+ },
+ 
   //手机号码
   goiphone: function (e) {
     wx.navigateTo({
