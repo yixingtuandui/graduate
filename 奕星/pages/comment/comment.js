@@ -71,6 +71,9 @@ Page({
                 parentid: 0,
               },
               success: function (result) {
+								for (var index in result.data) {
+									result.data[index].time = util.formatTime(new Date(result.data[index].time));
+								};
                 that.setData({
                   pl_list: result.data,
                   input_value: "",
@@ -134,6 +137,9 @@ Page({
                         parentid: id,
                       },
                       success: function (result) {
+												for (var index in result.data) {
+													result.data[index].time = util.formatTime(new Date(result.data[index].time));
+												};
                         this.setData({
                           pl_list: result.data,
                         }),

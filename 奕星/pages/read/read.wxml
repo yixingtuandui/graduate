@@ -1,8 +1,27 @@
-<text>
+<!-- 文章内容 -->
+<text wx:if="{{flag2}}">
 {{read}}
 </text>
-<view class='view'>
-<button bindtap='syz' class='button'>上一章</button>
-<button bindtap='xyz' class='button'>下一章</button>
+<!-- 章节按钮 -->
+<view class='view' wx:if="{{flag2}}">
+<button bindtap='syz' class='button' disabled="{{flag1}}">上一章</button>
+<button bindtap='xyz' class='button' disabled='{{flag3}}'>下一章</button>
 <button bindtap='ml' class='button'>目录</button>
+</view>
+<!-- 目录列表 -->
+<view wx:if="{{flag}}">
+   <view wx:for="{{directory}}">
+     <view data-id='{{item}}' bindtap='djml'>{{item}}</view>
+   </view>
+    <view class='buttom' style='margin-left:9px;'>
+     <button bindtap='syy' disabled="{{flags}}" class='button1'>上一页</button>   
+        
+        <view class='button' style='margin:18px 5px 0 5px;'>
+          <view class='view1'>第</view>
+            <input value='{{b}}' bindinput='sss' class='view1' style='border:1px solid black;width:20px;height:10px;'></input>
+          <view class='view1'>页</view>
+        </view>
+        <button bindtap='tz' class='button1'>跳转</button>
+        <button bindtap='xyy' disabled="{{flagx}}" class='button1'>下一页</button>   
+    </view>
 </view>

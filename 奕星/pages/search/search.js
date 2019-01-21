@@ -4,16 +4,21 @@ var s= ""//搜索的值
 var book= []//搜索结果返回数据
 var flag= true//判断加载图标
 var app = getApp()
+var remen = []
+var pages = 1
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    flag2:true,//判断补全开启
     flag1:true,//判断历史开启
     search: '',//输入框内容
     bindSource:[], //控制自动补全
     dat: '',//控制没有更多了 
-    history: []//历史搜索缓存
+    history: [],//历史搜索缓存
+    remen: [],//热门搜索内容
+    pages: 1,//热门搜索分页
   },
 
   /**
@@ -38,6 +43,31 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this
+    wx.request({
+      url: app.globalData.url +'Popular',
+      data: {
+        pages:this.data.pages
+      },
+      header: {},
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: function(res) {
+        if(res.data==""){
+          that.setData({
+            pages:1
+          })
+          that.onShow()
+        }else{
+          that.setData({
+            remen: res.data
+          })
+        }
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
 
   },
 
@@ -138,6 +168,13 @@ Page({
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
+        if(res.data==""){
+          wx.showToast({
+            title: '没有更多了',
+            duration: 1000,
+            mask: true
+          })
+        }
         thiz.setData({
           book: res.data
         })
@@ -194,7 +231,8 @@ Page({
           }
           thiz.setData({
             bindSource: list,
-            flag1:false
+            flag1:false,
+            flag2:true
           })
         },
         fail: function (res) { },
@@ -203,6 +241,7 @@ Page({
       
     }else{
       this.setData({
+        flag2:false,
         flag1:true,
         bindSource: [],
         book: []
@@ -219,14 +258,13 @@ Page({
     })
     this.history()
   },
+  //清除搜索历史
   delect:function(){
     wx.removeStorageSync("serachData")
     this.setData({
       history:[]
     })
   }, 
-
-
   //历史记录
   history:function(){
     var f = true
@@ -245,10 +283,10 @@ Page({
         this.setData({
           history: this.data.history.concat(this.data.search)
         })
+        wx.setStorageSync("serachData", this.data.history)
       }
       // console.log(this.data.history)
     }
-    wx.setStorageSync("serachData", this.data.history)
   },
 
   //点击历史搜索重新搜索
@@ -258,5 +296,22 @@ Page({
       search: e.currentTarget.dataset.id,
       flag1:false
     })
+    this.history()
   },
+  //点击热门搜索进行搜索
+  rmdj:function(e){
+    this.qq(e.currentTarget.dataset.id.bookName)
+    this.setData({
+      search: e.currentTarget.dataset.id.bookName,
+      flag1: false
+    })
+    this.history()
+  },
+  //换一批
+  hyp:function(){
+    this.setData({
+      pages:Number(this.data.pages)+1
+    })
+    this.onShow()
+  }
 })

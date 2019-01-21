@@ -1,6 +1,5 @@
-<view>
-<text>手机号码</text>
-  <view class="real">
-  </view>
-<button bindtap='hw'>改绑手机</button>
+<view class='phone'>
+  <input placeholder='输入手机号码' bindinput='phone' type='number'></input>
+  <text class='{{flag ? "tr" : "fa"}}'>{{val}}</text>
+  <button bindtap='sbm'>修改手机</button>
 </view>

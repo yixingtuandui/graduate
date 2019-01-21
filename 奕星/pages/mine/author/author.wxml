@@ -1,0 +1,23 @@
+<view class='body'>
+  <view class='top'>申请作者</view>
+  <view class='bm'>
+    <view class='bm1'>笔名:</view>
+    <view class='bm2'><input placeholder='输入你的笔名' bindblur='bm'></input></view>
+  </view>
+  <text>{{bm}}</text>
+  <view class='bm'>
+    <view class='bm1'>电话:</view>
+    <view class='bm2'><input placeholder='输入手机号码' bindblur='dh'></input></view>
+  </view>
+  <text>{{dh}}</text>
+  <view class='bm'>
+    <view class='bm1'>性别:</view>
+    <view class="sex">
+      <radio-group>
+        男<radio data-text='男' bindtap="sex"/>
+        女<radio data-text='女' bindtap="sex"/>
+      </radio-group>
+    </view>
+  </view>
+  <button bindtap='tj'>确认申请</button>
+</view>

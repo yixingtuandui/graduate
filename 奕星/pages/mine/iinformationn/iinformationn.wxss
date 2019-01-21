@@ -1,0 +1,11 @@
+page{font-size: 35rpx}
+.body{width: 90%;margin: 20rpx 5%;border-top: 1rpx solid salmon}
+.news{width: 100%;border-bottom: 1rpx solid rgb(230, 230, 230);display: flex;padding: 20rpx 0rpx}
+.id{width: 10%;color: salmon}
+.newss{width: 80%;color: #666;word-break: break-all}
+.delate{width: 10%;color: #ccc}
+.d{width: 100%;line-height: 40rpx;font-size: 25rpx;color: salmon;background: rgb(230, 230, 230);text-align: center;border-radius: 20rpx}
+.t{float: left}
+.ts{color: #ccc}
+.bt{width: 90%;margin: 20rpx 5%}
+button{height: 50rpx;line-height: 50rpx;font-size: 30rpx;color: #666}

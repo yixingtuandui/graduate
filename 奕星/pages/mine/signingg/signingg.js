@@ -52,7 +52,7 @@ Page({
 			method:'POST',
 			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
 			success:function(result){
-				const arr = [],
+				const arr = [3,4],
 				newSignArr = [...arr, ...that.data.isNewSignedArr];
 				newSignArr[that.data.myToday].isSigned = true;
 				that.setData({
@@ -97,7 +97,7 @@ Page({
           that.setData({
             newSignIntegral: fens
           })
-          //console.log(that.data.newSignIntegral);
+          console.log(that.data.newSignIntegral);
         }
       }
       // 所有签了： 日 一 二 三 四 五 六
@@ -106,7 +106,7 @@ Page({
         that.setData({
           newSignIntegral: fens
         })
-        //console.log( that.data.newSignIntegral);
+        console.log( that.data.newSignIntegral);
       }
     }
 
@@ -127,13 +127,14 @@ Page({
    */
   onLoad: function (options) {
 		var res = JSON.parse(options.res)
+		console.log(res)
 		var that=this
 		const arr = [],
 		newSignArr = [...arr, ...that.data.isNewSignedArr];
 		newSignArr[res.week].isSigned = res.boolean;
 		that.setData({
 			newSignNum:res.iday,
-			newSignIntegral:res.rep,
+			newSignIntegral:res.money,
 			isNewSignedArr: newSignArr,
 			newSignBtnState:res.boolean
 		})

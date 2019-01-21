@@ -28,7 +28,6 @@
   border-right: 1px solid #dadada;
 }
 .th {
-background-color: #dadada;
 font-weight: 400;
 }
 /* .head{
@@ -38,15 +37,12 @@ font-weight: 400;
 /* 	float: left;
 	margin-left:11%; 
 }*/
-/* .avator{
+.avator{
 height: 32px;
 margin-left:15px;
 border-radius: 50%;
 overflow: hidden;
 width: 32px;
 }
-.a{}
-.s{}
-.d{}
-.c{} */
+
 

@@ -1,5 +1,6 @@
 {
   "pages": [
+		"pages/indexs/indexs",
     "pages/index/index",
     "pages/bookshelf/bookshelf",
     "pages/booktype/booktype",
@@ -9,10 +10,10 @@
     "pages/search/search",
 		"pages/comment/comment",
     "pages/mine/mine",
-    "pages/mine/mymoneyy/mymoneyy",
     "pages/mine/signingg/signingg",
 		"pages/mine/signingg/leaderboard/leaderboard",
     "pages/mine/about/about",
+		"pages/mine/author/author",
     "pages/mine/buybookk/buybookk",
     "pages/mine/ihuawei/ihuawei",
     "pages/mine/ihuawei/phonee/phonee",

@@ -1,26 +1,3 @@
-
-<view wx:if="{{!userinfo}}">
-<view style="height: 78px;">
-	<view wx:if="{{canIUse}}" >
-			<view class='header'>
-					<!-- <image src='/images/wx_login.png'></image> -->
-		</view>
-			<view class='content'>
-					<view>申请获取以下权限</view>
-					<text>获得你的公开信息(昵称，头像等)</text>
-			</view>
-	
-			<button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-					授权登录
-			</button>
-	</view>
-</view>
-<view id='swiper1'>
-	
-</view>
-</view>
-
-<view wx:if="{{userinfo}}">
 <view>
 <!-- 轮播图 -->
   <view id="img">
@@ -37,7 +14,7 @@
   <view id='scdh'>
     <view class='tab {{currentData == 0 ? "tabh" : ""}}' data-current = "0" bindtap='checkCurrent'>首页</view>
     <view class='tab {{currentData == 1 ? "tabh" : ""}}' data-current = "1" bindtap='checkCurrent'>分类</view>
-    <view class='tab {{currentData == 2 ? "tabh" : ""}}' data-current = "2" bindtap='checkCurrent'>排行</view>
+    <view class='tab {{currentData == 2 ? "tabh" : ""}}' data-current = "2" bindtap='checkCurrent'>榜单</view>
   </view>
   <view>
     <swiper current="{{currentData}}" id='swiper1' style="height: {{heights}}px" duration="500" bindchange="bindchange">
@@ -78,16 +55,21 @@
         <!-- 排行 -->
       <swiper-item>
         <view class='ban' style="height:{{heights}}px">
-          <button bindtap='shopp'  class=''  style='color:{{color1}}'>畅销榜</button>
-          <button bindtap='heat'  class='' style='color:{{color2}}'>人气榜</button>
+          <button bindtap='shopp'  class='cr'  style='color:{{color1}}'>畅销榜</button>
+          <view class='zyz' wx:if="{{stats=='c'}}">
+            <button bindtap='total'  class='zzy {{flgeo ? "syfls" : ""}}'>总榜</button>
+            <button bindtap='week'  class='zzy {{flgez ? "syfls" : ""}}'>周榜</button>
+            <button bindtap='month'  class='zzy {{flgey ? "syfls" : ""}}'>月榜</button>
+          </view>
+          <button bindtap='heat'  class='cr' style='color:{{color2}}'>人气榜</button>
+          <view class='zyz' wx:if="{{stats=='r'}}">
+            <button bindtap='total'  class='zzy {{flgeo ? "syfls" : ""}}'>总榜</button>
+            <button bindtap='week'  class='zzy {{flgez ? "syfls" : ""}}'>周榜</button>
+            <button bindtap='month'  class='zzy {{flgey ? "syfls" : ""}}'>月榜</button>
+          </view>
         </view>
         <view class='ym' >
-          <view class='zyz'>
-            <button bindtap='week'  style='color:{{color3}}'>周榜</button>
-            <button bindtap='month'  style='color:{{color3}}'>月榜</button>
-            <button bindtap='total'  style='color:{{color3}}'>总榜</button>
-          </view>
-          <scroll-view  scroll-y="true" bindscrolltolower="lowers" scroll-top="{{scrollTop}}" style="height:{{heights-48}}px">
+         <scroll-view  scroll-y="true" bindscrolltolower="lowers" scroll-top="{{scrollTop}}" style="height:{{heights}}px">
             <view wx:if="{{stats=='c'}}">
               <view class='book'  wx:for='{{cx}}' data-id='{{item.id}}' bindtap='xq'>
                 <image class='img' src='{{item.bookImg}}'></image>
@@ -104,6 +86,8 @@
                   <text class='tt'>{{item.bookName}}</text>
                   <text class='ts'>{{item.brief}}</text>
                   <text class='zz'>{{item.author}}</text>
+									<text class='pp' wx:if="{{flg1}}">{{item.number}}票</text>
+                  <text class='pp' wx:if="{{flg2}}">{{item.bancout}}票</text>
                 </view>
               </view>
             </view>
@@ -112,5 +96,4 @@
       </swiper-item>  
     </swiper>
   </view>
-</view>
 </view>

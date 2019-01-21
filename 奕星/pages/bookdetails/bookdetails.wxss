@@ -6,7 +6,7 @@ page{
 .tx{
   width: 100%;
 }
-.tx image{
+.img{
   height: 150px;
   width: 100px;
 }
@@ -18,6 +18,12 @@ page{
 }
 .tt0{
   margin-left:15px;
+	 overflow:hidden;
+text-overflow:ellipsis;
+display:-webkit-box;
+-webkit-line-clamp:1;
+-webkit-box-orient:vertical;
+margin:-150px 0 0 114px;
 }
 .tt1{
   margin:30px 0 0 15px;
@@ -32,8 +38,12 @@ page{
   margin: 120px 0 0 15px;
 }
 .tx1{
-  /* border: 1px solid blueviolet; */
   position: absolute
+}
+.ico{
+  width:20px;
+height:20px;
+float:right;
 }
 .butt{
   width: 100px;
@@ -44,7 +54,10 @@ page{
   float:left;
   position:relative;
   margin-top:60px;
-  border-bottom: 1px solid black;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
 }
 .the_prw_in{
   display: flex;
@@ -56,12 +69,13 @@ textarea {
   max-height: 102rpx; /*最多显示三行*/
   border-width: 5rpx 5rpx; /*使用padding与预期留白不一致，故使用border*/
   border-style: solid;
-  border-color: #00ff40;
+  border-color: white;
   line-height: 17rpx;
   font-size: 30rpx;
   margin: 15px 3%;
   background-color: rgba(255, 255, 255, 0.247);
   border-radius: 4rpx;
+	background:#ccc;
 }
 .talk-body {
 height: auto;

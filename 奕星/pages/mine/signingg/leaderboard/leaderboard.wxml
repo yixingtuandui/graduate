@@ -1,23 +1,9 @@
-<!-- <view>
-	<view> 
-		<text class="head">序号</text>
-		<text class="head">头像</text>
-		<text class="head">昵称</text>
-		<text class="head">总天数</text>
-	</view>
-	<view>
-		<view wx:for="{{leaderboard}}" class="content">
-				<view class='a' >{{index+1}}</view>
-				<view  class='s'><image class="avator" src="{{item.avator}}"/></view>
-				<view  class='d'>{{item.name}}</view>
-				<view  class='c'>{{item.day}}</view>
-		</view>	
-	</view>
-</view> -->
-
-	<view class="container">
-    <view class="tables">
-        <view class="tr">
+<view class="container">
+    <view style="margin:7px 0px 20px 0px;">
+			<text>签到排行榜</text>
+		</view>
+		<view class="tables">
+        <view class="tr" style="background-color: #666;">
             <view class="th">序号</view>
             <view class="th">头像</view>
             <view class="th">昵称</view>
@@ -26,9 +12,8 @@
         <view class="tr" wx:for="{{leaderboard}}">
             <view class="td">{{index+1}}</view>
 						<view class="td"><image class="avator" src="{{item.avator}}"/></view>
-            <view class="td">{{item.name}}</view>
+            <view class="td" style="width:50px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{item.name}}</view>
             <view class="td">{{item.day}}</view>
-  <!--          <view class="td">{{item}}</view> -->
         </view>
     </view>
-	</view>
+</view>

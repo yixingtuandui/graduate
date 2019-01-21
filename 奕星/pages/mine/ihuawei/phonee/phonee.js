@@ -3,7 +3,6 @@ Page({
   /**
    * 页面的初始数据
    */
-	var app = getApp()
   data: {
     send: false,
     alreadySend: false,
@@ -71,7 +70,7 @@ Page({
       send: false
     })
     wx.request({
-      url: app.globalData.url+'ali',
+      url: 'http://www.tf6boy.vip/ali',
       data: {
         sends:pho.data.phoneNum
       },
@@ -158,7 +157,7 @@ Page({
   onLoad: function (res) {
     var that = this
     wx.request({
-      url: app.globalData.url+'ali',
+      url: 'http://www.tf6boy.vip/ali',
       header: {
         'content-type': 'application/json' // 默认值
       },

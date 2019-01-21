@@ -1,0 +1,4 @@
+.phone{width: 90%; margin: 50rpx 5% 0rpx 5%}
+input{border-bottom: 1rpx solid salmon}
+.tr{color: green}
+.fa{color: red}

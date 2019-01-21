@@ -14,7 +14,7 @@ Page({
   onLoad: function (options) {
 	  var that=this
     wx.request({
-    	url:'http://localhost:8880/leaderboard',
+    	url:app.globalData.url+'leaderboard',
 			method:'POST',
 			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'},
 			success:function(result){

@@ -1,13 +1,14 @@
 var boksxq;
 var app = getApp()
 const util = require('../../utils/util.js');
-var bid,uid,boks,bindblurs;
+var bid,uid,boks,bindblurs,flge;
 Page({
   data:{
+		ico:'../../img/icon/xia.png',
+    dian:5,
     boksxq:[],
     type:[],
 		buy:'购买此书',
-		// addbook:true
   },
   onPullDownRefresh:function(){
     var that=this
@@ -32,15 +33,7 @@ Page({
     var ty=this
     var boks=JSON.parse(option.obj);
 		app.globalData.book=boks
-		wx.request({
-			url:app.globalData.url+'addrecently',
-			data: { uname: app.globalData.user.name, bookid:boks.id },
-			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
-			method: 'post',
-			success: function (res) {
-				
-			}
-		})
+		
 		this.setData({
       boksxq:boks,
     })
@@ -66,10 +59,11 @@ Page({
 	//在线阅读
   read1:function(option){
     wx.redirectTo({
-      url: '../read/read?url='+option.currentTarget.dataset.url,
+      url: '../read/read?url='+JSON.stringify(this.data.boksxq),
       success: function(res) {
       }
     }) 
+		this.historyread();
   },
 	//加入书架
 	addbookshelf:function(e){
@@ -127,9 +121,23 @@ Page({
 
       }
     })
-		// console.log(e.currentTarget.dataset.data.id)
-// 		
 	},
+	buy: function (e) {
+    console.log(e)
+		var that=this
+    wx.request({
+      url: app.globalData.url +'join',
+      data: { id:that.data.boksxq.id },
+      header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
+      method: 'POST',
+      dataType: 'json',
+      responseType: 'text',
+      success: function (res) { 
+			},
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
 	// 查询评论 
   comment:function(){
     var that=this;
@@ -182,6 +190,9 @@ Page({
         parentid: 0,
       },
       success: function (result) {
+				for (var index in result.data) {
+					result.data[index].time = util.formatTime(new Date(result.data[index].time));
+				};
         that.setData({
           pl_list: result.data,
           input_value: "",
@@ -228,8 +239,37 @@ Page({
           })
       }
 	})
-	},
+	this.buy()
+s	},
 	bindblur: function (e) {
     bindblurs = e.detail.value;
+  },
+	//历史阅读
+	historyread:function(e){
+		wx.request({
+			url:app.globalData.url+'addrecently',
+			data: { uname: app.globalData.user.name, bookid:app.globalData.book.id },
+			header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
+			method: 'post',
+			success: function (res) {
+				
+			}
+		})
+	},
+	 // 收缩文本
+  dian:function(){
+    if(flge){
+      this.setData({
+        dian: 0,
+        ico:'../../img/icon/shang.png'
+      })
+      flge=false
+    }else{
+      this.setData({
+        dian: 5,
+        ico: '../../img/icon/xia.png'
+      })
+      flge = true
+    }
   },
 })

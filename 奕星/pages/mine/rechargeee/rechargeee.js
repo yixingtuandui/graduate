@@ -1,3 +1,2 @@
-var app = getApp()
 Page({
 })

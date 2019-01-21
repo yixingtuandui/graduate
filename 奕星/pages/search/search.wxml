@@ -7,8 +7,9 @@ bindconfirm="searchBtn" focus='ture'value='{{search}}' bindinput='bindinput'/>
 <!-- 热门搜索 -->
 <view wx:if="{{flag1}}">
 <text style='padding-left:6px'>热门搜索</text>
-<view wx:for="">
-<view data-id='{{item}}'>{{item}}</view>
+<text style='float:right' bindtap='hyp'>换一批</text>
+<view wx:for="{{remen}}">
+<view data-id='{{item}}' style='float:left;padding-right:15px;' bindtap='rmdj'>{{item.bookName}}</view>
 </view>
 </view>
 
@@ -23,7 +24,7 @@ bindconfirm="searchBtn" focus='ture'value='{{search}}' bindinput='bindinput'/>
 
 
 <!-- 自动补全 -->
-<scroll-view scroll-y="ture" class='scrollview'>
+<scroll-view scroll-y="ture" class='scrollview' wx:if="{{flag2}}">
 <view wx:for="{{bindSource}}">
 <view id="{{item}}" bindtap='itemtap' class='list'>{{item}}</view>
 </view>

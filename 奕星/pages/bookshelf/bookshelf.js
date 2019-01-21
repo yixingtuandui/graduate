@@ -2,26 +2,29 @@ var app = getApp()
 var books;
 Page({
   data: {
-  currentTab: 0,
-	books:[],
-	recentlys:[],
-	heights:0,
+		currentTab: 0,
+		books:[],
+		recentlys:[],
+		heights:0,
+		//轮播图
+		imgUrls: [
+		 'http://www.tf6boy.vip/bookcity/com/ke_huan/cywmzxt/介绍/1.jpg',
+		 'http://www.tf6boy.vip/bookcity/com/ke_huan/kl/介绍/3.jpg',
+		 'http://www.tf6boy.vip/bookcity/com/ke_huan/ljzxhcs/介绍/4.jpg',
+		 'http://www.tf6boy.vip/bookcity/com/you_xi/cqnwj/介绍/2.jpg',
+		 'http://www.tf6boy.vip/bookcity/com/wu_xia/sxjhz/介绍/3.jpg'
+		],
+    swiperIndex: 0 
   },
   onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
-		var that = this;
-		wx.request({
-			url:app.globalData.url+'bookshelf',
-			data:{uid:app.globalData.user.id},
-			header:{'content-type':'application/x-www-form-urlencoded;charset=utf-8',},
-			method:'POST',
-			success:function(result) {
-				that.setData({
-					books:result.data,
-				});
-			}
-		})
-		this.visual_height()
+		// this.visual_height()
+		// this.bookshelf()
+		// this.img()
+  },
+  onShow:function(){
+    this.visual_height()
+    this.bookshelf()
+    this.img()
   },
 	//获取显示书籍信息可变高度
 	visual_height: function (e) {
@@ -49,7 +52,7 @@ Page({
 	//书架书籍点击事件
 	reading:function(e){
 		wx.navigateTo({
-			url:'../read/read?url='+e.currentTarget.dataset.data.addr,
+			url:'../read/read?url='+JSON.stringify(e.currentTarget.dataset.data),
 		})
 	},
 	//书架书籍长按事件
@@ -63,20 +66,7 @@ Page({
 			success:function(res) {
 				if(res.confirm){
 					//是
-					wx.request({
-						url:app.globalData.url+'deletebook',
-						data:{
-						name: app.globalData.user.name,
-						bookid:e.currentTarget.dataset.data.id},
-						method:'post',
-						header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-						'Accept':'application/json'},
-						success:function(result){
-							that.setData({
-								books:result.data,
-							});
-						}
-					})
+					that.deletebook(e.currentTarget.dataset.data.id)
 				}else{
 					//否	
 				}
@@ -100,6 +90,7 @@ Page({
             duration: 1500,
             mask:true
         })
+				this.deleteHistory(e.currentTarget.dataset.data.id)
 		}else{
 			wx.navigateTo({
 				url:'../bookdetails/bookdetails?obj='+bok,
@@ -110,29 +101,11 @@ Page({
   swiperTab: function (e) {
     var that = this;
 	if (e.detail.current == 1) {
-		wx.request({ 			
-			url: app.globalData.url+'recently',
-        	data: { uid: app.globalData.user.id },
-        	header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8', },
-        	method: 'POST',
-        	success: function (result) {
-	          	that.setData({
-	            	recentlys: result.data,
-	          	})
-        	}
-      })
+			//最近阅读
+			that.recently()
     }else{
-			wx.request({
-				url:app.globalData.url+'bookshelf',
-				data:{uid:app.globalData.user.id},
-				header:{'content-type':'application/x-www-form-urlencoded;charset=utf-8',},
-				method:'POST',
-				success:function(result) {
-					that.setData({
-						books:result.data,
-					});
-				}
-			})
+			//书架
+			that.bookshelf()
 		}
     that.setData({
       currentTab: e.detail.current
@@ -141,14 +114,98 @@ Page({
   //点击切换
   clickTab: function (e) {
     var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
+    if (that.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
       that.setData({
         currentTab: e.target.dataset.current
       })
     }
-  }
+  },
+	bookshelf:function(){
+		// 页面初始化 options为页面跳转所带来的参数
+		var that = this;
+		wx.request({
+			url:app.globalData.url+'bookshelf',
+			data:{uid:app.globalData.user.id},
+			header:{'content-type':'application/x-www-form-urlencoded;charset=utf-8',},
+			method:'POST',
+			success:function(result) {
+				that.setData({
+					books:result.data,
+				});
+			}
+		})
+	},
+	recently:function(){
+		var that = this;
+		wx.request({ 			
+			url: app.globalData.url+'recently',
+					data: { uid: app.globalData.user.id },
+					header: { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8', },
+					method: 'POST',
+					success: function (result) {
+						console.log(result)
+							that.setData({
+								recentlys: result.data,
+							})
+					}
+			})
+	},
+	deletebook:function(e){
+		var that = this;
+		wx.request({
+			url:app.globalData.url+'deletebook',
+			data:{
+				name: app.globalData.user.name,
+				bookid:e,
+			},
+			method:'post',
+			header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+			'Accept':'application/json'},
+			success:function(result){
+				that.setData({
+					books:result.data,
+				});
+			}
+		})
+	},
+	deleteHistory:function(e){
+		console.log(e)
+		var that=this;
+		wx.request({
+			url:app.globalData.url+'deleteHistory',
+			data:{bid:e},
+			method:'POST',
+			header:{'content-type':'application/x-www-form-urlencoded;charset=utf-8','Accept':'application/json'},
+			success:function(result){
+				console.log("删除")
+			}
+		})
+	},
+	     /**
+   * 轮播图
+   */
+	bindchange(e) {
+	 this.setData({
+				swiperIndex: e.detail.current
+	 })
+	 },
+	img:function(e){
+		 wx.request({
+				url:app.globalData.url+'img',
+				data:{},
+				method:'post',
+				header:{'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+				'Accept':'application/json'},
+				success:function(result){
+					console.log(result)
+// 					that.setData({
+// 						imgUrls:result.data,
+// 					});
+				}
+		 })
+	 },
 })
 
 

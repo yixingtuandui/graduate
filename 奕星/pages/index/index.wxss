@@ -27,47 +27,17 @@
 .types{height: 100px;width: 100px;float: left;margin: 10px;text-align: center}
 .tpyimg{width:65%;height:90%}
 .types text{float:right;width:10px}
-.ban{width: 15%;float: left;border-right: 1px solid #666;background-color: white;height: 100%;position: fixed}
+.ban{width: 25%;float: left;border-right: 1px solid #666;background-color: #F8F8F8;height: 100%;position: fixed}
 button::after {border: none}
-.ban button{box-sizing:border-box;border-radius:5px;font-size:14px;color:#666}  
-.ym{width: 84%;float: right}
-.zyz{background: #F8F8F8;border-bottom: 2px solid black;height: 46px}
-.zyz button{float: left;margin-right: 10px}
+.cr{box-sizing:border-box;border-radius:5px;font-size:17px;color:#666;margin-top:19px;}   
+.ym{width: 73%;float: right}
+.zyz{margin-top:-10px;}
+.zzy{height:30px;font-size:15px;}
 
 /* 排行 */
 .book{border-bottom: 2px solid whitesmoke}
 .img{height: 105px;width: 65px}
-.text{float:right;width:75%}
+.text{float:right;width:70%}
 .tt{float: right;position:absolute;margin-top: 5px;font-weight: bold}
 .ts{float:right;position:relative;font-size:13px;margin-top:36px;display: -webkit-box;color:#000000;line-height: 40rpx;word-break: break-all;-webkit-box-orient: vertical;-webkit-line-clamp:2;overflow: hidden;text-overflow:ellipsis}
 .zz{font-size: 11px;font-weight:bolder}
-/* 登录授权 */
-.header {
-    margin: 90rpx 0 90rpx 50rpx;
-    text-align: center;
-    width: 650rpx;
-    height: 300rpx;
-    line-height: 450rpx;
-}
-
-.header image {
-    width: 200rpx;
-    height: 200rpx;
-}
-
-.content {
-    margin-left: 50rpx;
-    margin-bottom: 90rpx;
-}
-
-.content text {
-    display: block;
-    color: #9d9d9d;
-    margin-top: 40rpx;
-}
-
-.bottom {
-    border-radius: 80rpx;
-    margin: 70rpx 50rpx;
-    font-size: 35rpx;
-}

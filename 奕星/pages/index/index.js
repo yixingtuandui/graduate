@@ -1,6 +1,4 @@
 const app = getApp();
-const util = require('../../utils/util.js');
-var userinfo;
 //首页设置页码
 var pages = 1
 //首页设置上拉刷新类型函数
@@ -20,7 +18,6 @@ var weekb
 
 Page({
   data: {
-		canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //书城导航页面切换函数
     currentData: 0,
     //首页接收后台传递的数据
@@ -387,6 +384,9 @@ Page({
       color2: '',
       color1: 'red',
       stats: 'c',
+			flgeo:true,
+      flgez:false,
+      flgey:false,
     })
     wx.request({
       url: app.globalData.url+'' + weekb,
@@ -417,7 +417,12 @@ Page({
     that.setData({
       color2: 'red',
       color1: '',
-      stats: 'r'
+      stats: 'r',
+      flgeo: true,
+      flgez: false,
+      flgey: false,
+			flg1: true,
+      flg2: false
     })
     wx.request({
       url: app.globalData.url+'' + weekb,
@@ -625,13 +630,19 @@ Page({
       weekb = 'weekCX'
       that.setData({
         cx: [],
-        color3: 'red'
+        flgeo: false,
+        flgez: true,
+        flgey: false,
       })
     } else {
       weekb = 'weekRQ'
       that.setData({
         rq: [],
-        color3: 'red'
+        flgeo: false,
+        flgez: true,
+        flgey: false,
+				flg1: true,
+				flg2: false
       })
     }
     wx.request({
@@ -668,13 +679,19 @@ Page({
       weekb = 'monthCX'
       that.setData({
         cx: [],
-        color3: 'red'
+        flgeo: false,
+        flgez: false,
+        flgey: true,
       })
     } else {
       weekb = 'monthRQ'
       that.setData({
         rq: [],
-        color3: 'red'
+        flgeo: false,
+        flgez: false,
+        flgey: true,
+				flg1: false,
+        flg2: true
       })
     }
     wx.request({
@@ -724,62 +741,4 @@ Page({
       }
     })
   },
-	//登录授权
-		bindGetUserInfo:function(e){
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if (e.detail.userInfo) {
-           app.globalData.userInfo = e.detail.userInfo
-          // console.log(app.globalData.userInfo)
-          //用户按了允许授权按钮
-          var that = this;
-          //插入登录的用户的相关信息到数据库
-          wx.request({
-            url: app.globalData.url+'userLogin',
-            method: "POST",
-            data: {
-              username: app.globalData.userInfo.nickName,
-              avater: app.globalData.userInfo.avatarUrl,
-              sex: app.globalData.userInfo.gender,
-              date_reg: util.formatTime(new Date()),
-            },
-            header: {
-              'content-Type': 'application/x-www-form-urlencoded',
-              'Accept': 'application/json'
-            },
-            success: function (res) {
-              // console.log(res.data[0])
-              app.globalData.user = res.data[0];
-              that.setData({
-                userinfo: res.data[0]
-              })
-            }
-          })
-        } else {
-          //用户按了拒绝按钮
-          wx.showModal({
-            title: '警告',
-            content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
-            showCancel: false,
-            confirmText: '返回授权',
-            success: function (res) {
-              if (res.confirm) {
-                // console.log('用户点击了“返回授权”')
-              }
-            }
-          })
-        }
-      }
-    })
-  },
-  getUserInfo: function (e) {
-    // console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  }
 })

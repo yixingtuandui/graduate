@@ -1,5 +1,5 @@
 <view class='tx'>
-	 <image src='{{boksxq.bookImg}}'></image>
+	 <image class='img' src='{{boksxq.bookImg}}'></image>
    <text class='tt tt0'>书名: {{boksxq.bookName}}</text>
    <text class='tt tt1'>作者：{{boksxq.author}}</text>
    <text class='tt tt2'>类型：{{type.typename}}</text>
@@ -16,7 +16,9 @@
 				</view> -->
         <button class='butt' bindtap="buybook">{{buy}}</button>
       </view>
-   <text class='tts1'>{{boksxq.brief}}</text>
+    <text class='tts1' style='-webkit-line-clamp:{{dian}}' bindtap='dian'>
+  {{boksxq.brief}}</text>
+  <image class='ico' src='{{ico}}' bindtap='dian'></image>
 </view>
 <textarea class='the_prw_in' bindinput='bindblurs' cursor-spacing="130" placeholder='说点什么吧...' maxlength="100"> 
   </textarea> 
